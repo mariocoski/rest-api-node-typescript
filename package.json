@@ -1,0 +1,9 @@
+{
+  "name": "rest-api-node-typescript",
+  "version": "0.1.0",
+  "description": "restful api build in node using typescript",
+  "main": "index.js",
+  "repository": "https://github.com/mariocoski/rest-api-node-typescript.git",
+  "author": "Mariocoski <mariuszrajczakowski@gmail.com>",
+  "license": "MIT"
+}
