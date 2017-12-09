@@ -8,8 +8,9 @@ if(process.env.NODE_ENV !== 'production'){
 //load http module
 import * as http from 'http';
 import app from './app';
-
+const {sequelize} = require('./models');
 import * as iconvLite from 'iconv-lite';
+
 //used for characted encoding conversion
 iconvLite.encodingExists('foo');
 
@@ -30,10 +31,18 @@ const port: number = IS_TEST ? 3001 : 3000;
 //create a server
 const server: http.Server = new http.Server(app);
 
+async function dbInit(){
+  await sequelize.sync();
+}
+
+if(process.env.NODE_ENV !== 'test'){
+  dbInit();
+}
+
 //listen on the provided port
 server.listen(port, () => {
   if(! IS_TEST){
-    console.log(`Listening at http://localhost:${port}`);
+    console.log(`Listening at http://localhost:${port}/api/v1`);
   }
 });
 

@@ -21,7 +21,7 @@
   "engines": {
     "node": "&gt;=4.8.2"
   },
-  "scripts" : {
+  "scripts": {
     "build": "rm -rf ./build && tsc",
     "build:watch": "rm -rf ./build && tsc --watch",
     "start": "NODE_ENV=development && node ./build/server.js"
@@ -80,6 +80,7 @@
     "passport-jwt": "^3.0.1",
     "passport-local": "^1.0.0",
     "sequelize": "^4.27.0",
+    "sequelize-cli": "^3.2.0",
     "sqlite3": "^3.1.13"
   }
 }
