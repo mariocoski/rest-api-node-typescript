@@ -1,7 +1,7 @@
 {
   "name": "rest-api-node-typescript",
   "version": "0.1.0",
-  "description": "restful api build in node and typescript",
+  "description": "restful api built in node and typescript",
   "main": "index.js",
   "repository": "https://github.com/mariocoski/rest-api-node-typescript.git",
   "keywords": [
@@ -18,7 +18,68 @@
     "url": "https://github.com/mariocoski/rest-api-node-typescript/issues"
   },
   "homepage": "https://github.com/mariocoski/rest-api-node-typescript#readme",
-  "engines" : {
+  "engines": {
     "node": "&gt;=4.8.2"
+  },
+  "scripts" : {
+    "build": "rm -rf ./build && tsc",
+    "build:watch": "rm -rf ./build && tsc --watch",
+    "start": "NODE_ENV=development && node ./build/server.js"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^1.0.0",
+    "@types/body-parser": "^1.16.8",
+    "@types/compression": "^0.0.35",
+    "@types/cors": "^2.8.3",
+    "@types/dotenv": "^4.0.2",
+    "@types/es6-shim": "^0.31.35",
+    "@types/express": "^4.0.39",
+    "@types/express-jwt": "^0.0.38",
+    "@types/express-serve-static-core": "^4.0.57",
+    "@types/iconv-lite": "^0.0.1",
+    "@types/jest": "^21.1.8",
+    "@types/mime": "^2.0.0",
+    "@types/morgan": "^1.7.35",
+    "@types/node": "^8.0.57",
+    "@types/passport": "^0.4.1",
+    "@types/passport-jwt": "^3.0.0",
+    "@types/passport-local": "^1.0.32",
+    "@types/sequelize": "^4.0.79",
+    "@types/superagent": "^3.5.6",
+    "@types/supertest": "^2.0.4",
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^21.2.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "dotenv": "^4.0.0",
+    "jest": "^21.2.1",
+    "superagent": "^3.8.2",
+    "supertest": "^3.0.0",
+    "ts-jest": "^21.2.4",
+    "typescript": "^2.6.2"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "bcrypt": "^1.0.3",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "codecov": "^3.0.0",
+    "compression": "^1.7.1",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "express-jwt": "^5.3.0",
+    "express-jwt-permissions": "^1.0.0",
+    "express-validator": "^4.3.0",
+    "iconv-lite": "^0.4.19",
+    "lodash": "^4.17.4",
+    "mailgun-js": "^0.13.1",
+    "morgan": "^1.9.0",
+    "mysql2": "^1.5.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1",
+    "passport-local": "^1.0.0",
+    "sequelize": "^4.27.0",
+    "sqlite3": "^3.1.13"
   }
 }
