@@ -5,33 +5,20 @@ import {SequelizeModels} from './index';
 
 export default (sequelize: Sequelize, dataTypes: DataTypes):
   SequelizeStatic.Model<CommentInstance, CommentAttributes> => {
-  const Comment = sequelize.define<CommentInstance, CommentAttributes>("Comment", {
-    postId: dataTypes.INTEGER,
+  const Comment = sequelize.define<CommentInstance, CommentAttributes>("comment", {
+    postId:{
+      type: dataTypes.INTEGER,
+      field: 'post_id'
+    },
     body: dataTypes.STRING,
-    createdAt: {
-      type: dataTypes.DATE,
-      field: 'created_at',
-      defaultValue: dataTypes.NOW 
-    },
-    updatedAt: {
-      type: dataTypes.DATE,
-      field: 'updated_at'
-    },
-    deletedAt: {
-      type: dataTypes.DATE,
-      field: 'deleted_at'
-    }
+    deleted_at: dataTypes.DATE
   }, {
     tableName: 'comments',
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
     indexes: [],
-    classMethods: {
-      associate(models: SequelizeModels){
-        Comment.belongsTo(models.Post,{
-          foreignKey: 'post_id',
-          as: 'comments'
-        });
-      }
-    }
+    paranoid: true,
+    underscored: true
   });
 
   return Comment;

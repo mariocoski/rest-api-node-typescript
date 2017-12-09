@@ -58,5 +58,13 @@ files.filter(file => {
     _models[model.name] = model;
   });
 
+_models.comment.belongsTo(_models.post);
+_models.post.hasMany(_models.comment);
+_models.post.belongsTo(_models.user);
+_models.user.hasMany(_models.post);
+_models.Role.belongsToMany(_models.user, { through: _models.UserRole, as: 'users'});
+_models.user.belongsToMany(_models.Role, { through: _models.UserRole, as: 'roles' });
+
 export const models: SequelizeModels = _models;
+
 export const sequelize: Sequelize = _sequelize;

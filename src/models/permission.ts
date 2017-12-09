@@ -5,35 +5,21 @@ import {SequelizeModels} from './index';
 
 export default (sequelize: Sequelize, dataTypes: DataTypes):
   SequelizeStatic.Model<PermissionInstance, PermissionAttributes> => {
-  const Permission = sequelize.define<PermissionInstance, PermissionAttributes>("Permission", {
-    userId: dataTypes.INTEGER,
+  const Permission = sequelize.define<PermissionInstance, PermissionAttributes>("permission", {
+    roleId:{
+      type: dataTypes.INTEGER,
+      field: 'role_id'
+    },
     title: dataTypes.STRING,
     body: dataTypes.STRING,
-    createdAt: {
-      type: dataTypes.DATE,
-      field: 'created_at',
-      defaultValue: dataTypes.NOW 
-    },
-    updatedAt: {
-      type: dataTypes.DATE,
-      field: 'updated_at'
-    },
-    deletedAt: {
-      type: dataTypes.DATE,
-      field: 'deleted_at'
-    }
+    deleted_at: dataTypes.DATE
   }, {
     tableName: 'permissions',
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
     indexes: [],
-    classMethods: {
-      associate(models: SequelizeModels){
-        Permission.belongsToMany(models.Role,{
-          through: 'role_permission',
-          foreignKey: 'permission_id',
-          as: 'permissions'
-        });
-      }
-    }
+    paranoid: true,
+    underscored: true
   });
 
   return Permission;

@@ -1,34 +1,21 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (sequelize, dataTypes) {
-    var Post = sequelize.define("Post", {
-        userId: dataTypes.INTEGER,
+    var Post = sequelize.define("post", {
+        userId: {
+            type: dataTypes.INTEGER,
+            field: 'user_id'
+        },
         title: dataTypes.STRING,
         body: dataTypes.STRING,
-        createdAt: {
-            type: dataTypes.DATE,
-            field: 'created_at',
-            defaultValue: dataTypes.NOW
-        },
-        updatedAt: {
-            type: dataTypes.DATE,
-            field: 'updated_at'
-        },
-        deletedAt: {
-            type: dataTypes.DATE,
-            field: 'deleted_at'
-        }
+        deleted_at: dataTypes.DATE
     }, {
         tableName: 'posts',
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
         indexes: [],
-        classMethods: {
-            associate: function (models) {
-                Post.belongsTo(models.User, {
-                    foreignKey: 'user_id',
-                    as: 'posts'
-                });
-            }
-        }
+        paranoid: true,
+        underscored: true
     });
     return Post;
 };

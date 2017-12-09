@@ -43,7 +43,7 @@ if (process.env.NODE_ENV !== 'production') {
 //load http module
 var http = require("http");
 var app_1 = require("./app");
-var sequelize = require('./models').sequelize;
+var _a = require('./models'), sequelize = _a.sequelize, models = _a.models;
 var iconvLite = require("iconv-lite");
 //used for characted encoding conversion
 iconvLite.encodingExists('foo');
@@ -62,12 +62,48 @@ var port = IS_TEST ? 3001 : 3000;
 var server = new http.Server(app_1.default);
 function dbInit() {
     return __awaiter(this, void 0, void 0, function () {
+        var user, e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, sequelize.sync()];
+                case 0: return [4 /*yield*/, sequelize.sync({ force: true })];
                 case 1:
                     _a.sent();
-                    return [2 /*return*/];
+                    _a.label = 2;
+                case 2:
+                    _a.trys.push([2, 11, , 12]);
+                    //{ include: [{ model: models.Role, paranoid: true, as: 'roles' }] }
+                    return [4 /*yield*/, models.user.create({ firstname: 'John', lastname: 'Malkovic', email: 'tok@op.pl', password: 'passowrd' })];
+                case 3:
+                    //{ include: [{ model: models.Role, paranoid: true, as: 'roles' }] }
+                    _a.sent();
+                    return [4 /*yield*/, models.post.create({ userId: 1, title: 'New post', body: 'Excellent!' })];
+                case 4:
+                    _a.sent();
+                    return [4 /*yield*/, models.comment.create({ postId: 1, body: 'Good job!' })];
+                case 5:
+                    _a.sent();
+                    return [4 /*yield*/, models.Role.create({ id: 1, name: 'admin', description: 'here' })];
+                case 6:
+                    _a.sent();
+                    return [4 /*yield*/, models.Role.create({ id: 2, name: 'editor', description: 'here', deleted_at: '2015-12-12 12:12:12' })];
+                case 7:
+                    _a.sent();
+                    return [4 /*yield*/, models.UserRole.create({ user_id: 1, role_id: 1 })];
+                case 8:
+                    _a.sent();
+                    return [4 /*yield*/, models.UserRole.create({ user_id: 1, role_id: 2 })];
+                case 9:
+                    _a.sent();
+                    return [4 /*yield*/, models.user.findAll({ include: { model: models.Role, as: 'roles' } })];
+                case 10:
+                    user = _a.sent();
+                    console.log(user[0].roles.length);
+                    return [3 /*break*/, 12];
+                case 11:
+                    e_1 = _a.sent();
+                    console.log(e_1);
+                    return [3 /*break*/, 12];
+                case 12: return [2 /*return*/];
             }
         });
     });

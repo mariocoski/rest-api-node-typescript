@@ -1,33 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (sequelize, dataTypes) {
-    var Comment = sequelize.define("Comment", {
-        postId: dataTypes.INTEGER,
+    var Comment = sequelize.define("comment", {
+        postId: {
+            type: dataTypes.INTEGER,
+            field: 'post_id'
+        },
         body: dataTypes.STRING,
-        createdAt: {
-            type: dataTypes.DATE,
-            field: 'created_at',
-            defaultValue: dataTypes.NOW
-        },
-        updatedAt: {
-            type: dataTypes.DATE,
-            field: 'updated_at'
-        },
-        deletedAt: {
-            type: dataTypes.DATE,
-            field: 'deleted_at'
-        }
+        deleted_at: dataTypes.DATE
     }, {
         tableName: 'comments',
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
         indexes: [],
-        classMethods: {
-            associate: function (models) {
-                Comment.belongsTo(models.Post, {
-                    foreignKey: 'post_id',
-                    as: 'comments'
-                });
-            }
-        }
+        paranoid: true,
+        underscored: true
     });
     return Comment;
 };

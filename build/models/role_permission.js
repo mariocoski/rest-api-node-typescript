@@ -2,14 +2,21 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (sequelize, dataTypes) {
     var RolePermission = sequelize.define("RolePermission", {
-        roleId: dataTypes.INTEGER,
-        permissionId: dataTypes.INTEGER,
-        deletedAt: {
-            type: dataTypes.DATE,
-            field: 'deleted_at'
-        }
+        roleId: {
+            type: dataTypes.INTEGER,
+            field: 'role_id'
+        },
+        permissionId: {
+            type: dataTypes.INTEGER,
+            field: 'permission_id'
+        },
+        deleted_at: dataTypes.DATE
     }, {
         tableName: 'role_permission',
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
+        paranoid: true,
+        underscored: true
     });
     return RolePermission;
 };

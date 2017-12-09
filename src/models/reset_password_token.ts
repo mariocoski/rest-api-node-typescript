@@ -5,33 +5,20 @@ import {SequelizeModels} from './index';
 
 export default (sequelize: Sequelize, dataTypes: DataTypes):
   SequelizeStatic.Model<ResetPasswordTokenInstance, ResetPasswordTokenAttributes> => {
-  const ResetPasswordToken = sequelize.define<ResetPasswordTokenInstance, ResetPasswordTokenAttributes>("ResetPasswordToken", {
-    userId: dataTypes.INTEGER,
+  const ResetPasswordToken = sequelize.define<ResetPasswordTokenInstance, ResetPasswordTokenAttributes>("resetpasswordtoken", {
+    userId:{
+      type: dataTypes.INTEGER,
+      field: 'user_id'
+    },
     token: dataTypes.STRING,
-    createdAt: {
-      type: dataTypes.DATE,
-      field: 'created_at',
-      defaultValue: dataTypes.NOW 
-    },
-    updatedAt: {
-      type: dataTypes.DATE,
-      field: 'updated_at'
-    },
-    deletedAt: {
-      type: dataTypes.DATE,
-      field: 'deleted_at'
-    }
+    deleted_at: dataTypes.DATE
   }, {
     tableName: 'reset_password_tokens',
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
     indexes: [],
-    classMethods: {
-      associate(models: SequelizeModels){
-        ResetPasswordToken.belongsTo(models.User,{
-          foreignKey: 'user_id',
-          as: 'tokens'
-        });
-      }
-    }
+    paranoid: true,
+    underscored: true
   });
 
   return ResetPasswordToken;

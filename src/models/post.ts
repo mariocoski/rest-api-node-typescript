@@ -5,34 +5,21 @@ import {SequelizeModels} from './index';
 
 export default (sequelize: Sequelize, dataTypes: DataTypes):
   SequelizeStatic.Model<PostInstance, PostAttributes> => {
-  const Post = sequelize.define<PostInstance, PostAttributes>("Post", {
-    userId: dataTypes.INTEGER,
+  const Post = sequelize.define<PostInstance, PostAttributes>("post", {
+    userId:{
+      type: dataTypes.INTEGER,
+      field: 'user_id'
+    },
     title: dataTypes.STRING,
     body: dataTypes.STRING,
-    createdAt: {
-      type: dataTypes.DATE,
-      field: 'created_at',
-      defaultValue: dataTypes.NOW 
-    },
-    updatedAt: {
-      type: dataTypes.DATE,
-      field: 'updated_at'
-    },
-    deletedAt: {
-      type: dataTypes.DATE,
-      field: 'deleted_at'
-    }
+    deleted_at: dataTypes.DATE
   }, {
     tableName: 'posts',
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
     indexes: [],
-    classMethods: {
-      associate(models: SequelizeModels){
-        Post.belongsTo(models.User,{
-          foreignKey: 'user_id',
-          as: 'posts'
-        });
-      }
-    }
+    paranoid: true,
+    underscored: true
   });
 
   return Post;

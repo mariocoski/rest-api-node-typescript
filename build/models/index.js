@@ -26,6 +26,12 @@ files.filter(function (file) {
     var model = _sequelize.import(path.join(__dirname, file));
     _models[model.name] = model;
 });
+_models.comment.belongsTo(_models.post);
+_models.post.hasMany(_models.comment);
+_models.post.belongsTo(_models.user);
+_models.user.hasMany(_models.post);
+_models.Role.belongsToMany(_models.user, { through: _models.UserRole, as: 'users' });
+_models.user.belongsToMany(_models.Role, { through: _models.UserRole, as: 'roles' });
 exports.models = _models;
 exports.sequelize = _sequelize;
 //# sourceMappingURL=index.js.map

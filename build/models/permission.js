@@ -1,35 +1,21 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (sequelize, dataTypes) {
-    var Permission = sequelize.define("Permission", {
-        userId: dataTypes.INTEGER,
+    var Permission = sequelize.define("permission", {
+        roleId: {
+            type: dataTypes.INTEGER,
+            field: 'role_id'
+        },
         title: dataTypes.STRING,
         body: dataTypes.STRING,
-        createdAt: {
-            type: dataTypes.DATE,
-            field: 'created_at',
-            defaultValue: dataTypes.NOW
-        },
-        updatedAt: {
-            type: dataTypes.DATE,
-            field: 'updated_at'
-        },
-        deletedAt: {
-            type: dataTypes.DATE,
-            field: 'deleted_at'
-        }
+        deleted_at: dataTypes.DATE
     }, {
         tableName: 'permissions',
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
         indexes: [],
-        classMethods: {
-            associate: function (models) {
-                Permission.belongsToMany(models.Role, {
-                    through: 'role_permission',
-                    foreignKey: 'permission_id',
-                    as: 'permissions'
-                });
-            }
-        }
+        paranoid: true,
+        underscored: true
     });
     return Permission;
 };

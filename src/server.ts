@@ -8,7 +8,7 @@ if(process.env.NODE_ENV !== 'production'){
 //load http module
 import * as http from 'http';
 import app from './app';
-const {sequelize} = require('./models');
+const {sequelize, models} = require('./models');
 import * as iconvLite from 'iconv-lite';
 
 //used for characted encoding conversion
@@ -32,7 +32,21 @@ const port: number = IS_TEST ? 3001 : 3000;
 const server: http.Server = new http.Server(app);
 
 async function dbInit(){
-  await sequelize.sync();
+  await sequelize.sync({force:true});
+  try{
+    await models.user.create({firstname: 'John', lastname: 'Malkovic', email: 'tok@op.pl', password: 'passowrd'});
+    await models.post.create({userId: 1, title: 'New post', body: 'Excellent!'});
+    await models.comment.create({postId: 1,  body: 'Good job!'});
+    await models.Role.create({id: 1, name: 'admin', description: 'here'});
+    await models.Role.create({id: 2, name: 'editor', description: 'here', deleted_at: '2015-12-12 12:12:12'});
+    await models.UserRole.create({user_id: 1,role_id: 1});
+    await models.UserRole.create({user_id: 1,role_id: 2});
+    const user = await models.user.findAll({include: {model: models.Role, as: 'roles'}});
+    console.log(user[0].roles.length);
+  }catch(e) {
+    console.log(e);
+  }
+  
 }
 
 if(process.env.NODE_ENV !== 'test'){

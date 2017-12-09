@@ -1,10 +1,11 @@
 import * as SequelizeStatic from "sequelize";
-import {DataTypes, Sequelize} from "sequelize";
+import {DataTypes, Sequelize, Instance} from "sequelize";
 import {UserAttributes, UserInstance} from "./interfaces/user";
 import {SequelizeModels} from './index';
 export default (sequelize: Sequelize, dataTypes: DataTypes):
   SequelizeStatic.Model<UserInstance, UserAttributes> => {
-  const User = sequelize.define<UserInstance, UserAttributes>("User", {
+  
+  const User = sequelize.define<UserInstance, UserAttributes>("user", {
     firstname: dataTypes.STRING,
     lastname: dataTypes.STRING,
     bio: dataTypes.TEXT,
@@ -15,42 +16,18 @@ export default (sequelize: Sequelize, dataTypes: DataTypes):
       }
     },
     password: dataTypes.STRING,
-    createdAt: {
-      type: dataTypes.DATE,
-      field: 'created_at',
-      defaultValue: dataTypes.NOW 
-    },
-    updatedAt: {
-      type: dataTypes.DATE,
-      field: 'updated_at'
-    },
-    deletedAt: {
-      type: dataTypes.DATE,
-      field: 'deleted_at'
-    }
+    deleted_at: dataTypes.DATE
   }, {
     tableName: 'users',
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
     indexes: [],
-    classMethods: {
-      associate(models: SequelizeModels){
-        User.belongsToMany(models.Role,{
-          through: 'user_role',
-          foreignKey: 'user_id',
-          as: 'roles'
-        });
-        
-        User.hasMany(models.ResetPasswordToken,{
-          foreignKey: 'user_id',
-          as: 'tokens'
-        });
-
-        User.hasMany(models.Post,{
-          foreignKey: 'post_id',
-          as: 'posts'
-        });
-      }
-    }
+    paranoid: true,
+    underscored: true
   });
-
+  User.beforeCreate(async (user: any, options: object) => {
+    user.password = 'hash';
+    return user;
+  });
   return User;
 }
