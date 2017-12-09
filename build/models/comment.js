@@ -1,11 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (sequelize, dataTypes) {
-    var Comment = sequelize.define("comment", {
-        postId: {
-            type: dataTypes.INTEGER,
-            field: 'post_id'
-        },
+    var Comment = sequelize.define("Comment", {
+        post_id: dataTypes.INTEGER,
         body: dataTypes.STRING,
         deleted_at: dataTypes.DATE
     }, {

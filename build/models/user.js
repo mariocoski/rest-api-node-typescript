@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (sequelize, dataTypes) {
-    var User = sequelize.define("user", {
+    var User = sequelize.define("User", {
         firstname: dataTypes.STRING,
         lastname: dataTypes.STRING,
         bio: dataTypes.TEXT,
@@ -55,12 +55,20 @@ exports.default = function (sequelize, dataTypes) {
         updatedAt: 'updated_at',
         indexes: [],
         paranoid: true,
-        underscored: true
+        underscored: true,
     });
     User.beforeCreate(function (user, options) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            user.password = 'hash';
-            return [2 /*return*/, user];
+            //@todo implement bcrypt
+            user.dataValues.password = 'hash';
+            return [2 /*return*/];
+        });
+    }); });
+    User.afterDestroy(function (user, options) { return __awaiter(_this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            sequelize.models.Post.destroy({ where: { user_id: user.dataValues.id } });
+            sequelize.models.UserRole.destroy({ where: { user_id: user.dataValues.id } });
+            return [2 /*return*/];
         });
     }); });
     return User;

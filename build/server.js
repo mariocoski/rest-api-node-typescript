@@ -62,7 +62,7 @@ var port = IS_TEST ? 3001 : 3000;
 var server = new http.Server(app_1.default);
 function dbInit() {
     return __awaiter(this, void 0, void 0, function () {
-        var user, e_1;
+        var myUser, user, roles, e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, sequelize.sync({ force: true })];
@@ -70,16 +70,14 @@ function dbInit() {
                     _a.sent();
                     _a.label = 2;
                 case 2:
-                    _a.trys.push([2, 11, , 12]);
-                    //{ include: [{ model: models.Role, paranoid: true, as: 'roles' }] }
-                    return [4 /*yield*/, models.user.create({ firstname: 'John', lastname: 'Malkovic', email: 'tok@op.pl', password: 'passowrd' })];
+                    _a.trys.push([2, 14, , 15]);
+                    return [4 /*yield*/, models.User.create({ firstname: 'John', lastname: 'Malkovic', email: 'tok@op.pl', password: 'passowrd' })];
                 case 3:
-                    //{ include: [{ model: models.Role, paranoid: true, as: 'roles' }] }
                     _a.sent();
-                    return [4 /*yield*/, models.post.create({ userId: 1, title: 'New post', body: 'Excellent!' })];
+                    return [4 /*yield*/, models.Post.create({ user_id: 1, title: 'New post', body: 'Excellent!' })];
                 case 4:
                     _a.sent();
-                    return [4 /*yield*/, models.comment.create({ postId: 1, body: 'Good job!' })];
+                    return [4 /*yield*/, models.Comment.create({ post_id: 1, body: 'Good job!' })];
                 case 5:
                     _a.sent();
                     return [4 /*yield*/, models.Role.create({ id: 1, name: 'admin', description: 'here' })];
@@ -94,16 +92,26 @@ function dbInit() {
                     return [4 /*yield*/, models.UserRole.create({ user_id: 1, role_id: 2 })];
                 case 9:
                     _a.sent();
-                    return [4 /*yield*/, models.user.findAll({ include: { model: models.Role, as: 'roles' } })];
+                    return [4 /*yield*/, models.User.findById(1)];
                 case 10:
-                    user = _a.sent();
-                    console.log(user[0].roles.length);
-                    return [3 /*break*/, 12];
+                    myUser = _a.sent();
+                    console.log(myUser.email);
+                    return [4 /*yield*/, myUser.destroy()];
                 case 11:
+                    _a.sent();
+                    return [4 /*yield*/, models.User.findAll({ include: { model: models.Post } })];
+                case 12:
+                    user = _a.sent();
+                    return [4 /*yield*/, models.Comment.findAll({ paranoid: true })];
+                case 13:
+                    roles = _a.sent();
+                    console.log(user, roles);
+                    return [3 /*break*/, 15];
+                case 14:
                     e_1 = _a.sent();
                     console.log(e_1);
-                    return [3 /*break*/, 12];
-                case 12: return [2 /*return*/];
+                    return [3 /*break*/, 15];
+                case 15: return [2 /*return*/];
             }
         });
     });

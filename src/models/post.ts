@@ -5,11 +5,8 @@ import {SequelizeModels} from './index';
 
 export default (sequelize: Sequelize, dataTypes: DataTypes):
   SequelizeStatic.Model<PostInstance, PostAttributes> => {
-  const Post = sequelize.define<PostInstance, PostAttributes>("post", {
-    userId:{
-      type: dataTypes.INTEGER,
-      field: 'user_id'
-    },
+  const Post = sequelize.define<PostInstance, PostAttributes>("Post", {
+    post_id: dataTypes.INTEGER,
     title: dataTypes.STRING,
     body: dataTypes.STRING,
     deleted_at: dataTypes.DATE
@@ -20,6 +17,11 @@ export default (sequelize: Sequelize, dataTypes: DataTypes):
     indexes: [],
     paranoid: true,
     underscored: true
+  });
+
+
+  Post.afterDestroy(async(post: PostInstance, options: Object) => {
+    sequelize.models.Comment.destroy({where: {post_id: post.dataValues.id}}); 
   });
 
   return Post;

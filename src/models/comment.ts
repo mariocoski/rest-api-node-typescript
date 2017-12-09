@@ -5,11 +5,8 @@ import {SequelizeModels} from './index';
 
 export default (sequelize: Sequelize, dataTypes: DataTypes):
   SequelizeStatic.Model<CommentInstance, CommentAttributes> => {
-  const Comment = sequelize.define<CommentInstance, CommentAttributes>("comment", {
-    postId:{
-      type: dataTypes.INTEGER,
-      field: 'post_id'
-    },
+  const Comment = sequelize.define<CommentInstance, CommentAttributes>("Comment", {
+    post_id: dataTypes.INTEGER,
     body: dataTypes.STRING,
     deleted_at: dataTypes.DATE
   }, {
