@@ -2,11 +2,11 @@ import {Instance} from "sequelize";
 
 export interface ResetPasswordTokenAttributes {
   id: number,
-  userId: number,
+  user_id: number,
   token: string,
-  createdAt: string,
-  updatedAt: string,
-  deletedAt: string
+  created_at: string,
+  updated_at: string,
+  deleted_at: string
 }
 
 export interface ResetPasswordTokenInstance extends Instance<ResetPasswordTokenAttributes> {

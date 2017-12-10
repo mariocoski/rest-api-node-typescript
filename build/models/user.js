@@ -43,6 +43,7 @@ exports.default = function (sequelize, dataTypes) {
         bio: dataTypes.TEXT,
         email: {
             type: dataTypes.STRING,
+            unique: true,
             validate: {
                 isEmail: true
             }
@@ -64,13 +65,11 @@ exports.default = function (sequelize, dataTypes) {
             return [2 /*return*/];
         });
     }); });
-    User.afterDestroy(function (user, options) { return __awaiter(_this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            sequelize.models.Post.destroy({ where: { user_id: user.dataValues.id } });
-            sequelize.models.UserRole.destroy({ where: { user_id: user.dataValues.id } });
-            return [2 /*return*/];
-        });
-    }); });
+    User.afterDestroy(function (user, options) {
+        sequelize.models.Post.destroy({ where: { user_id: user.dataValues.id }, individualHooks: true });
+        sequelize.models.UserRole.destroy({ where: { user_id: user.dataValues.id }, individualHooks: true });
+        sequelize.models.ResetPasswordToken.destroy({ where: { user_id: user.dataValues.id }, individualHooks: true });
+    });
     return User;
 };
 //# sourceMappingURL=user.js.map

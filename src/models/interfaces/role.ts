@@ -2,12 +2,11 @@ import {Instance} from "sequelize";
 
 export interface RoleAttributes {
   id: number,
-  userId: number,
   name: string,
   description: string,
-  createdAt: string,
-  updatedAt: string,
-  deletedAt: string
+  created_at: string,
+  updated_at: string,
+  deleted_at: string
 }
 
 export interface RoleInstance extends Instance<RoleAttributes> {

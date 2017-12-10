@@ -2,12 +2,12 @@ import {Instance} from "sequelize";
 
 export interface PostAttributes {
   id: number,
-  userId: number,
+  user_id: number,
   title: string,
   body: string,
-  createdAt: string,
-  updatedAt: string,
-  deletedAt: string
+  created_at: string,
+  updated_at: string,
+  deleted_at: string
 }
 
 export interface PostInstance extends Instance<PostAttributes> {

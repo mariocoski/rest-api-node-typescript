@@ -18,7 +18,10 @@ export default (sequelize: Sequelize, dataTypes: DataTypes):
     underscored: true
   });
 
- 
+  Role.afterDestroy((role: RoleInstance, options: Object) => {
+    sequelize.models.UserRole.destroy({where: {role_id: role.dataValues.id}, individualHooks: true}); 
+    sequelize.models.RolePermission.destroy({where: {role_id: role.dataValues.id}, individualHooks: true}); 
+  });
 
   return Role;
 }

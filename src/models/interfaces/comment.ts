@@ -2,11 +2,12 @@ import {Instance} from "sequelize";
 
 export interface CommentAttributes {
   id: number,
-  postId: number,
+  post_id: number,
+  user_id: number,
   body: string,
-  createdAt: string,
-  updatedAt: string,
-  deletedAt: string
+  created_at: string,
+  updated_at: string,
+  deleted_at: string
 }
 
 export interface CommentInstance extends Instance<CommentAttributes> {

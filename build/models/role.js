@@ -13,6 +13,10 @@ exports.default = function (sequelize, dataTypes) {
         paranoid: true,
         underscored: true
     });
+    Role.afterDestroy(function (role, options) {
+        sequelize.models.UserRole.destroy({ where: { role_id: role.dataValues.id }, individualHooks: true });
+        sequelize.models.RolePermission.destroy({ where: { role_id: role.dataValues.id }, individualHooks: true });
+    });
     return Role;
 };
 //# sourceMappingURL=role.js.map

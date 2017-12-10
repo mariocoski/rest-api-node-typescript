@@ -2,6 +2,7 @@ import * as SequelizeStatic from "sequelize";
 import {DataTypes, Sequelize, Instance} from "sequelize";
 import {UserAttributes, UserInstance} from "./interfaces/user";
 import {SequelizeModels} from './index';
+
 export default (sequelize: Sequelize, dataTypes: DataTypes):
   SequelizeStatic.Model<UserInstance, UserAttributes> => {
   
@@ -11,6 +12,7 @@ export default (sequelize: Sequelize, dataTypes: DataTypes):
     bio: dataTypes.TEXT,
     email: {
       type: dataTypes.STRING,
+      unique: true,
       validate: {
         isEmail: true
       }
@@ -31,9 +33,10 @@ export default (sequelize: Sequelize, dataTypes: DataTypes):
     user.dataValues.password = 'hash';
   });
 
-  User.afterDestroy(async(user: UserInstance, options: Object) => {
-    sequelize.models.Post.destroy({where: {user_id: user.dataValues.id}}); 
-    sequelize.models.UserRole.destroy({where: {user_id: user.dataValues.id}}); 
+  User.afterDestroy((user: UserInstance, options: Object) => {
+    sequelize.models.Post.destroy({where: {user_id: user.dataValues.id},individualHooks: true}); 
+    sequelize.models.UserRole.destroy({where: {user_id: user.dataValues.id}, individualHooks: true}); 
+    sequelize.models.ResetPasswordToken.destroy({where: {user_id: user.dataValues.id}, individualHooks: true}); 
   });
 
   return User;

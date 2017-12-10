@@ -5,11 +5,8 @@ import {SequelizeModels} from './index';
 
 export default (sequelize: Sequelize, dataTypes: DataTypes):
   SequelizeStatic.Model<ResetPasswordTokenInstance, ResetPasswordTokenAttributes> => {
-  const ResetPasswordToken = sequelize.define<ResetPasswordTokenInstance, ResetPasswordTokenAttributes>("resetpasswordtoken", {
-    userId:{
-      type: dataTypes.INTEGER,
-      field: 'user_id'
-    },
+  const ResetPasswordToken = sequelize.define<ResetPasswordTokenInstance, ResetPasswordTokenAttributes>("ResetPasswordToken", {
+    user_id:dataTypes.INTEGER,
     token: dataTypes.STRING,
     deleted_at: dataTypes.DATE
   }, {

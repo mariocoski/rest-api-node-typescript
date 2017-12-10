@@ -1,6 +1,7 @@
 import {Instance} from "sequelize";
 import {RoleInstance} from './role';
 import {SequelizeModels} from '../index';
+
 export interface UserAttributes {
   id: number,
   firstname: string,
@@ -8,11 +9,10 @@ export interface UserAttributes {
   bio: string,
   email: string,
   password: string,
-  createdAt: string,
-  updatedAt: string,
-  deletedAt: string
+  created_at: string,
+  updated_at: string,
+  deleted_at: string
 }
-
 
 export interface UserInstance extends Instance<UserAttributes> {
   dataValues: UserAttributes;

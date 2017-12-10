@@ -24,7 +24,9 @@
   "scripts": {
     "build": "rm -rf ./build && tsc",
     "build:watch": "rm -rf ./build && tsc --watch",
-    "start": "NODE_ENV=development && node ./build/server.js"
+    "start": "NODE_ENV=development && node ./build/server.js",
+    "test": "jest --coverage --runInBand",
+    "test:watch": "jest --coverage --runInBand --watch"
   },
   "devDependencies": {
     "@types/bcrypt": "^1.0.0",
@@ -82,5 +84,28 @@
     "sequelize": "^4.27.0",
     "sequelize-cli": "^3.2.0",
     "sqlite3": "^3.1.13"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
+    "transform": {
+      ".(ts|tsx|js|jsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testEnvironment": "node",
+    "bail": true,
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "ts",
+      "tsx"
+    ],
+    "mapCoverage": true,
+    "transformIgnorePatterns": [
+      "node_modules/(?!(express-validator)/)"
+    ],
+    "testMatch": [
+      "<rootDir>/src/__tests__/**/*.test.(ts|js)"
+    ]
   }
 }

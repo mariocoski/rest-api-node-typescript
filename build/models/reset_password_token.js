@@ -1,11 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (sequelize, dataTypes) {
-    var ResetPasswordToken = sequelize.define("resetpasswordtoken", {
-        userId: {
-            type: dataTypes.INTEGER,
-            field: 'user_id'
-        },
+    var ResetPasswordToken = sequelize.define("ResetPasswordToken", {
+        user_id: dataTypes.INTEGER,
         token: dataTypes.STRING,
         deleted_at: dataTypes.DATE
     }, {

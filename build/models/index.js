@@ -21,17 +21,22 @@ var files = fs.readdirSync(__dirname);
 files.filter(function (file) {
     return (file.indexOf('.') !== 0) && (file !== basename)
         && (file.slice(-3) === '.js' || file.slice(-3) === '.ts')
-        && (file !== "interfaces");
+        && (file !== 'interfaces');
 }).forEach(function (file) {
     var model = _sequelize.import(path.join(__dirname, file));
     _models[model.name] = model;
 });
 _models.Comment.belongsTo(_models.Post);
-_models.Post.hasMany(_models.Comment, { onDelete: 'CASCADE' });
+_models.Post.hasMany(_models.Comment, { as: 'comments', onDelete: 'CASCADE' });
 _models.Post.belongsTo(_models.User);
-_models.User.hasMany(_models.Post, { onDelete: 'CASCADE' });
+_models.User.hasMany(_models.Post, { as: 'posts', onDelete: 'CASCADE' });
+_models.User.hasMany(_models.ResetPasswordToken, { as: 'reset_password_tokens', onDelete: 'CASCADE' });
+_models.Comment.belongsTo(_models.User);
+_models.User.hasMany(_models.Comment, { as: 'comments', onDelete: 'CASCADE' });
 _models.Role.belongsToMany(_models.User, { through: _models.UserRole, as: 'users', onDelete: 'CASCADE', individualHooks: true });
 _models.User.belongsToMany(_models.Role, { through: _models.UserRole, as: 'roles', onDelete: 'CASCADE', individualHooks: true });
+_models.Role.belongsToMany(_models.Permission, { through: _models.RolePermission, as: 'permissions', onDelete: 'CASCADE', individualHooks: true });
+_models.Permission.belongsToMany(_models.Role, { through: _models.RolePermission, as: 'roles', onDelete: 'CASCADE', individualHooks: true });
 exports.models = _models;
 exports.sequelize = _sequelize;
 //# sourceMappingURL=index.js.map

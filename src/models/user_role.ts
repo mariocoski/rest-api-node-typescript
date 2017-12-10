@@ -6,14 +6,8 @@ import {SequelizeModels} from './index';
 export default (sequelize: Sequelize, dataTypes: DataTypes):
   SequelizeStatic.Model<UserRoleInstance, UserRoleAttributes> => {
   const UserRole = sequelize.define<UserRoleInstance, UserRoleAttributes>("UserRole", {
-    userId:{
-      type: dataTypes.INTEGER,
-      field: 'user_id'
-    },
-    roleId:{
-      type: dataTypes.INTEGER,
-      field: 'role_id'
-    },
+    user_id: dataTypes.INTEGER,
+    role_id: dataTypes.INTEGER,
     deleted_at: dataTypes.DATE
   }, {
     tableName: 'user_role',

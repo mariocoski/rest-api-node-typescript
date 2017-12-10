@@ -2,14 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (sequelize, dataTypes) {
     var UserRole = sequelize.define("UserRole", {
-        userId: {
-            type: dataTypes.INTEGER,
-            field: 'user_id'
-        },
-        roleId: {
-            type: dataTypes.INTEGER,
-            field: 'role_id'
-        },
+        user_id: dataTypes.INTEGER,
+        role_id: dataTypes.INTEGER,
         deleted_at: dataTypes.DATE
     }, {
         tableName: 'user_role',

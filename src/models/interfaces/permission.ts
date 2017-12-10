@@ -2,12 +2,12 @@ import {Instance} from "sequelize";
 
 export interface PermissionAttributes {
   id: number,
-  roleId: number,
   name: string,
+  label: string,
   description: string,
-  createdAt: string,
-  updatedAt: string,
-  deletedAt: string
+  created_at: string,
+  updated_at: string,
+  deleted_at: string
 }
 
 export interface PermissionInstance extends Instance<PermissionAttributes> {
