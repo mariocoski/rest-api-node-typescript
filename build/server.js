@@ -43,6 +43,9 @@ if (process.env.NODE_ENV !== 'production') {
 //load http module
 var http = require("http");
 var app_1 = require("./app");
+var utils_1 = require("./utils");
+var bcrypt = require("bcrypt");
+var R = require("ramda");
 var _a = require('./models'), sequelize = _a.sequelize, models = _a.models;
 var iconvLite = require("iconv-lite");
 //used for characted encoding conversion
@@ -62,25 +65,19 @@ var port = IS_TEST ? 3001 : 3000;
 var server = new http.Server(app_1.default);
 function dbInit() {
     return __awaiter(this, void 0, void 0, function () {
-        var users, e_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var curriedHasher, generateHash, _a, _b;
+        return __generator(this, function (_c) {
+            switch (_c.label) {
                 case 0: return [4 /*yield*/, sequelize.sync()];
                 case 1:
-                    _a.sent();
-                    _a.label = 2;
+                    _c.sent();
+                    curriedHasher = R.curry(utils_1.makeHash);
+                    generateHash = curriedHasher(bcrypt);
+                    _b = (_a = console).log;
+                    return [4 /*yield*/, generateHash('password')];
                 case 2:
-                    _a.trys.push([2, 4, , 5]);
-                    return [4 /*yield*/, models.User.findAll({ include: { model: models.Comment, as: 'comments' } })];
-                case 3:
-                    users = _a.sent();
-                    console.log(users[0].comments);
-                    return [3 /*break*/, 5];
-                case 4:
-                    e_1 = _a.sent();
-                    console.log(e_1);
-                    return [3 /*break*/, 5];
-                case 5: return [2 /*return*/];
+                    _b.apply(_a, [_c.sent()]);
+                    return [2 /*return*/];
             }
         });
     });

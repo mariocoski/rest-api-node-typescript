@@ -2,6 +2,7 @@ import * as SequelizeStatic from "sequelize";
 import {DataTypes, Sequelize, Instance} from "sequelize";
 import {UserAttributes, UserInstance} from "./interfaces/user";
 import {SequelizeModels} from './index';
+import {hashPassword} from '../utils';
 
 export default (sequelize: Sequelize, dataTypes: DataTypes):
   SequelizeStatic.Model<UserInstance, UserAttributes> => {
@@ -29,8 +30,7 @@ export default (sequelize: Sequelize, dataTypes: DataTypes):
   });
   
   User.beforeCreate(async (user: UserInstance, options: Object) => {
-    //@todo implement bcrypt
-    user.dataValues.password = 'hash';
+    user.dataValues.password = await hashPassword(user.dataValues.password);
   });
 
   User.afterDestroy((user: UserInstance, options: Object) => {

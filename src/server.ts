@@ -8,6 +8,9 @@ if(process.env.NODE_ENV !== 'production'){
 //load http module
 import * as http from 'http';
 import app from './app';
+import {makeHash} from './utils';
+import * as bcrypt from 'bcrypt';
+import * as R from 'ramda';
 const {sequelize,models} = require('./models');
 import * as iconvLite from 'iconv-lite';
 
