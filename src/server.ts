@@ -50,6 +50,7 @@ server.listen(port, () => {
 });
 
 //server error handler
+/* istanbul ignore next */
 server.on('error', (error: any, port: number) => {
   if (error.syscall !== "listen") {
     throw error;
