@@ -16,9 +16,15 @@ const app: express.Application = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//in the meantime (as we don't have any gzip module on nginx yet - we will compress //response bodies for all requests) using compression middleware
+//in the meantime (as we don't have any gzip module on nginx yet
+//we will compress response bodies for all requests) 
+//using compression middleware
 app.use(compression());
 
+
+app.use(logger('common', {
+    stream: fs.createWriteStream('./access.log', {flags: 'a'})
+}));
 //we would you morgan for logging requests
 //flags: 'a' opens the file in append mode.
 app.use(logger('common', {

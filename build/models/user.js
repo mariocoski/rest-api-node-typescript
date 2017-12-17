@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
+var utils_1 = require("../utils");
 exports.default = function (sequelize, dataTypes) {
     var User = sequelize.define("User", {
         firstname: dataTypes.STRING,
@@ -59,10 +60,16 @@ exports.default = function (sequelize, dataTypes) {
         underscored: true,
     });
     User.beforeCreate(function (user, options) { return __awaiter(_this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            //@todo implement bcrypt
-            user.dataValues.password = 'hash';
-            return [2 /*return*/];
+        var _a;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _a = user.dataValues;
+                    return [4 /*yield*/, utils_1.hashPassword(user.dataValues.password)];
+                case 1:
+                    _a.password = _b.sent();
+                    return [2 /*return*/];
+            }
         });
     }); });
     User.afterDestroy(function (user, options) {

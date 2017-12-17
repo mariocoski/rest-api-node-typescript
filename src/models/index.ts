@@ -10,8 +10,6 @@ import {ResetPasswordTokenAttributes, ResetPasswordTokenInstance} from './interf
 import {RolePermissionAttributes, RolePermissionInstance} from './interfaces/role_permission';
 import {UserRoleAttributes, UserRoleInstance} from './interfaces/user_role';
 import {Sequelize} from 'sequelize';
-
-
 export interface SequelizeModels {
   User: SequelizeStatic.Model<UserInstance, UserAttributes>;
   Role: SequelizeStatic.Model<RoleInstance, RoleAttributes>;
@@ -23,23 +21,24 @@ export interface SequelizeModels {
   ResetPasswordToken: SequelizeStatic.Model<ResetPasswordTokenInstance, ResetPasswordTokenAttributes>;
 }
 
+import globalConfig from '../config';
+
 export interface DbEnvConfig {
-  database: string,
-  username: string,
-  password: string,
-  host: string,
-  operatorsAliases: boolean,
-  storage?: string
+  database: string;
+  username: string;
+  password: string;
+  host: string;
+  operatorsAliases: boolean;
+  storage?: string;
 }
 
 export interface DbConfig {
   [key: string]: DbEnvConfig;
 }
 
-const dbConfig: DbConfig = require('../config/database');
-const env: string = process.env.NODE_ENV || 'development';
-const config: DbEnvConfig = dbConfig[env];
+const config = globalConfig.sequelize[globalConfig.nodeEnv];
 const basename: string = path.basename(module.filename);
+
 
 const _sequelize: Sequelize = new SequelizeStatic(
   config.database, config.username, config.password, 

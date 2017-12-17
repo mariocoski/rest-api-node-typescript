@@ -35,81 +35,65 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require('babel-polyfill');
-//this will load all env variables for dev and test mode
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config();
-}
-//load http module
-var http = require("http");
-var app_1 = require("./app");
-var utils_1 = require("./utils");
-var bcrypt = require("bcrypt");
-var R = require("ramda");
-var _a = require('./models'), sequelize = _a.sequelize, models = _a.models;
+var sourceMapSupport = require("source-map-support");
+sourceMapSupport.install();
 var iconvLite = require("iconv-lite");
-//used for characted encoding conversion
 iconvLite.encodingExists('foo');
-//signal events are emitted when the Node.js process receives a signal
-//SIGINT signal is with -C in most terminal programs
-process.on('SIGINT', function () {
-    process.exit(0);
+var models_1 = require("./models");
+var express = require("express");
+var config_1 = require("./config");
+var logger_1 = require("./logger");
+var express_1 = require("./presenter/express");
+var constants_1 = require("./utils/constants");
+var app = express();
+// const serviceFacade = serviceFactory();
+var presenterFacade = express_1.default({
+    morganLogFormat: config_1.default.express.morganLogFormat,
+    morganDirectory: config_1.default.express.morganDirectory,
+    // service: serviceFacade,
+    logger: logger_1.default
 });
-//this is when testing with jest - its set up
-//process.env.NODE_ENV to be test
-//in this case we will choose test port accordingly
-var IS_TEST = process.env.NODE_ENV === 'test';
-//we will replace those port number later on with env vars
-var port = IS_TEST ? 3001 : 3000;
-//create a server
-var server = new http.Server(app_1.default);
+var handleExit = function (event) {
+    return function (error) {
+        if (error !== undefined) {
+            logger_1.default.error(error.stack);
+        }
+        logger_1.default.info(event);
+        process.exit();
+    };
+};
 function dbInit() {
     return __awaiter(this, void 0, void 0, function () {
-        var curriedHasher, generateHash, _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
-                case 0: return [4 /*yield*/, sequelize.sync()];
+        var e_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, models_1.sequelize.sync()];
                 case 1:
-                    _c.sent();
-                    curriedHasher = R.curry(utils_1.makeHash);
-                    generateHash = curriedHasher(bcrypt);
-                    _b = (_a = console).log;
-                    return [4 /*yield*/, generateHash('password')];
+                    _a.sent();
+                    return [3 /*break*/, 3];
                 case 2:
-                    _b.apply(_a, [_c.sent()]);
-                    return [2 /*return*/];
+                    e_1 = _a.sent();
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
 }
-if (process.env.NODE_ENV !== 'test') {
+if (config_1.default.nodeEnv !== 'test') {
     dbInit();
 }
-//listen on the provided port
-server.listen(port, function () {
-    if (!IS_TEST) {
-        console.log("Listening at http://localhost:" + port + "/api/v1");
+app.use(constants_1.apiRouteV1, presenterFacade);
+app.listen(config_1.default.express.port, function () {
+    logger_1.default.info("Listening on port " + config_1.default.express.port);
+    if (process.send !== undefined) {
+        logger_1.default.info('Process ready');
+        process.send('ready');
     }
+    process.on('exit', handleExit('exit'));
+    process.on('SIGINT', handleExit('SIGINT'));
+    process.on('SIGTERM', handleExit('SIGTERM'));
+    process.on('uncaughtException', handleExit('uncaughtException'));
 });
-//server error handler
-server.on('error', function (error, port) {
-    if (error.syscall !== "listen") {
-        throw error;
-    }
-    switch (error.code) {
-        case 'EACCES':
-            if (process.env.NODE_ENV !== 'test') {
-                console.log(port + " requires elevated privileges");
-            }
-            process.exit(1);
-        case 'EADDRINUSE':
-            if (process.env.NODE_ENV !== 'test') {
-                console.log(port + " is already in use");
-            }
-            process.exit(1);
-        default:
-            throw error;
-    }
-});
-exports.default = server;
 //# sourceMappingURL=server.js.map
