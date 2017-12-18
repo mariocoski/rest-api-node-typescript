@@ -1,5 +1,6 @@
+import { LoggerInstance } from 'winston';
 interface Config {
-  logger: any
+  logger: LoggerInstance
 }
 
 export default Config;

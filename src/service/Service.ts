@@ -1,4 +1,5 @@
+import { LoggerInstance } from 'winston';
 export default interface Service {
-  readonly logger: any,
-  
+  readonly logger: LoggerInstance,
+
 }
