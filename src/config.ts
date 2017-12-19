@@ -7,6 +7,7 @@ interface Config {
   express: any;
   sequelize: any;
   winston: any;
+  repoFactory: any;
 }
 
 export default {
@@ -48,6 +49,12 @@ export default {
       dialect: getStringOption(process.env.PROD_DB_DIALECT,'sqlite'),
       operatorsAliases: getBooleanOption(process.env.PROD_DB_OPERATOR_ALIASES, false)
     }
+  },
+  repoFactory: {
+    name: getStringOption(defaultTo<any>(
+      process.env.PRODUCTION_REPO,
+      process.env.MODELS_REPO,
+    ), 'knex'),
   },
   winston: {
     level: getStringOption(process.env.WINSTON_LEVEL, 'info'),

@@ -1,6 +1,6 @@
-import { LoggerInstance } from 'winston';
+
 interface Config {
-  logger: LoggerInstance
+  repo: any
 }
 
 export default Config;

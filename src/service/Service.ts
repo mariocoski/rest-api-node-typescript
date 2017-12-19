@@ -1,5 +1,13 @@
-import { LoggerInstance } from 'winston';
+
+import {createUserSignature, getUserSignature, getUsersSignature, 
+        updateUserSignature, deleteUserSignature} from './users'
+
+
 export default interface Service {
-  readonly logger: LoggerInstance,
+  readonly createUser: createUserSignature;
+  readonly getUser: getUserSignature;
+  readonly getUsers: getUsersSignature;
+  readonly updateUser: updateUserSignature;
+  readonly deleteUser: deleteUserSignature;
 
 }
