@@ -9,5 +9,4 @@ export default interface Service {
   readonly getUsers: getUsersSignature;
   readonly updateUser: updateUserSignature;
   readonly deleteUser: deleteUserSignature;
-
 }

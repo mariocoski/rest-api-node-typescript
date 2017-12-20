@@ -52,9 +52,8 @@ export default {
   },
   repoFactory: {
     name: getStringOption(defaultTo<any>(
-      process.env.PRODUCTION_REPO,
-      process.env.MODELS_REPO,
-    ), 'knex'),
+      process.env.PRODUCTION_REPO
+    ), 'sequelize'),
   },
   winston: {
     level: getStringOption(process.env.WINSTON_LEVEL, 'info'),
