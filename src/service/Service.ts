@@ -1,16 +1,15 @@
 
-import {LoginSignature, RegisterSignature, forgetPasswordSignature, resetPasswordSignature} from './auth';
+import {loginSignature, registerSignature, forgetPasswordSignature, resetPasswordSignature} from './auth';
 import {createUserSignature, getUserSignature, getUsersSignature, updateUserSignature, deleteUserSignature} from './users';
 import {createPostSignature, getPostSignature, getPostsSignature, updatePostSignature, deletePostSignature } from './posts';
 import {createCommentSignature, getCommentSignature, getCommentsSignature, updateCommentSignature, deleteCommentSignature } from './comments';
 import {createRoleSignature, getRoleSignature, getRolesSignature, updateRoleSignature, deleteRoleSignature, assignUserRoleSignature, removeUserRoleSignature } from './roles';
 import {createPermissionSignature, getPermissionSignature, getPermissionsSignature, updatePermissionSignature, deletePermissionSignature, assignRolePermissionSignature, removeRolePermissionSignature } from './permissions';
 
-
 export default interface Service {
-  
-  readonly login: LoginSignature;
-  readonly register: RegisterSignature;
+
+  readonly login: loginSignature;
+  readonly register: registerSignature;
   readonly forgetPassword: forgetPasswordSignature;
   readonly resetPassword: resetPasswordSignature;
 

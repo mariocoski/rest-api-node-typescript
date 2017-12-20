@@ -7,7 +7,6 @@ import {createComment, getComment, getComments, updateComment, deleteComment} fr
 import {createRole, getRole, getRoles, updateRole, deleteRole, assignUserRole, removeUserRole} from './roles';
 import {createPermission, getPermission, getPermissions, updatePermission, deletePermission, assignRolePermission, removeRolePermission} from './permissions';
 
-
 export default (config: Config): Service => {
   return {
     login: login(config),
@@ -48,6 +47,5 @@ export default (config: Config): Service => {
     deletePermission: deletePermission(config),
     assignRolePermission: assignRolePermission(config),
     removeRolePermission: removeRolePermission(config),
-   
   };
 };

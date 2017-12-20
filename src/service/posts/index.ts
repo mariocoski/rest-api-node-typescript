@@ -1,28 +1,28 @@
-import createUser from './createUser';
-import createUserSignature from './createUser/Signature';
+import createPost from './createPost';
+import createPostSignature from './createPost/Signature';
 
-import getUser from './getUser';
-import getUserSignature from './getUser/Signature';
+import getPost from './getPost';
+import getPostSignature from './getPost/Signature';
 
-import getUsers from './getUsers';
-import getUsersSignature from './getUsers/Signature';
+import getPosts from './getPosts';
+import getPostsSignature from './getPosts/Signature';
 
-import updateUser from './updateUser';
-import updateUserSignature from './updateUser/Signature';
+import updatePost from './updatePost';
+import updatePostSignature from './updatePost/Signature';
 
-import deleteUser from './deleteUser';
-import deleteUserSignature from './deleteUser/Signature';
+import deletePost from './deletePost';
+import deletePostSignature from './deletePost/Signature';
 
 export {
-  createUser,
-  createUserSignature,
-  getUser,
-  getUserSignature,
-  getUsers,
-  getUsersSignature,
-  updateUser,
-  updateUserSignature,
-  deleteUser,
-  deleteUserSignature,
+  createPost,
+  createPostSignature,
+  getPost,
+  getPostSignature,
+  getPosts,
+  getPostsSignature,
+  updatePost,
+  updatePostSignature,
+  deletePost,
+  deletePostSignature,
 }
 
