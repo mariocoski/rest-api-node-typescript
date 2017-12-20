@@ -1,6 +1,7 @@
+import Repo from '../repo/Repo';
+import { LoggerInstance } from 'winston';
 
-interface Config {
-  repo: any
+export default interface Config {
+  repo: Repo,
+  logger: LoggerInstance
 }
-
-export default Config;
