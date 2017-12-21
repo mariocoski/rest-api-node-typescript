@@ -37,6 +37,9 @@ exports.default = {
             operatorsAliases: utils_1.getBooleanOption(process.env.PROD_DB_OPERATOR_ALIASES, false)
         }
     },
+    repoFactory: {
+        name: utils_1.getStringOption(defaultTo(process.env.PRODUCTION_REPO), 'sequelize'),
+    },
     winston: {
         level: utils_1.getStringOption(process.env.WINSTON_LEVEL, 'info'),
     }

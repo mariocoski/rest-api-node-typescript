@@ -22,7 +22,7 @@
     "node": "&gt;=4.8.2"
   },
   "scripts": {
-    "build": "rm -rf ./build && tsc",
+    "build": "rimraf build && tsc",
     "build:watch": "rm -rf ./build && tsc --watch",
     "start": "NODE_ENV=development && node ./build/server.js",
     "test": "jest --coverage --runInBand",
@@ -60,6 +60,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "dotenv": "^4.0.0",
     "jest": "^21.2.1",
+    "rimraf": "^2.6.2",
     "superagent": "^3.8.2",
     "supertest": "^3.0.0",
     "ts-jest": "^21.2.4",
@@ -114,7 +115,7 @@
       "node_modules/(?!(express-validator)/)"
     ],
     "testMatch": [
-      "<rootDir>/__tests__/**/*.test.(ts|js)"
+      "<rootDir>/src/**/*.test.(ts|js)"
     ]
   }
 }
