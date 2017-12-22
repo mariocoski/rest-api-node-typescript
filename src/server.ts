@@ -12,12 +12,12 @@ import {apiRouteV1} from './utils/constants';
 
 const app = express();
 
-// const serviceFacade = serviceFactory();
+const serviceFacade = serviceFactory();
 
 const presenterFacade = presenter({
   morganLogFormat: config.express.morganLogFormat,
   morganDirectory: config.express.morganDirectory,
-  // service: serviceFacade,
+  service: serviceFacade,
   logger
 });
 

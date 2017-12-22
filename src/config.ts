@@ -1,6 +1,7 @@
 import { config } from 'dotenv';
 config();
 import {getNumberOption, getStringOption, getBooleanOption} from './utils';
+import {defaultTo} from 'ramda';
 
 interface Config {
   nodeEnv: string;
@@ -57,6 +58,10 @@ export default {
   },
   winston: {
     level: getStringOption(process.env.WINSTON_LEVEL, 'info'),
+    winstonDirectory: getStringOption(
+      process.env.WINSTON_DIRECTORY,
+      `${process.cwd()}/logs/error`,
+    ),
   }
 
 

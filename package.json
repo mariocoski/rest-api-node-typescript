@@ -26,7 +26,7 @@
     "build:watch": "rm -rf ./build && tsc --watch",
     "start": "NODE_ENV=development && node ./build/server.js",
     "test": "jest --coverage --runInBand",
-    "test:watch": "jest --coverage --runInBand --watch"
+    "test:watch": "jest --runInBand --watch"
   },
   "devDependencies": {
     "@types/bcrypt": "^1.0.0",
@@ -52,6 +52,7 @@
     "@types/source-map-support": "^0.4.0",
     "@types/superagent": "^3.5.6",
     "@types/supertest": "^2.0.4",
+    "@types/uuid": "^3.4.3",
     "@types/winston": "^2.3.7",
     "babel-cli": "^6.26.0",
     "babel-jest": "^21.2.0",

@@ -16,6 +16,10 @@ export default new winston.Logger({
       prettyPrint: true,
       stderrLevels: ['error'],
       timestamp: getTime,
+    }),
+    new winston.transports.File({ 
+      level: config.winston.level, 
+      filename: `${config.winston.winstonDirectory}/error.log`
     })
   ],
 });
