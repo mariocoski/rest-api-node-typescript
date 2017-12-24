@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var dotenv_1 = require("dotenv");
 dotenv_1.config();
 var utils_1 = require("./utils");
+var ramda_1 = require("ramda");
 exports.default = {
     nodeEnv: utils_1.getStringOption(process.env.NODE_ENV, 'development'),
     express: {
@@ -38,10 +39,11 @@ exports.default = {
         }
     },
     repoFactory: {
-        name: utils_1.getStringOption(defaultTo(process.env.PRODUCTION_REPO), 'sequelize'),
+        name: utils_1.getStringOption(ramda_1.defaultTo(process.env.PRODUCTION_REPO), 'sequelize'),
     },
     winston: {
         level: utils_1.getStringOption(process.env.WINSTON_LEVEL, 'info'),
+        winstonDirectory: utils_1.getStringOption(process.env.WINSTON_DIRECTORY, process.cwd() + "/logs/error"),
     }
 };
 //# sourceMappingURL=config.js.map

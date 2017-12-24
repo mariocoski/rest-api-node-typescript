@@ -44,13 +44,14 @@ var express = require("express");
 var config_1 = require("./config");
 var logger_1 = require("./logger");
 var express_1 = require("./presenter/express");
+var factory_1 = require("./service/factory");
 var constants_1 = require("./utils/constants");
 var app = express();
-// const serviceFacade = serviceFactory();
+var serviceFacade = factory_1.default();
 var presenterFacade = express_1.default({
     morganLogFormat: config_1.default.express.morganLogFormat,
     morganDirectory: config_1.default.express.morganDirectory,
-    // service: serviceFacade,
+    service: serviceFacade,
     logger: logger_1.default
 });
 var handleExit = function (event) {
