@@ -1,4 +1,7 @@
+import {Sequelize} from 'sequelize';
+import {SequelizeModels} from '../../../models';
 
 export default interface Config {
-  readonly name: string;
+  readonly sequelizeInstance: Sequelize;
+  readonly models: SequelizeModels;
 }

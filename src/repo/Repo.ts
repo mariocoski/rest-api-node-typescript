@@ -5,49 +5,47 @@ import {CreateRoleSignature, GetRoleSignature, GetRolesSignature, UpdateRoleSign
 import {CreatePermissionSignature, GetPermissionSignature, GetPermissionsSignature, UpdatePermissionSignature, DeletePermissionSignature, AssignRolePermissionSignature, RemoveRolePermissionSignature} from './permissions';
 import {LoginSignature, RegisterSignature, ForgetPasswordSignature, ResetPasswordSignature} from './auth';
 
-type CommonPromiseSignature = () => Promise<void>;
-
 export default interface Repo {
-    readonly login: LoginSignature;
-    readonly register: RegisterSignature;
-    readonly forgetPassword: ForgetPasswordSignature;
-    readonly resetPassword: ResetPasswordSignature;
+    // readonly login: LoginSignature;
+    // readonly register: RegisterSignature;
+    // readonly forgetPassword: ForgetPasswordSignature;
+    // readonly resetPassword: ResetPasswordSignature;
 
     readonly createUser: CreateUserSignature;
-    readonly getUser: GetUserSignature;
-    readonly getUsers: GetUsersSignature;
-    readonly updateUser: UpdateUserSignature;
-    readonly deleteUser: DeleteUserSignature;
+    // readonly getUser: GetUserSignature;
+    // readonly getUsers: GetUsersSignature;
+    // readonly updateUser: UpdateUserSignature;
+    // readonly deleteUser: DeleteUserSignature;
 
-    readonly createPost: CreatePostSignature;
-    readonly getPost: GetPostSignature;
-    readonly getPosts: GetPostsSignature;
-    readonly updatePost: UpdatePostSignature;
-    readonly deletePost: DeletePostSignature;
+    // readonly createPost: CreatePostSignature;
+    // readonly getPost: GetPostSignature;
+    // readonly getPosts: GetPostsSignature;
+    // readonly updatePost: UpdatePostSignature;
+    // readonly deletePost: DeletePostSignature;
 
-    readonly createComment: CreateCommentSignature;
-    readonly getComment: GetCommentSignature;
-    readonly getComments: GetCommentsSignature;
-    readonly updateComment: UpdateCommentSignature;
-    readonly deleteComment: DeleteCommentSignature;
+    // readonly createComment: CreateCommentSignature;
+    // readonly getComment: GetCommentSignature;
+    // readonly getComments: GetCommentsSignature;
+    // readonly updateComment: UpdateCommentSignature;
+    // readonly deleteComment: DeleteCommentSignature;
 
-    readonly createRole: CreateRoleSignature;
-    readonly getRole: GetRoleSignature;
-    readonly getRoles: GetRolesSignature;
-    readonly updateRole: UpdateRoleSignature;
-    readonly deleteRole: DeleteRoleSignature;
-    readonly assignUserRole: AssignUserRoleSignature;
-    readonly removeUserRole: RemoveUserRoleSignature;
+    // readonly createRole: CreateRoleSignature;
+    // readonly getRole: GetRoleSignature;
+    // readonly getRoles: GetRolesSignature;
+    // readonly updateRole: UpdateRoleSignature;
+    // readonly deleteRole: DeleteRoleSignature;
+    // readonly assignUserRole: AssignUserRoleSignature;
+    // readonly removeUserRole: RemoveUserRoleSignature;
 
-    readonly createPermission: CreatePermissionSignature;
-    readonly getPermission: GetPermissionSignature;
-    readonly getPermissions: GetPermissionsSignature;
-    readonly updatePermission: UpdatePermissionSignature;
-    readonly deletePermission: DeletePermissionSignature;
-    readonly assignRolePermission: AssignRolePermissionSignature;
-    readonly removeRolePermission: RemoveRolePermissionSignature;
+    // readonly createPermission: CreatePermissionSignature;
+    // readonly getPermission: GetPermissionSignature;
+    // readonly getPermissions: GetPermissionsSignature;
+    // readonly updatePermission: UpdatePermissionSignature;
+    // readonly deletePermission: DeletePermissionSignature;
+    // readonly assignRolePermission: AssignRolePermissionSignature;
+    // readonly removeRolePermission: RemoveRolePermissionSignature;
 
-    readonly clearRepo: CommonPromiseSignature;
-    readonly migrate: CommonPromiseSignature;
-    readonly rollback: CommonPromiseSignature;
+    readonly clearRepo: () => Promise<void>;
+    readonly migrate: () => Promise<void>;
+    readonly rollback: () => Promise<void>;
 }

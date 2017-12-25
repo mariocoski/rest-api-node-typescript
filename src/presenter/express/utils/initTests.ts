@@ -3,11 +3,12 @@ sourceMapSupport.install();
 import * as iconvLite from 'iconv-lite';
 iconvLite.encodingExists('foo');
 import * as express from 'express';
-import config from './config';
-import logger from './logger';
-import presenter from './presenter/express';
-import serviceFactory from './service/factory';
-import {API_ROUTE_V1} from './utils/constants';
+import * as createSupertest from 'supertest';
+import config from '../../../config';
+import logger from '../../../logger';
+import presenter from '../index';
+import serviceFactory from '../../../service/factory';
+import {API_ROUTE_V1} from '../../../utils/constants';
 
 const app: express.Application = express();
 
@@ -32,14 +33,25 @@ const handleExit = (event: string) => {
 
 app.use(API_ROUTE_V1, presenterFacade);
 
-app.listen(config.express.port, () => {
-  logger.info(`Listening on port ${config.express.port}`);
-  if (process.send !== undefined) {
-    logger.info('Process ready');
-    process.send('ready');
-  }
-  process.on('exit', handleExit('exit'));
-  process.on('SIGINT', handleExit('SIGINT'));
-  process.on('SIGTERM', handleExit('SIGTERM'));
-  process.on('uncaughtException', handleExit('uncaughtException'));
-});
+const request = createSupertest(app);
+
+export default () => {
+
+  beforeAll(async() => {
+    await service.migrate();
+  });
+
+  beforeEach(async() => {
+    await service.migrate();
+  });
+  
+  afterEach(async() => {
+    await service.rollback();
+  });
+
+  afterAll(async() => {
+    await service.clearService();
+  });
+  
+  return { service, request };
+};

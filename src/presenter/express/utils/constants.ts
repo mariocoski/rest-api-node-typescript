@@ -1,0 +1,9 @@
+export const OK_200_HTTP_CODE = 200;
+export const CREATED_201_HTTP_CODE = 201;
+export const NO_CONTENT_204_HTTP_CODE = 201;
+export const BAD_REQUEST_400_HTTP_CODE = 400;
+export const UNAUTHORISED_401_HTTP_CODE = 401;
+export const FORBIDDEN_403_HTTP_CODE = 403;
+export const NOT_FOUND_404_HTTP_CODE = 404;
+export const CONFLICT_409_HTTP_CODE = 409;
+export const SERVER_ERROR_500_HTTP_CODE = 500;

@@ -3,7 +3,7 @@ config();
 import {getNumberOption, getStringOption, getBooleanOption} from './utils';
 import {defaultTo} from 'ramda';
 
-interface Config {
+export interface Config {
   nodeEnv: string;
   express: any;
   sequelize: any;
@@ -12,7 +12,6 @@ interface Config {
 }
 
 export default {
-  nodeEnv: getStringOption(process.env.NODE_ENV,'development'),
   express: {
     port: getNumberOption(process.env.EXPRESS_PORT, 3000),
     testPort: getNumberOption(process.env.EXPRESS_TEST_PORT, 3001),
@@ -36,7 +35,7 @@ export default {
     },
     test: {
       username: getStringOption(process.env.TEST_DB_USERNAME,'root'),
-      password: getStringOption(process.env.TEST_DB_PASSWORD,'password'),
+      password: getStringOption(process.env.TEST_DB_PASSWORD,'root'),
       database: getStringOption(process.env.TEST_DB_NAME,'database_test'),
       host: getStringOption(process.env.TEST_DB_HOSTNAME,'localhost'),
       dialect: getStringOption(process.env.TEST_DB_DIALECT,'sqlite'),
@@ -60,7 +59,7 @@ export default {
     level: getStringOption(process.env.WINSTON_LEVEL, 'info'),
     winstonDirectory: getStringOption(
       process.env.WINSTON_DIRECTORY,
-      `${process.cwd()}/logs/error`,
+      `${process.cwd()}/logs`,
     ),
   }
 
