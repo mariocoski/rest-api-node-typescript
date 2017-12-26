@@ -1,17 +1,25 @@
 import Config from '../../Config';
-import Signature, {UserModel} from './Signature';
+import Signature from './Signature';
 import generateToken from '../../../utils/jwt/generateToken';
-import validateRegister from './validateRegister';
+import {UserAttributes} from '../../../models/interfaces/user';
 
 export default (config: Config): Signature => {
   return async (options) => {
-    // validateRegister(options);
-    const user: UserModel = await config.repo.createUser(options);
 
-    const data = {
+    const user: any = await config.repo.createUser(options);
+    
+    await config.repo.createUserPermissions({userId: user.id});
 
+    const data: any = {
+      _id: user.id,
+      email: user.email,
+      firstname: user.firstname,
+      lastname: user.lastname
     };
     const token: string = await generateToken({data});
+    
+
     return {user, token};
   };
 }
+

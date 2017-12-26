@@ -1,9 +1,11 @@
 import AsyncHandler from '../../../utils/AsyncHandler';
+import * as SequelizeStatic from 'sequelize';
+import { UserAttributes} from '../../../models/interfaces/user';
 
-interface Options {
+export interface Options {
     readonly id: number;
 }
 
-type Signature = AsyncHandler<Options, UserModel>;
+type Signature = AsyncHandler<Options,UserAttributes>;
 
 export default Signature;

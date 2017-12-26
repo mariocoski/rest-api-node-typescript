@@ -1,10 +1,10 @@
+import config from '../../../config';
 import * as sourceMapSupport from 'source-map-support';
 sourceMapSupport.install();
 import * as iconvLite from 'iconv-lite';
 iconvLite.encodingExists('foo');
 import * as express from 'express';
 import * as createSupertest from 'supertest';
-import config from '../../../config';
 import logger from '../../../logger';
 import presenter from '../index';
 import serviceFactory from '../../../service/factory';
@@ -20,16 +20,6 @@ const presenterFacade = presenter({
   service,
   logger
 });
-
-const handleExit = (event: string) => {
-  return (error?: any) => {
-    if (error !== undefined) {
-      logger.error(error.stack);
-    }
-    logger.info(event);
-    process.exit();
-  };
-};
 
 app.use(API_ROUTE_V1, presenterFacade);
 

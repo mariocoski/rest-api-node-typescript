@@ -2,8 +2,7 @@ import {CreateUserSignature, GetUserSignature, GetUsersSignature, UpdateUserSign
 import {CreatePostSignature, GetPostSignature, GetPostsSignature, UpdatePostSignature, DeletePostSignature} from './posts';
 import {CreateCommentSignature, GetCommentSignature, GetCommentsSignature, UpdateCommentSignature, DeleteCommentSignature} from './comments';
 import {CreateRoleSignature, GetRoleSignature, GetRolesSignature, UpdateRoleSignature, DeleteRoleSignature, AssignUserRoleSignature, RemoveUserRoleSignature} from './roles';
-import {CreatePermissionSignature, GetPermissionSignature, GetPermissionsSignature, UpdatePermissionSignature, DeletePermissionSignature, AssignRolePermissionSignature, RemoveRolePermissionSignature} from './permissions';
-import {LoginSignature, RegisterSignature, ForgetPasswordSignature, ResetPasswordSignature} from './auth';
+import {CreateUserPermissionsSignature, GetUserPermissionsSignature, CreatePermissionSignature, GetPermissionSignature, GetPermissionsSignature, UpdatePermissionSignature, DeletePermissionSignature, AssignRolePermissionSignature, RemoveRolePermissionSignature} from './permissions';
 
 export default interface Repo {
     // readonly login: LoginSignature;
@@ -12,7 +11,7 @@ export default interface Repo {
     // readonly resetPassword: ResetPasswordSignature;
 
     readonly createUser: CreateUserSignature;
-    // readonly getUser: GetUserSignature;
+    readonly getUser: GetUserSignature;
     // readonly getUsers: GetUsersSignature;
     // readonly updateUser: UpdateUserSignature;
     // readonly deleteUser: DeleteUserSignature;
@@ -44,7 +43,8 @@ export default interface Repo {
     // readonly deletePermission: DeletePermissionSignature;
     // readonly assignRolePermission: AssignRolePermissionSignature;
     // readonly removeRolePermission: RemoveRolePermissionSignature;
-
+    readonly createUserPermissions: CreateUserPermissionsSignature;
+    readonly getUserPermissions: GetUserPermissionsSignature;
     readonly clearRepo: () => Promise<void>;
     readonly migrate: () => Promise<void>;
     readonly rollback: () => Promise<void>;

@@ -5,6 +5,9 @@ import {CREATED_201_HTTP_CODE} from '../../utils/constants';
 
 export default (config: Config) => {
   return catchErrors(config, async (req: Request, res: Response): Promise<void> => {
+    
+    validateRegister(req.body);
+
     const {email, password, bio, firstname, lastname} = req.body;
 
     const {user, token} = await config.service.register({

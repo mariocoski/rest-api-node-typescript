@@ -10,10 +10,10 @@ export interface Options {
     readonly password: string;
 }
 
-export type UserModel = SequelizeStatic.Model<UserInstance,UserAttributes>;
+// export type UserModel = SequelizeStatic.Model<UserInstance,UserAttributes>;
 
 export interface Response {
-  user: UserModel;
+  user: UserAttributes;
   token: string;
 }
 

@@ -1,5 +1,4 @@
-import { config } from 'dotenv';
-config();
+import {ONE_HOUR} from './utils/constants';
 import {getNumberOption, getStringOption, getBooleanOption} from './utils';
 import {defaultTo} from 'ramda';
 
@@ -8,6 +7,7 @@ export interface Config {
   express: any;
   sequelize: any;
   winston: any;
+  jwt: any;
   repoFactory: any;
 }
 
@@ -23,6 +23,11 @@ export default {
       process.env.EXPRESS_MORGAN_LOG_FORMAT,
       ':method :url :remote-addr :referrer :date :status'
     )
+  },
+  jwt: {
+    secret: getStringOption(process.env.JWT_SECRET, 'secret'),
+    expiresIn: getNumberOption(process.env.JWT_EXPIRES_IN, ONE_HOUR),
+    algoritm: getStringOption(process.env.JWT_ALGORITM, 'HS256'),
   },
   sequelize: {
     development: {

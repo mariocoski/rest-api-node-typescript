@@ -1,23 +1,20 @@
 import * as jwt from 'jsonwebtoken';
 import getNumberOption from '../config/getNumberOption';
 import getStringOption from '../config/getStringOption';
-import { ONE_HOUR, JWT_ALGORITM } from '../constants';
+import config from '../../config';
+import {Config} from '../../config';
+import {v4} from 'uuid';
 
 export interface Options {
   data: any;
-  algorithm?: string;
 }
 
-export default async function(options: Options): Promise<string>{
-  
-  const expiresIn: number = getNumberOption(process.env.JWT_EXPIRATION_TIME, ONE_HOUR);
-  const algorithm: string = getStringOption(options.algorithm, JWT_ALGORITM);
-  const secret: string = getStringOption(process.env.JWT_SECRET, '');
-
-  const token: string = await jwt.sign(
-    { data: options.data }, secret, { expiresIn, algorithm}
-  );
-
-  return Promise.resolve(`JWT ${token}`);
+export default function({data}: Options): Promise<string>{
+  return new Promise((resolve, reject) => {
+    jwt.sign({ data, jti: v4() }, config.jwt.secret, { algorithm: config.jwt.algoritm, expiresIn:  config.jwt.expiresIn }, (err, token) => {
+      if(err) reject(err);
+      resolve(`JWT ${token}`);
+    });
+  });
 }
 

@@ -7,7 +7,7 @@ import ExpressHanlder from '../../../utils/ExpressHandler';
 export default (config: Config, handler: ExpressHanlder) => {
   return async (req: Request, res: Response) => {
     try {
-      await handler(req, res);
+     return handler(req, res);
     }catch(err){
       const errorId = v4();
       config.logger.silly(`${errorId}: api request`, {

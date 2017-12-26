@@ -5,7 +5,7 @@ import {createUser, getUser, getUsers, updateUser, deleteUser} from './users';
 import {createPost, getPost, getPosts, updatePost, deletePost} from './posts';
 import {createComment, getComment, getComments, updateComment, deleteComment} from './comments';
 import {createRole, getRole, getRoles, updateRole, deleteRole, assignUserRole, removeUserRole} from './roles';
-import {createPermission, getPermission, getPermissions, updatePermission, deletePermission, assignRolePermission, removeRolePermission} from './permissions';
+import {getUserPermissions, createPermission, getPermission, getPermissions, updatePermission, deletePermission, assignRolePermission, removeRolePermission} from './permissions';
 import {migrate, rollback, clearService} from './utils';
 
 export default (config: Config): Service => {
@@ -16,7 +16,7 @@ export default (config: Config): Service => {
     // resetPassword: resetPassword(config),
 
     // createUser: createUser(config),
-    // getUser: getUser(config),
+    getUser: getUser(config),
     // getUsers: getUsers(config),
     // updateUser: updateUser(config),
     // deleteUser: deleteUser(config),
@@ -48,6 +48,7 @@ export default (config: Config): Service => {
     // deletePermission: deletePermission(config),
     // assignRolePermission: assignRolePermission(config),
     // removeRolePermission: removeRolePermission(config),
+    getUserPermissions: getUserPermissions(config),
   
     clearService: clearService(config),
     migrate: migrate(config),
