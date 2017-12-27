@@ -8,17 +8,20 @@ import * as createSupertest from 'supertest';
 import logger from '../../../logger';
 import presenter from '../index';
 import serviceFactory from '../../../service/factory';
+import translatorFactory from '../../../translator/factory';
 import {API_ROUTE_V1} from '../../../utils/constants';
 
 const app: express.Application = express();
 
 const service = serviceFactory();
+const translator = translatorFactory();
 
 const presenterFacade = presenter({
   morganLogFormat: config.express.morganLogFormat,
   morganDirectory: config.express.morganDirectory,
   service,
-  logger
+  logger,
+  translator
 });
 
 app.use(API_ROUTE_V1, presenterFacade);
@@ -32,11 +35,8 @@ export default () => {
   });
 
   beforeEach(async() => {
-    await service.migrate();
-  });
-  
-  afterEach(async() => {
     await service.rollback();
+    await service.migrate();
   });
 
   afterAll(async() => {

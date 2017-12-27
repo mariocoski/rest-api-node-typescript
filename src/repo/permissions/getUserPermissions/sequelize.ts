@@ -22,7 +22,7 @@ export default (config: Config) => {
     if(user === null) throw new ModelNotFoundError();
 
     return R.flatten(
-      user.roles.map((role: RoleInstance):PermissionInstance[] => role.permissions)
+      user.roles.map((role: RoleInstance) => role.permissions)
     );
   }; 
 }

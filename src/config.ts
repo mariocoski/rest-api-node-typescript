@@ -3,7 +3,7 @@ import {getNumberOption, getStringOption, getBooleanOption} from './utils';
 import {defaultTo} from 'ramda';
 
 export interface Config {
-  nodeEnv: string;
+  lang: string;
   express: any;
   sequelize: any;
   winston: any;
@@ -12,6 +12,7 @@ export interface Config {
 }
 
 export default {
+  lang: getStringOption(process.env.LANG, 'en'),
   express: {
     port: getNumberOption(process.env.EXPRESS_PORT, 3000),
     testPort: getNumberOption(process.env.EXPRESS_TEST_PORT, 3001),

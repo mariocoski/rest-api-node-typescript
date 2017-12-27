@@ -15,7 +15,7 @@ export default (config: Config): Service => {
     // forgetPassword: forgetPassword(config),
     // resetPassword: resetPassword(config),
 
-    // createUser: createUser(config),
+    createUser: createUser(config),
     getUser: getUser(config),
     // getUsers: getUsers(config),
     // updateUser: updateUser(config),

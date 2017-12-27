@@ -6,6 +6,6 @@ export interface Options {
     readonly userId: number;
 }
 
-type Signature = AsyncHandler<Options,PermissionAttributes[]>;
+type Signature = AsyncHandler<Options,any[]>;
 
 export default Signature;
