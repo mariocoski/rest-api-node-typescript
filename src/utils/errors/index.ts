@@ -5,6 +5,7 @@ import UnauthorizedError from './UnauthorizedError';
 import UnprocessableEntityError from './UnprocessableEntityError';
 import BaseError from './BaseError';
 import UserAlreadyExistsError from './UserAlreadyExistsError';
+import InvalidCredentialsError from './InvalidCredentialsError';
 
 export {
   BaseError,
@@ -13,5 +14,6 @@ export {
   NotFoundError,
   UnauthorizedError,
   UnprocessableEntityError,
-  UserAlreadyExistsError
+  UserAlreadyExistsError,
+  InvalidCredentialsError
 }

@@ -1,7 +1,8 @@
 import { Router, Request, Response} from 'express';
 import Config from './Config';
 import enhancedRouter from './enhancedRouter';
-import register from './auth/register';
+import {register, login, forgetPassword} from './auth';
+
 
 export default (config: Config): Router => {
   const router: Router = enhancedRouter(config);
@@ -12,6 +13,8 @@ export default (config: Config): Router => {
   });
 
   router.post('/auth/register', register(config));
+  router.post('/auth/login', login(config));
+  router.post('/auth/forget-password', forgetPassword(config));
   
   return router;
 }

@@ -1,21 +1,23 @@
 
 import {loginSignature, registerSignature, forgetPasswordSignature, resetPasswordSignature} from './auth';
-import {createUserSignature, getUserSignature, getUsersSignature, updateUserSignature, deleteUserSignature} from './users';
+import {createUserSignature, getUserByIdSignature,getUserByEmailSignature, getUsersSignature, updateUserSignature, deleteUserSignature} from './users';
 import {createPostSignature, getPostSignature, getPostsSignature, updatePostSignature, deletePostSignature } from './posts';
 import {createCommentSignature, getCommentSignature, getCommentsSignature, updateCommentSignature, deleteCommentSignature } from './comments';
 import {createRoleSignature, getRoleSignature, getRolesSignature, updateRoleSignature, deleteRoleSignature, assignUserRoleSignature, removeUserRoleSignature } from './roles';
 import {getUserPermissionsSignature, createPermissionSignature, getPermissionSignature, getPermissionsSignature, updatePermissionSignature, deletePermissionSignature, assignRolePermissionSignature, removeRolePermissionSignature } from './permissions';
 import CommonServiceSignature from './utils/CommonServiceSignature';
-
+import GetUserResetPasswordTokens from './resetPasswordTokens/GetUserResetPasswordTokens/Signature';
 export default interface Service {
 
-  // readonly login: loginSignature;
+  readonly login: loginSignature;
   readonly register: registerSignature;
-  // readonly forgetPassword: forgetPasswordSignature;
+  readonly forgetPassword: forgetPasswordSignature;
+  readonly getUserResetPasswordTokens: GetUserResetPasswordTokens;
   // readonly resetPassword: resetPasswordSignature;
 
   readonly createUser: createUserSignature;
-  readonly getUser: getUserSignature;
+  readonly getUserById: getUserByIdSignature;
+  readonly getUserByEmail: getUserByEmailSignature;
   // readonly getUsers: getUsersSignature;
   // readonly updateUser: updateUserSignature;
   // readonly deleteUser: deleteUserSignature;

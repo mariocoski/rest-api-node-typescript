@@ -9,6 +9,6 @@ export default (config: Config): Signature =>
         lastname: options.lastname,
         bio: options.bio,
         email: options.email,
-        password: options
+        password: options.password
     });
   };

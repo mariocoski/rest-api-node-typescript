@@ -13,7 +13,7 @@ export interface Options {
 export type UserModel = SequelizeStatic.Model<UserInstance,UserAttributes>;
 
 export interface Response {
-  user: UserAttributes;
+  user: any;
   token: string;
 }
 

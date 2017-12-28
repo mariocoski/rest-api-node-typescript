@@ -1,16 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var dotenv_1 = require("dotenv");
-dotenv_1.config();
+var constants_1 = require("./utils/constants");
 var utils_1 = require("./utils");
 var ramda_1 = require("ramda");
 exports.default = {
-    nodeEnv: utils_1.getStringOption(process.env.NODE_ENV, 'development'),
+    lang: utils_1.getStringOption(process.env.LANG, 'en'),
     express: {
         port: utils_1.getNumberOption(process.env.EXPRESS_PORT, 3000),
         testPort: utils_1.getNumberOption(process.env.EXPRESS_TEST_PORT, 3001),
         morganDirectory: utils_1.getStringOption(process.env.EXPRESS_MORGAN_DIRECTORY, process.cwd() + "/logs/access"),
         morganLogFormat: utils_1.getStringOption(process.env.EXPRESS_MORGAN_LOG_FORMAT, ':method :url :remote-addr :referrer :date :status')
+    },
+    jwt: {
+        secret: utils_1.getStringOption(process.env.JWT_SECRET, 'secret'),
+        expiresIn: utils_1.getNumberOption(process.env.JWT_EXPIRES_IN, constants_1.ONE_HOUR),
+        algoritm: utils_1.getStringOption(process.env.JWT_ALGORITM, 'HS256'),
     },
     sequelize: {
         development: {
@@ -23,7 +27,7 @@ exports.default = {
         },
         test: {
             username: utils_1.getStringOption(process.env.TEST_DB_USERNAME, 'root'),
-            password: utils_1.getStringOption(process.env.TEST_DB_PASSWORD, 'password'),
+            password: utils_1.getStringOption(process.env.TEST_DB_PASSWORD, 'root'),
             database: utils_1.getStringOption(process.env.TEST_DB_NAME, 'database_test'),
             host: utils_1.getStringOption(process.env.TEST_DB_HOSTNAME, 'localhost'),
             dialect: utils_1.getStringOption(process.env.TEST_DB_DIALECT, 'sqlite'),
@@ -43,7 +47,7 @@ exports.default = {
     },
     winston: {
         level: utils_1.getStringOption(process.env.WINSTON_LEVEL, 'info'),
-        winstonDirectory: utils_1.getStringOption(process.env.WINSTON_DIRECTORY, process.cwd() + "/logs/error"),
+        winstonDirectory: utils_1.getStringOption(process.env.WINSTON_DIRECTORY, process.cwd() + "/logs"),
     }
 };
 //# sourceMappingURL=config.js.map

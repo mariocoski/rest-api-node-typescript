@@ -1,6 +1,6 @@
 
-import { Warning, TypeWarning, RequiredWarning } from 'rulr';
-import {MinLengthWarning,MaxLengthWarning, NotMatchingPasswordWarning} from '../../../utils/validate';
+import { Warning, TypeWarning, RequiredWarning, RestrictedKeysWarning } from 'rulr';
+import {MinLengthWarning,MaxLengthWarning, NotMatchingPasswordWarning, InvalidEmailWarning} from '../../../utils/validate';
 import Translator from '../../../translator/Translator';
 
 export default (translator: Translator, warning: Warning) => {
@@ -13,9 +13,13 @@ export default (translator: Translator, warning: Warning) => {
       return translator.typeWarning(warning as TypeWarning);
     case RequiredWarning:
       return translator.requiredWarning(warning as RequiredWarning);
+    case RestrictedKeysWarning:
+      return translator.restrictedKeysWarning(warning as RestrictedKeysWarning);
+    case InvalidEmailWarning:
+      return translator.invalidEmailWarning(warning as InvalidEmailWarning);
     case NotMatchingPasswordWarning: 
       return translator.notMatchingPasswordWarning(warning as NotMatchingPasswordWarning);
     default:
-      return "no translation";
+      return translator.warning(warning);
   }
 };

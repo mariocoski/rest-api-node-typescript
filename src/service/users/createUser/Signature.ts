@@ -8,6 +8,6 @@ interface Options {
     readonly password: string;
 }
 
-type Signature = AsyncHandler<Options, Promise<UserAttributes>>;
+type Signature = AsyncHandler<Options, UserAttributes>;
 
 export default Signature;

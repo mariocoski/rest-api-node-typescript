@@ -31,16 +31,13 @@ const request = createSupertest(app);
 export default () => {
 
   beforeAll(async() => {
-    await service.migrate();
-  });
-
-  beforeEach(async() => {
     await service.rollback();
     await service.migrate();
   });
 
-  afterAll(async() => {
+  beforeEach(async() => {
     await service.clearService();
+    await service.migrate();
   });
   
   return { service, request };

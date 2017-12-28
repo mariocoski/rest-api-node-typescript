@@ -1,18 +1,18 @@
-import {CreateUserSignature, GetUserSignature, GetUsersSignature, UpdateUserSignature, DeleteUserSignature} from './users';
-import {CreatePostSignature, GetPostSignature, GetPostsSignature, UpdatePostSignature, DeletePostSignature} from './posts';
-import {CreateCommentSignature, GetCommentSignature, GetCommentsSignature, UpdateCommentSignature, DeleteCommentSignature} from './comments';
-import {CreateRoleSignature, GetRoleSignature, GetRolesSignature, UpdateRoleSignature, DeleteRoleSignature, AssignUserRoleSignature, RemoveUserRoleSignature} from './roles';
+import {CreateUserSignature, GetUserByIdSignature,GetUserByEmailSignature,  GetUsersSignature, UpdateUserSignature, DeleteUserSignature} from './modelRepo/users';
+import {CreatePostSignature, GetPostSignature, GetPostsSignature, UpdatePostSignature, DeletePostSignature} from './modelRepo/posts';
+import {CreateCommentSignature, GetCommentSignature, GetCommentsSignature, UpdateCommentSignature, DeleteCommentSignature} from './modelRepo/comments';
+import {CreateRoleSignature, GetRoleSignature, GetRolesSignature, UpdateRoleSignature, DeleteRoleSignature, AssignUserRoleSignature, RemoveUserRoleSignature} from './modelRepo/roles';
 import {CreateUserPermissionsSignature, GetUserPermissionsSignature, CreatePermissionSignature, GetPermissionSignature, GetPermissionsSignature,
-        UpdatePermissionSignature, DeletePermissionSignature, AssignRolePermissionSignature, RemoveRolePermissionSignature} from './permissions';
+        UpdatePermissionSignature, DeletePermissionSignature, AssignRolePermissionSignature, RemoveRolePermissionSignature} from './modelRepo/permissions';
+import {CreateResetPasswordSignature, GetUserResetPasswordTokensSignature} from './modelRepo/resetPasswordTokens';
+import SendEmailSignature from './mailRepo/sendEmail/Signature';
 
-export default interface Repo {
-    // readonly login: LoginSignature;
-    // readonly register: RegisterSignature;
-    // readonly forgetPassword: ForgetPasswordSignature;
-    // readonly resetPassword: ResetPasswordSignature;
-
+export interface ModelRepoInterface {
+    readonly createResetPasswordToken: CreateResetPasswordSignature;
+    readonly getUserResetPasswordTokens: GetUserResetPasswordTokensSignature;
     readonly createUser: CreateUserSignature;
-    readonly getUser: GetUserSignature;
+    readonly getUserById: GetUserByIdSignature;
+    readonly getUserByEmail: GetUserByEmailSignature;
     // readonly getUsers: GetUsersSignature;
     // readonly updateUser: UpdateUserSignature;
     // readonly deleteUser: DeleteUserSignature;
@@ -50,3 +50,9 @@ export default interface Repo {
     readonly migrate: () => Promise<void>;
     readonly rollback: () => Promise<void>;
 }
+
+export interface MailRepoInterface {
+    readonly sendEmail: SendEmailSignature;
+}
+
+export default interface Repo extends ModelRepoInterface, MailRepoInterface {}

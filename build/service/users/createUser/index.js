@@ -43,7 +43,7 @@ exports.default = function (config) {
                     firstname: options.firstname,
                     lastname: options.lastname,
                     bio: options.bio,
-                    email: options.bio,
+                    email: options.email,
                     password: options
                 })];
         });

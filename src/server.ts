@@ -23,6 +23,11 @@ const presenterFacade = presenter({
   translator
 });
 
+
+
+app.use(API_ROUTE_V1, presenterFacade);
+
+/* istanbul ignore next */
 const handleExit = (event: string) => {
   return (error?: any) => {
     if (error !== undefined) {
@@ -32,8 +37,6 @@ const handleExit = (event: string) => {
     process.exit();
   };
 };
-
-app.use(API_ROUTE_V1, presenterFacade);
 
 app.listen(config.express.port, () => {
   logger.info(`Listening on port ${config.express.port}`);

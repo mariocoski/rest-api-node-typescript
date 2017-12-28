@@ -4,7 +4,17 @@ import stringPath from '../utils/stringPath';
 const translator: Translator = {
   unauthorized: () => 'Unauthorized',
   forbidden: () => 'Forbidden',
+  serverError: () => 'Server error',
+  passwordReminderSent: (email) => {
+    return `Email reminder has been sent to: ${email}`;
+  },
   userAlreadyExists: () => 'User already exists',
+  invalidCredentials: () => 'Incorrect email or password',
+  invalidEmailWarning: (warning) => {
+    const path = stringPath(warning.path);
+    const dataString = JSON.stringify(warning.data);
+    return `Invalid email in '${path}'. Received '${dataString}'`;
+  },
   requiredWarning: (warning) => {
     const path = stringPath(warning.path);
     return `Missing required value in '${path}'`;
@@ -15,20 +25,30 @@ const translator: Translator = {
     const dataString = JSON.stringify(warning.data);
     return `Expected '${path}' to be '${typeName}'. Received '${dataString}'`;
   },
+  restrictedKeysWarning: (warning) => {
+    const path = stringPath(warning.path);
+    const keys = warning.keys.join(', ');
+    return `Unknown keys (${keys}) set in '${path}'`;
+  },
   minLengthWarning: (warning) => {
     const pathString = stringPath(warning.path);
     const dataString = JSON.stringify(warning.data);
-    return `Required data in ${pathString} must have at least ${warning.length} characters. Received '${dataString}'`;
+    return `Required data in ${pathString} must have at least ${warning.length} characters.`;
   },
   maxLengthWarning: (warning) => {
     const pathString = stringPath(warning.path);
     const dataString = JSON.stringify(warning.data);
-    return `Required data in ${pathString} must have maximum ${warning.length} characters. Received '${dataString}'`;
+    return `Required data in ${pathString} must have maximum ${warning.length} characters.`;
   },
   notMatchingPasswordWarning: (warning) => {
     const pathString = stringPath(warning.path);
     const dataString = JSON.stringify(warning.data);
     return `Passwords must match in ${pathString}`;
+  },
+  warning: (warning) => {
+    const path = stringPath(warning.path);
+    const dataString = JSON.stringify(warning.data);
+    return `Problem in '${path}'. Received '${dataString}'`;
   },
 };
 export default translator;

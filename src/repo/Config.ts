@@ -1,5 +1,6 @@
 
 export default interface Config {
-  readonly name: string;
+  readonly modelRepoName: string;
+  readonly mailRepoName: string;
   readonly sequelize: any;
 }

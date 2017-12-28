@@ -50,6 +50,7 @@
     "@types/passport-local": "^1.0.32",
     "@types/ramda": "^0.25.8",
     "@types/sequelize": "^4.0.79",
+    "@types/smtp-server": "^3.3.2",
     "@types/source-map-support": "^0.4.0",
     "@types/superagent": "^3.5.6",
     "@types/supertest": "^2.0.4",
@@ -63,6 +64,7 @@
     "dotenv": "^4.0.0",
     "jest": "^22.0.4",
     "rimraf": "^2.6.2",
+    "smtp-server": "^3.4.1",
     "superagent": "^3.8.2",
     "supertest": "^3.0.0",
     "ts-jest": "^21.2.4",
@@ -113,9 +115,6 @@
       "tsx"
     ],
     "mapCoverage": true,
-    "transformIgnorePatterns": [
-      "node_modules/(?!(express-validator)/)"
-    ],
     "testMatch": [
       "<rootDir>/src/**/*.test.(ts|js)"
     ]

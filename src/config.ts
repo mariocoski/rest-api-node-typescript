@@ -8,7 +8,8 @@ export interface Config {
   sequelize: any;
   winston: any;
   jwt: any;
-  repoFactory: any;
+  modelRepo: any;
+  mailRepo: any;
 }
 
 export default {
@@ -56,10 +57,15 @@ export default {
       operatorsAliases: getBooleanOption(process.env.PROD_DB_OPERATOR_ALIASES, false)
     }
   },
-  repoFactory: {
+  modelRepo: {
     name: getStringOption(defaultTo<any>(
-      process.env.PRODUCTION_REPO
+      process.env.MODEL_REPO_NAME
     ), 'sequelize'),
+  },
+  mailRepo: {
+    name: getStringOption(defaultTo<any>(
+      process.env.MODEL_MAIL_REPO
+    ), 'mailgun'),
   },
   winston: {
     level: getStringOption(process.env.WINSTON_LEVEL, 'info'),

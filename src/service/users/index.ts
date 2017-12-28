@@ -1,8 +1,11 @@
 import createUser from './createUser';
 import createUserSignature from './createUser/Signature';
 
-import getUser from './getUser';
-import getUserSignature from './getUser/Signature';
+import getUserById from './getUserById';
+import getUserByIdSignature from './getUserById/Signature';
+
+import getUserByEmail from './getUserByEmail';
+import getUserByEmailSignature from './getUserByEmail/Signature';
 
 import getUsers from './getUsers';
 import getUsersSignature from './getUsers/Signature';
@@ -16,8 +19,10 @@ import deleteUserSignature from './deleteUser/Signature';
 export {
   createUser,
   createUserSignature,
-  getUser,
-  getUserSignature,
+  getUserById,
+  getUserByIdSignature,
+  getUserByEmail,
+  getUserByEmailSignature,
   getUsers,
   getUsersSignature,
   updateUser,

@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`/Users/mariuszrajczakowski/Code/rest-api-node-typescript/src/presenter/express/auth/login/login.test.ts should fail to log in a user when password is invalid 1`] = `
+Object {
+  "message": "Incorrect email or password",
+}
+`;
+
+exports[`/Users/mariuszrajczakowski/Code/rest-api-node-typescript/src/presenter/express/auth/login/login.test.ts should fail to log in a user without password 1`] = `
+Object {
+  "errors": Array [
+    "Missing required value in 'user.password'",
+  ],
+  "message": "Unprocessable entity",
+}
+`;
+
+exports[`/Users/mariuszrajczakowski/Code/rest-api-node-typescript/src/presenter/express/auth/login/login.test.ts should fail to log in user when email is invalid 1`] = `
+Object {
+  "errors": Array [
+    "Invalid email in 'user.email'. Received 'undefined'",
+  ],
+  "message": "Unprocessable entity",
+}
+`;
+
+exports[`/Users/mariuszrajczakowski/Code/rest-api-node-typescript/src/presenter/express/auth/login/login.test.ts should fail to log in user without input 1`] = `
+Object {
+  "errors": Array [
+    "Missing required value in 'user.email'",
+    "Missing required value in 'user.password'",
+  ],
+  "message": "Unprocessable entity",
+}
+`;
+
+exports[`/Users/mariuszrajczakowski/Code/rest-api-node-typescript/src/presenter/express/auth/login/login.test.ts should fail to log in when user does not exist 1`] = `
+Object {
+  "message": "Incorrect email or password",
+}
+`;

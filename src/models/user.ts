@@ -29,15 +29,12 @@ export default (sequelize: Sequelize, dataTypes: DataTypes):
     underscored: true,
   });
   
-  User.beforeCreate(async (user: UserInstance, options: Object) => {
-    user.dataValues.password = await hashPassword(user.dataValues.password);
-  });
 
-  User.afterDestroy((user: UserInstance, options: Object) => {
-    sequelize.models.Post.destroy({where: {user_id: user.dataValues.id},individualHooks: true}); 
-    sequelize.models.UserRole.destroy({where: {user_id: user.dataValues.id}, individualHooks: true}); 
-    sequelize.models.ResetPasswordToken.destroy({where: {user_id: user.dataValues.id}, individualHooks: true}); 
-  });
+  // User.afterDestroy((user: UserInstance, options: Object) => {
+  //   sequelize.models.Post.destroy({where: {user_id: user.dataValues.id},individualHooks: true}); 
+  //   sequelize.models.UserRole.destroy({where: {user_id: user.dataValues.id}, individualHooks: true}); 
+  //   sequelize.models.ResetPasswordToken.destroy({where: {user_id: user.dataValues.id}, individualHooks: true}); 
+  // });
 
   return User;
 }

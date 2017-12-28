@@ -1,9 +1,10 @@
 import { Response } from 'express';
-import { ForbiddenError,UserAlreadyExistsError, NotFoundError, ModelNotFoundError, UnauthorizedError, UnprocessableEntityError} from '../../../utils/errors';
+import { ForbiddenError,UserAlreadyExistsError, InvalidCredentialsError, NotFoundError, ModelNotFoundError, UnauthorizedError, UnprocessableEntityError} from '../../../utils/errors';
 import {Warnings} from 'rulr';
 import translateWarnings from './translateWarnings';
 import Config from '../Config';
 import {
+  UNPROCESSABLE_ENTITY_MESSAGE,
   OK_200_HTTP_CODE,
   CREATED_201_HTTP_CODE,
   NO_CONTENT_204_HTTP_CODE,
@@ -35,13 +36,35 @@ export default ({ config, errorId, res, err }: Options): Response => {
     const errors = warnings.map((warning) => {
       return translateWarnings(translator, warning);
     });
-    return res.status(UNPROCESSABLE_ENTITY_422_HTTP_CODE).json({errors});
+    const message: string = UNPROCESSABLE_ENTITY_MESSAGE;
+    logError(message);
+    return res.status(UNPROCESSABLE_ENTITY_422_HTTP_CODE).json({errors, message});
+  }
+
+  if(err instanceof InvalidCredentialsError){
+    const message = translator.invalidCredentials();
+    logError(message);
+    return res.status(UNPROCESSABLE_ENTITY_422_HTTP_CODE).json({message});
   }
 
   if(err instanceof UserAlreadyExistsError){
     const message = translator.userAlreadyExists();
+    logError(message);
     return res.status(CONFLICT_409_HTTP_CODE).json({message});
   }
- 
-  return res.status(500);
+  if (err instanceof UnauthorizedError) {
+    const message = translator.unauthorized();
+    logError(message);
+    return res.status(UNAUTHORISED_401_HTTP_CODE).json({message});
+  }
+  if (err instanceof ForbiddenError) {
+    const message = translator.forbidden();
+    logError(message);
+    return res.status(FORBIDDEN_403_HTTP_CODE).json({message});
+  }
+  {
+  const message = translator.serverError();
+    logError(message);
+    return res.status(SERVER_ERROR_500_HTTP_CODE).json({message});
+  }
 };

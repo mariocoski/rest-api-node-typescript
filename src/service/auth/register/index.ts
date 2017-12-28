@@ -5,10 +5,10 @@ import {UserAttributes} from '../../../models/interfaces/user';
 
 export default (config: Config): Signature => {
   return async (options) => {
-    const user: any = await config.repo.createUser(options);
+    const user: any = await config.repo.createUser({...options});
 
     await config.repo.createUserPermissions({userId: user.id});
-
+    
     const data: any = {
       _id: user.id,
       email: user.email,
