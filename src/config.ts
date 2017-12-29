@@ -8,8 +8,10 @@ export interface Config {
   sequelize: any;
   winston: any;
   jwt: any;
+  mail: any;
   modelRepo: any;
   mailRepo: any;
+  mailgun: any;
 }
 
 export default {
@@ -30,6 +32,11 @@ export default {
     secret: getStringOption(process.env.JWT_SECRET, 'secret'),
     expiresIn: getNumberOption(process.env.JWT_EXPIRES_IN, ONE_HOUR),
     algoritm: getStringOption(process.env.JWT_ALGORITM, 'HS256'),
+  },
+  mail: {
+    from: getStringOption(process.env.TEST_MAIL_FROM, 'support@test.com'),
+    to: getStringOption(process.env.TEST_MAIL_TO, 'support@test.com'),
+    port:  getNumberOption(process.env.TEST_MAIL_PORT, 1025)
   },
   sequelize: {
     development: {
@@ -65,7 +72,7 @@ export default {
   mailRepo: {
     name: getStringOption(defaultTo<any>(
       process.env.MODEL_MAIL_REPO
-    ), 'mailgun'),
+    ), 'nodemailer'),
   },
   winston: {
     level: getStringOption(process.env.WINSTON_LEVEL, 'info'),
@@ -74,6 +81,4 @@ export default {
       `${process.cwd()}/logs`,
     ),
   }
-
-
 } as Config;

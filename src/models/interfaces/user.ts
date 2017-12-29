@@ -7,8 +7,8 @@ export interface UserAttributes {
   firstname?: string;
   lastname?: string;
   bio?: string;
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
   created_at?: string;
   updated_at?: string;
   deleted_at?: string;

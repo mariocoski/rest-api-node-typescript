@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { ForbiddenError,UserAlreadyExistsError, InvalidCredentialsError, NotFoundError, ModelNotFoundError, UnauthorizedError, UnprocessableEntityError} from '../../../utils/errors';
+import { ForbiddenError,UserAlreadyExistsError, InvalidResetPasswordTokenError, ExpiredResetPasswordTokenError,  InvalidCredentialsError, NotFoundError, ModelNotFoundError, UnauthorizedError, UnprocessableEntityError} from '../../../utils/errors';
 import {Warnings} from 'rulr';
 import translateWarnings from './translateWarnings';
 import Config from '../Config';
@@ -14,7 +14,7 @@ import {
   NOT_FOUND_404_HTTP_CODE,
   CONFLICT_409_HTTP_CODE,
   UNPROCESSABLE_ENTITY_422_HTTP_CODE,
-  SERVER_ERROR_500_HTTP_CODE,
+  SERVER_ERROR_500_HTTP_CODE
 } from './constants';
 
 
@@ -43,6 +43,18 @@ export default ({ config, errorId, res, err }: Options): Response => {
 
   if(err instanceof InvalidCredentialsError){
     const message = translator.invalidCredentials();
+    logError(message);
+    return res.status(UNPROCESSABLE_ENTITY_422_HTTP_CODE).json({message});
+  }
+  
+  if(err instanceof InvalidResetPasswordTokenError){
+    const message = translator.invalidResetPasswordToken();
+    logError(message);
+    return res.status(UNPROCESSABLE_ENTITY_422_HTTP_CODE).json({message});
+  }
+
+  if(err instanceof ExpiredResetPasswordTokenError){
+    const message = translator.expiredResetPasswordToken();
     logError(message);
     return res.status(UNPROCESSABLE_ENTITY_422_HTTP_CODE).json({message});
   }

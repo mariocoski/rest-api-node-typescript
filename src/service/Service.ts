@@ -6,20 +6,22 @@ import {createCommentSignature, getCommentSignature, getCommentsSignature, updat
 import {createRoleSignature, getRoleSignature, getRolesSignature, updateRoleSignature, deleteRoleSignature, assignUserRoleSignature, removeUserRoleSignature } from './roles';
 import {getUserPermissionsSignature, createPermissionSignature, getPermissionSignature, getPermissionsSignature, updatePermissionSignature, deletePermissionSignature, assignRolePermissionSignature, removeRolePermissionSignature } from './permissions';
 import CommonServiceSignature from './utils/CommonServiceSignature';
-import GetUserResetPasswordTokens from './resetPasswordTokens/GetUserResetPasswordTokens/Signature';
-export default interface Service {
+import {GetUserResetPasswordTokensSignature,CreateResetPasswordTokenSignature,GetResetPasswordTokenByTokenSignature} from './resetPasswordTokens';
 
+export default interface Service {
   readonly login: loginSignature;
   readonly register: registerSignature;
   readonly forgetPassword: forgetPasswordSignature;
-  readonly getUserResetPasswordTokens: GetUserResetPasswordTokens;
-  // readonly resetPassword: resetPasswordSignature;
+  readonly createResetPasswordToken: CreateResetPasswordTokenSignature;
+  readonly getResetPasswordTokenByToken: GetResetPasswordTokenByTokenSignature;
+  readonly getUserResetPasswordTokens: GetUserResetPasswordTokensSignature;
+  readonly resetPassword: resetPasswordSignature;
 
   readonly createUser: createUserSignature;
   readonly getUserById: getUserByIdSignature;
   readonly getUserByEmail: getUserByEmailSignature;
   // readonly getUsers: getUsersSignature;
-  // readonly updateUser: updateUserSignature;
+  readonly updateUser: updateUserSignature;
   // readonly deleteUser: deleteUserSignature;
 
   // readonly createPost: createPostSignature;

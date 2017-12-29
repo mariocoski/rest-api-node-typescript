@@ -4,7 +4,7 @@ import Signature from './Signature';
 
 export default (config: Config): Signature =>
   async (options) => {
-    return config.repo.getUser({
+    return config.repo.getUserById({
       id: options.id
     });
   };

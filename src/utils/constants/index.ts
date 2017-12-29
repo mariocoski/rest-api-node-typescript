@@ -4,6 +4,8 @@ export const API_ROUTE_V1 = '/api/v1';
 export const ONE_HOUR = 3600000;
 export const TWO_HOURS = 7200000;
 
+export const MAIL_RECOVERY_PASSWORD_SUBJECT = 'Reset Password Link';
+export const MAIL_PASSWORD_CHANGED_SUBJECT = 'Password Changed';
 export const DEFAULT_USER_PERMISSIONS: PermissionAttributes[] = [
   //USERS
   //@todo mayby implements /profile to get/update/delete current user, 

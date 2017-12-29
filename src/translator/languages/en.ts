@@ -2,11 +2,14 @@ import Translator from '../Translator';
 import stringPath from '../utils/stringPath';
 
 const translator: Translator = {
+  passwordChangedSuccessfully: () => 'Your password has been changed sucessfully. You can not log in.',
+  expiredResetPasswordToken: () => 'Expired reset password token',
+  invalidResetPasswordToken: () => 'Invalid reset password token',
   unauthorized: () => 'Unauthorized',
   forbidden: () => 'Forbidden',
   serverError: () => 'Server error',
   passwordReminderSent: (email) => {
-    return `Email reminder has been sent to: ${email}`;
+    return `An email has been sent to the provided address (${email}) containing a link with your recovery token`;
   },
   userAlreadyExists: () => 'User already exists',
   invalidCredentials: () => 'Incorrect email or password',

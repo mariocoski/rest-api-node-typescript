@@ -2,6 +2,9 @@ import {MinLengthWarning, MaxLengthWarning, NotMatchingPasswordWarning, InvalidE
 import {RequiredWarning,TypeWarning, Warning, RestrictedKeysWarning} from 'rulr';
 
 export default interface Translator {
+  readonly passwordChangedSuccessfully: () => string;
+  readonly expiredResetPasswordToken: () => string;
+  readonly invalidResetPasswordToken: () => string;
   readonly unauthorized: () => string;
   readonly forbidden: () => string;
   readonly invalidCredentials: () => string;

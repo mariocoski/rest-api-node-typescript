@@ -6,7 +6,8 @@ import UnprocessableEntityError from './UnprocessableEntityError';
 import BaseError from './BaseError';
 import UserAlreadyExistsError from './UserAlreadyExistsError';
 import InvalidCredentialsError from './InvalidCredentialsError';
-
+import InvalidResetPasswordTokenError from './InvalidResetPasswordTokenError';
+import ExpiredResetPasswordTokenError from './ExpiredResetPasswordTokenError';
 export {
   BaseError,
   ForbiddenError,
@@ -15,5 +16,7 @@ export {
   UnauthorizedError,
   UnprocessableEntityError,
   UserAlreadyExistsError,
-  InvalidCredentialsError
+  InvalidCredentialsError,
+  InvalidResetPasswordTokenError,
+  ExpiredResetPasswordTokenError
 }

@@ -3,6 +3,8 @@ import Config from '../../Config';
 import Signature from './Signature';
 import {ModelNotFoundError} from '../../../utils/errors';
 import generateRandomToken from '../../../utils/generateRandomToken';
+import globalConfig from '../../../config';
+import { MAIL_RECOVERY_PASSWORD_SUBJECT } from '../../../utils/constants';
 
 export default (config: Config): Signature =>
   async ({email}) => {
@@ -13,8 +15,18 @@ export default (config: Config): Signature =>
     
       await config.repo.createResetPasswordToken({userId: user.id, token});
 
-      // await config.repo.sendEmail({
-
-      // });
+      await config.repo.sendEmail({
+        from: globalConfig.mail.from,
+        to: email,
+        subject: MAIL_RECOVERY_PASSWORD_SUBJECT,
+        text: `Hello,
+        Someone requested a password reset for your account. 
+        If you'd like to reset your password use the token below:
+        
+        ${token}
+        
+        Thanks,
+        Support Team`
+      });
 
   };
