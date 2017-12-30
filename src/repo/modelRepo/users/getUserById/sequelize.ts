@@ -9,7 +9,7 @@ export default (config: Config) => {
   return async (options: Options) => {
     const user: UserInstance | null = await config.models.User.findById(options.id);
 
-    if(user === null) throw new ModelNotFoundError();
+    if(user === null) throw new ModelNotFoundError('User');
 
     return user.get({ plain: true });
   }; 

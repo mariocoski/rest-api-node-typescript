@@ -2,7 +2,12 @@ import {MinLengthWarning, MaxLengthWarning, NotMatchingPasswordWarning, InvalidE
 import {RequiredWarning,TypeWarning, Warning, RestrictedKeysWarning} from 'rulr';
 
 export default interface Translator {
+  readonly expiredJwtToken: () => string;
+  readonly invalidJwtToken: () => string; 
   readonly passwordChangedSuccessfully: () => string;
+  readonly modelNotFound: (modelName: string) => string;
+  readonly missingJwtToken: () => string;
+  readonly missingJwtTokenExtractor: () => string;
   readonly expiredResetPasswordToken: () => string;
   readonly invalidResetPasswordToken: () => string;
   readonly unauthorized: () => string;

@@ -8,9 +8,16 @@ import UserAlreadyExistsError from './UserAlreadyExistsError';
 import InvalidCredentialsError from './InvalidCredentialsError';
 import InvalidResetPasswordTokenError from './InvalidResetPasswordTokenError';
 import ExpiredResetPasswordTokenError from './ExpiredResetPasswordTokenError';
+import MissingJwtTokenError from './MissingJwtTokenError';
+import MissingJwtTokenExtractorError from './MissingJwtTokenExtractorError';
+import ExpiredJwtTokenError from './ExpiredJwtTokenError';
+import InvalidJwtTokenError from './InvalidJwtTokenError';
+
 export {
   BaseError,
   ForbiddenError,
+  ExpiredJwtTokenError,
+  InvalidJwtTokenError,
   ModelNotFoundError,
   NotFoundError,
   UnauthorizedError,
@@ -18,5 +25,7 @@ export {
   UserAlreadyExistsError,
   InvalidCredentialsError,
   InvalidResetPasswordTokenError,
-  ExpiredResetPasswordTokenError
+  ExpiredResetPasswordTokenError,
+  MissingJwtTokenError,
+  MissingJwtTokenExtractorError
 }

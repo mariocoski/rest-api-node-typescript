@@ -61,7 +61,6 @@ describe(__filename, () => {
 
     const {user, token} = response.body;
     expect(response.status).toBe(OK_200_HTTP_CODE);
-    expect(token).toMatch(/JWT/);
     expect(user.email).toEqual(TEST_VALID_LOGIN_USER.email);
   });
 

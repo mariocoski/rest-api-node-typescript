@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`/Users/mariuszrajczakowski/Code/rest-api-node-typescript/src/presenter/express/users/getUserById/getUserById.test.ts should fail to get user when insufficent permissions 1`] = `
+Object {
+  "message": "Invalid JWT token",
+}
+`;
+
+exports[`/Users/mariuszrajczakowski/Code/rest-api-node-typescript/src/presenter/express/users/getUserById/getUserById.test.ts should fail to get user when invalid token provided in authorization header 1`] = `
+Object {
+  "message": "Missing JWT token",
+}
+`;
+
+exports[`/Users/mariuszrajczakowski/Code/rest-api-node-typescript/src/presenter/express/users/getUserById/getUserById.test.ts should fail to get user when invalid token provided in query param 1`] = `
+Object {
+  "message": "Invalid JWT token",
+}
+`;
+
+exports[`/Users/mariuszrajczakowski/Code/rest-api-node-typescript/src/presenter/express/users/getUserById/getUserById.test.ts should fail to get user when unauthenticated 1`] = `
+Object {
+  "message": "Missing JWT token",
+}
+`;

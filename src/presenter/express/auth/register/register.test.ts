@@ -72,7 +72,6 @@ describe(__filename, () => {
     expect(R.intersection(permissionsNames,defaultPermissionsNames).length)
           .toBe(DEFAULT_USER_PERMISSIONS.length);
     expect(response.status).toBe(CREATED_201_HTTP_CODE);
-    expect(token).toMatch(/JWT/);
     expect(user.email).toEqual(TEST_VALID_REGIRSTER_USER.email);
   });
 

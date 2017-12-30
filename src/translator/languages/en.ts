@@ -2,6 +2,11 @@ import Translator from '../Translator';
 import stringPath from '../utils/stringPath';
 
 const translator: Translator = {
+  expiredJwtToken: () => 'Expired JWT token',
+  invalidJwtToken: () => 'Invalid JWT token',
+  modelNotFound: (modelName: string) => `No ${modelName} Model found`,
+  missingJwtToken: () => 'Missing JWT token',
+  missingJwtTokenExtractor: () => 'Missing JWT token extractor',
   passwordChangedSuccessfully: () => 'Your password has been changed sucessfully. You can not log in.',
   expiredResetPasswordToken: () => 'Expired reset password token',
   invalidResetPasswordToken: () => 'Invalid reset password token',
