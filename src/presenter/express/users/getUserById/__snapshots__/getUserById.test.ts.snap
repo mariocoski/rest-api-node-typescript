@@ -2,7 +2,7 @@
 
 exports[`/Users/mariuszrajczakowski/Code/rest-api-node-typescript/src/presenter/express/users/getUserById/getUserById.test.ts should fail to get user when insufficent permissions 1`] = `
 Object {
-  "message": "Invalid JWT token",
+  "message": "Forbidden",
 }
 `;
 

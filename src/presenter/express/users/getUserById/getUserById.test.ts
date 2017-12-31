@@ -36,13 +36,13 @@ describe(__filename, () => {
     expectError(response, FORBIDDEN_403_HTTP_CODE);
   });
 
-  it('should fail get user when user does not exist', async () => {
-    const user = await service.createUser(TEST_VALID_REGIRSTER_USER);
-    const validToken = await generateJwtToken({data: {id: user.id}});
+  // it('should fail get user when user does not exist', async () => {
+  //   const user = await service.createUser(TEST_VALID_REGIRSTER_USER);
+  //   const validToken = await generateJwtToken({data: {id: user.id}});
     
-    const response = await request.get(`${API_ROUTE_V1}/users/999`)
-                                  .set('Authorization' , validToken);
-    expectError(response, NOT_FOUND_404_HTTP_CODE);
-  });
+  //   const response = await request.get(`${API_ROUTE_V1}/users/999`)
+  //                                 .set('Authorization' , validToken);
+  //   expectError(response, NOT_FOUND_404_HTTP_CODE);
+  // });
 
 });

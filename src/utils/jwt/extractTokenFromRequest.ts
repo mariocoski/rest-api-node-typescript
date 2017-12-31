@@ -52,7 +52,6 @@ export const createFromAuthScheme =  (options: AuthSchemeExtractorOptions) => (r
     const matches: any = header.match(/(\S+)\s+(\S+)/);
 
     if(matches && matches[1] && matches[2] && matches[1].toLowerCase() === authScheme && typeof matches[2] === 'string'){
-      console.log(matches[2]);
       return matches[2];
     }
   }

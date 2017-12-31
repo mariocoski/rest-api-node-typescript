@@ -30,6 +30,7 @@ export interface Options {
 }
 
 export default ({ config, errorId, res, err }: Options): Response => {
+   /* istanbul ignore next */
   const { logger, translator } = config;
   const logError = (msg: string, meta?: any) => {
     logger.error(`${errorId}: error handled - ${msg}`, meta);
