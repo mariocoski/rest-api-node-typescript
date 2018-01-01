@@ -12,11 +12,10 @@ It is a great starting point for blogging platform.
 ## Technologies used:
 - Typescript
 - Express.js
-- 
+- Sequelize
 - JWT
-Jest
-codecov
-Sequelize
+- jest
+- codecov
 
 ## Setup
 1. Install dependencies
