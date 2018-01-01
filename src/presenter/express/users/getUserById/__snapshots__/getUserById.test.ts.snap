@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`/Users/mariuszrajczakowski/Code/rest-api-node-typescript/src/presenter/express/users/getUserById/getUserById.test.ts should fail get user when user does not exist 1`] = `
+Object {
+  "message": "No User Model found",
+}
+`;
+
 exports[`/Users/mariuszrajczakowski/Code/rest-api-node-typescript/src/presenter/express/users/getUserById/getUserById.test.ts should fail to get user when insufficent permissions 1`] = `
 Object {
   "message": "Forbidden",

@@ -6,7 +6,7 @@ import {SequelizeModels} from './index';
 export default (sequelize: Sequelize, dataTypes: DataTypes):
   SequelizeStatic.Model<RoleInstance, RoleAttributes> => {
   const Role = sequelize.define<RoleInstance, RoleAttributes>("Role", {
-    name: dataTypes.STRING,
+    name: {type: dataTypes.STRING, unique: true},
     description: dataTypes.STRING,
     deleted_at: dataTypes.DATE
   }, {
@@ -18,10 +18,10 @@ export default (sequelize: Sequelize, dataTypes: DataTypes):
     underscored: true
   });
 
-  Role.afterDestroy((role: RoleInstance, options: Object) => {
-    sequelize.models.UserRole.destroy({where: {role_id: role.dataValues.id}, individualHooks: true}); 
-    sequelize.models.RolePermission.destroy({where: {role_id: role.dataValues.id}, individualHooks: true}); 
-  });
+  // Role.afterDestroy((role: RoleInstance, options: Object) => {
+  //   sequelize.models.UserRole.destroy({where: {role_id: role.dataValues.id}, individualHooks: true}); 
+  //   sequelize.models.RolePermission.destroy({where: {role_id: role.dataValues.id}, individualHooks: true}); 
+  // });
 
   return Role;
 }

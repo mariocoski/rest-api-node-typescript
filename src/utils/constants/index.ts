@@ -9,6 +9,20 @@ export const AUTH_PARAM_NAME = 'auth_token';
 export const AUTH_SCHEME_NAME = 'Bearer';
 export const MAIL_RECOVERY_PASSWORD_SUBJECT = 'Reset Password Link';
 export const MAIL_PASSWORD_CHANGED_SUBJECT = 'Password Changed';
+
+export const PERMISSION_GET_USER = 'user.show';
+export const PERMISSION_GET_USERS = 'user.index';
+export const PERMISSION_UPDATE_USER = 'user.update';
+export const PERMISSION_DELETE_USER = 'user.delete';
+export const PERMISSION_CREATE_USER = 'user.create';
+
+export const PERMISSION_GET_ROLE = 'role.show';
+export const PERMISSION_GET_ROLES = 'role.index';
+export const PERMISSION_UPDATE_ROLE = 'role.update';
+export const PERMISSION_DELETE_ROLE = 'role.delete';
+export const PERMISSION_CREATE_ROLE = 'role.create';
+
+
 export const DEFAULT_USER_PERMISSIONS: PermissionAttributes[] = [
   //USERS
   //@todo mayby implements /profile to get/update/delete current user, 

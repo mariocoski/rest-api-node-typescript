@@ -19,9 +19,9 @@ export default (sequelize: Sequelize, dataTypes: DataTypes):
     underscored: true
   });
 
-  Post.afterDestroy((post: PostInstance, options: Object) => {
-    sequelize.models.Comment.destroy({where: {post_id: post.dataValues.id}, individualHooks: true}); 
-  });
+  // Post.afterDestroy((post: PostInstance, options: Object) => {
+  //   sequelize.models.Comment.destroy({where: {post_id: post.dataValues.id}, individualHooks: true}); 
+  // });
 
   return Post;
 }

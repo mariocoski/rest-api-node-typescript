@@ -9,7 +9,7 @@ import getPermissionsSignature from './getPermissions/Signature';
 
 
 import createUserPermissions from './createUserPermissions';
-import createUserPermissionsSignature from './createUserPermissions/Signature';
+import CreateUserPermissionsSignature from './createUserPermissions/Signature';
 
 import getUserPermissions from './getUserPermissions';
 import getUserPermissionsSignature from './getUserPermissions/Signature';
@@ -34,7 +34,7 @@ export {
   getPermissions,
   getPermissionsSignature,
   createUserPermissions,
-  createUserPermissionsSignature,
+  CreateUserPermissionsSignature,
   getUserPermissions,
   getUserPermissionsSignature,
   updatePermission,

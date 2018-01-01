@@ -6,7 +6,7 @@ import {SequelizeModels} from './index';
 export default (sequelize: Sequelize, dataTypes: DataTypes):
   SequelizeStatic.Model<PermissionInstance, PermissionAttributes> => {
   const Permission = sequelize.define<PermissionInstance, PermissionAttributes>("Permission", {
-    name: dataTypes.STRING,
+    name: {type: dataTypes.STRING, unique: true},
     label: dataTypes.STRING,
     description: dataTypes.STRING,
     deleted_at: dataTypes.DATE

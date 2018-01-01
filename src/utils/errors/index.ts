@@ -12,6 +12,7 @@ import MissingJwtTokenError from './MissingJwtTokenError';
 import MissingJwtTokenExtractorError from './MissingJwtTokenExtractorError';
 import ExpiredJwtTokenError from './ExpiredJwtTokenError';
 import InvalidJwtTokenError from './InvalidJwtTokenError';
+import ModelAlreadyExistsError from './ModelAlreadyExistsError';
 
 export {
   BaseError,
@@ -27,5 +28,6 @@ export {
   InvalidResetPasswordTokenError,
   ExpiredResetPasswordTokenError,
   MissingJwtTokenError,
-  MissingJwtTokenExtractorError
+  MissingJwtTokenExtractorError,
+  ModelAlreadyExistsError
 }

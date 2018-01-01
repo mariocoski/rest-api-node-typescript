@@ -5,7 +5,7 @@ import {createUser, getUserById, getUserByEmail, getUsers, updateUser, deleteUse
 import {createPost, getPost, getPosts, updatePost, deletePost} from './posts';
 import {createComment, getComment, getComments, updateComment, deleteComment} from './comments';
 import {createRole, getRole, getRoles, updateRole, deleteRole, assignUserRole, removeUserRole} from './roles';
-import {getUserPermissions, createPermission, getPermission, getPermissions, updatePermission, deletePermission, assignRolePermission, removeRolePermission} from './permissions';
+import {getUserPermissions, createUserPermissions, createPermission, getPermission, getPermissions, updatePermission, deletePermission, assignRolePermission, removeRolePermission} from './permissions';
 import {migrate, rollback, clearService} from './utils';
 import {getUserResetPasswordTokens,createResetPasswordToken, getResetPasswordTokenByToken} from './resetPasswordTokens';
 
@@ -37,7 +37,7 @@ export default (config: Config): Service => {
     // updateComment: updateComment(config),
     // deleteComment: deleteComment(config),
 
-    // createRole: createRole(config),
+    createRole: createRole(config),
     // getRole: getRole(config),
     // getRoles: getRoles(config),
     // updateRole: updateRole(config),
@@ -45,7 +45,7 @@ export default (config: Config): Service => {
     // assignUserRole: assignUserRole(config),
     // removeUserRole: removeUserRole(config),
 
-    // createPermission: createPermission(config),
+    createPermission: createPermission(config),
     // getPermission: getPermission(config),
     // getPermissions: getPermissions(config),
     // updatePermission: updatePermission(config),
@@ -53,6 +53,7 @@ export default (config: Config): Service => {
     // assignRolePermission: assignRolePermission(config),
     // removeRolePermission: removeRolePermission(config),
     getUserPermissions: getUserPermissions(config),
+    createUserPermissions: createUserPermissions(config),
   
     clearService: clearService(config),
     migrate: migrate(config),

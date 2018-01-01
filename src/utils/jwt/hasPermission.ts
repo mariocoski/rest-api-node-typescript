@@ -7,7 +7,6 @@ export interface Options {
 export default ({user, permissionName}: Options): void => {
   const {permissions} = user;
   if(!permissions || !permissions.length) throw new ForbiddenError();
-  console.log(permissionName, permissions);
-  const hasPermission = (permissions.filter((permission: any) => permission.name === permissionName)).length;
+  const hasPermission: boolean = (permissions.filter((permission: any) => permission.name === permissionName)).length > 0;
   if(! hasPermission) throw new ForbiddenError();
 }

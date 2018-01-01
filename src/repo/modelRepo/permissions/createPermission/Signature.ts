@@ -1,13 +1,14 @@
 import AsyncHandler from '../../../../utils/AsyncHandler';
-
-interface Options {
-    readonly firstname?: string;
-    readonly lastname?: string;
-    readonly bio?: string;
-    readonly email: string; 
-    readonly password: string;
+import { PermissionAttributes} from '../../../../models/interfaces/permission';
+export interface Options {
+    readonly name: string;
+    readonly label?: string;
+    readonly description?: string;
+    readonly createdAt?: string;
+    readonly updatedAt?: string; 
+    readonly deletedAt?: string;
 }
 
-type Signature = AsyncHandler<Options, void>;
+type Signature = AsyncHandler<Options, PermissionAttributes>;
 
 export default Signature;

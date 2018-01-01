@@ -1,13 +1,13 @@
 import AsyncHandler from '../../../utils/AsyncHandler';
-
+import {RoleAttributes} from '../../../models/interfaces/role';
 interface Options {
-    readonly firstname?: string;
-    readonly lastname?: string;
-    readonly bio?: string;
-    readonly email: string; 
-    readonly password: string;
+    readonly name: string;
+    readonly description?: string;
+    readonly createdAt?: string;
+    readonly updatedAt?: string; 
+    readonly deletedAt?: string;
 }
 
-type Signature = AsyncHandler<Options, void>;
+type Signature = AsyncHandler<Options, RoleAttributes>;
 
 export default Signature;

@@ -32,7 +32,7 @@ export interface ModelRepoInterface {
     // readonly updateComment: UpdateCommentSignature;
     // readonly deleteComment: DeleteCommentSignature;
 
-    // readonly createRole: CreateRoleSignature;
+    readonly createRole: CreateRoleSignature;
     // readonly getRole: GetRoleSignature;
     // readonly getRoles: GetRolesSignature;
     // readonly updateRole: UpdateRoleSignature;
@@ -40,7 +40,7 @@ export interface ModelRepoInterface {
     // readonly assignUserRole: AssignUserRoleSignature;
     // readonly removeUserRole: RemoveUserRoleSignature;
 
-    // readonly createPermission: CreatePermissionSignature;
+    readonly createPermission: CreatePermissionSignature;
     // readonly getPermission: GetPermissionSignature;
     // readonly getPermissions: GetPermissionsSignature;
     // readonly updatePermission: UpdatePermissionSignature;

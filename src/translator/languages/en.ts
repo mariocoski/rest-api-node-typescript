@@ -2,6 +2,7 @@ import Translator from '../Translator';
 import stringPath from '../utils/stringPath';
 
 const translator: Translator = {
+  modelAlreadyExists: (modelName: string) => `${modelName} Model already exists`,
   expiredJwtToken: () => 'Expired JWT token',
   invalidJwtToken: () => 'Invalid JWT token',
   modelNotFound: (modelName: string) => `No ${modelName} Model found`,

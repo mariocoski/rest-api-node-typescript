@@ -1,5 +1,6 @@
 import { Response } from 'express';
 import { 
+  ModelAlreadyExistsError,
   ForbiddenError,UserAlreadyExistsError, InvalidResetPasswordTokenError, ExpiredResetPasswordTokenError, 
   InvalidCredentialsError, NotFoundError, ModelNotFoundError, UnauthorizedError, UnprocessableEntityError,
   MissingJwtTokenError, MissingJwtTokenExtractorError, ExpiredJwtTokenError, InvalidJwtTokenError
@@ -99,6 +100,13 @@ export default ({ config, errorId, res, err }: Options): Response => {
     logError(message);
     return res.status(CONFLICT_409_HTTP_CODE).json({message});
   }
+
+  if(err instanceof ModelAlreadyExistsError){
+    const message = translator.modelAlreadyExists(err.modelName);
+    logError(message);
+    return res.status(CONFLICT_409_HTTP_CODE).json({message});
+  }
+
   if (err instanceof UnauthorizedError) {
     const message = translator.unauthorized();
     logError(message);

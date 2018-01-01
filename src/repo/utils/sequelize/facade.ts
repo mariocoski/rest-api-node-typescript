@@ -15,6 +15,8 @@ import createResetPasswordToken from '../../modelRepo/resetPasswordTokens/create
 import getUserResetPasswordTokens from '../../modelRepo/resetPasswordTokens/getUserResetPasswordTokens/sequelize';
 import getResetPasswordTokenByToken from '../../modelRepo/resetPasswordTokens/getResetPasswordTokenByToken/sequelize';
 import deleteResetPasswordTokenById from '../../modelRepo/resetPasswordTokens/deleteResetPasswordTokenById/sequelize';
+import createRole from '../../modelRepo/roles/createRole/sequelize';
+import createPermission from '../../modelRepo/permissions/createPermission/sequelize';
 
 export default (config: Config): ModelRepoInterface => {
   return {
@@ -26,6 +28,8 @@ export default (config: Config): ModelRepoInterface => {
     getUserById: getUserById(config),
     updateUser: updateUser(config),
     getUserByEmail: getUserByEmail(config),
+    createRole: createRole(config),
+    createPermission: createPermission(config),
     createUserPermissions: createUserPermissions(config),
     getUserPermissions: getUserPermissions(config),
     clearRepo: clearRepo(config),

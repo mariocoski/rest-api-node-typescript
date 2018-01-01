@@ -4,7 +4,7 @@ import {createUserSignature, getUserByIdSignature,getUserByEmailSignature, getUs
 import {createPostSignature, getPostSignature, getPostsSignature, updatePostSignature, deletePostSignature } from './posts';
 import {createCommentSignature, getCommentSignature, getCommentsSignature, updateCommentSignature, deleteCommentSignature } from './comments';
 import {createRoleSignature, getRoleSignature, getRolesSignature, updateRoleSignature, deleteRoleSignature, assignUserRoleSignature, removeUserRoleSignature } from './roles';
-import {getUserPermissionsSignature, createPermissionSignature, getPermissionSignature, getPermissionsSignature, updatePermissionSignature, deletePermissionSignature, assignRolePermissionSignature, removeRolePermissionSignature } from './permissions';
+import {getUserPermissionsSignature, createPermissionSignature, getPermissionSignature, getPermissionsSignature, updatePermissionSignature, deletePermissionSignature, assignRolePermissionSignature, removeRolePermissionSignature, CreateUserPermissionsSignature } from './permissions';
 import CommonServiceSignature from './utils/CommonServiceSignature';
 import {GetUserResetPasswordTokensSignature,CreateResetPasswordTokenSignature,GetResetPasswordTokenByTokenSignature} from './resetPasswordTokens';
 
@@ -36,7 +36,7 @@ export default interface Service {
   // readonly updateComment: updateCommentSignature;
   // readonly deleteComment: deleteCommentSignature;
 
-  // readonly createRole: createRoleSignature;
+  readonly createRole: createRoleSignature;
   // readonly getRole: getRoleSignature;
   // readonly getRoles: getRolesSignature;
   // readonly updateRole: updateRoleSignature;
@@ -44,7 +44,7 @@ export default interface Service {
   // readonly assignUserRole: assignUserRoleSignature;
   // readonly removeUserRole: removeUserRoleSignature;
 
-  // readonly createPermission: createPermissionSignature;
+  readonly createPermission: createPermissionSignature;
   // readonly getPermission: getPermissionSignature;
   // readonly getPermissions: getPermissionsSignature;
   // readonly updatePermission: updatePermissionSignature;
@@ -52,7 +52,7 @@ export default interface Service {
   // readonly assignRolePermission: assignRolePermissionSignature;
   // readonly removeRolePermission: removeRolePermissionSignature;
   readonly getUserPermissions: getUserPermissionsSignature;
-
+  readonly createUserPermissions: CreateUserPermissionsSignature;
   readonly clearService: CommonServiceSignature;
   readonly migrate: CommonServiceSignature;
   readonly rollback: CommonServiceSignature;
