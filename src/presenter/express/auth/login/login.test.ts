@@ -3,7 +3,7 @@ import {API_ROUTE_V1, DEFAULT_USER_PERMISSIONS} from '../../../../utils/constant
 import {Response} from 'express';
 import {CREATED_201_HTTP_CODE, OK_200_HTTP_CODE, UNPROCESSABLE_ENTITY_422_HTTP_CODE, CONFLICT_409_HTTP_CODE} from '../../utils/constants';
 import config from '../../../../config';
-import {TEST_VALID_LOGIN_USER, TEST_INVALID_EMAIL,TEST_VALID_PASSWORD, TEST_VALID_EMAIL, TEST_TOO_SHORT_PASSWORD, TEST_DIFFERENT_VALID_PASSWORD} from '../../../../utils/testValues';
+import {TEST_VALID_LOGIN_USER, TEST_VALID_REGISTER_USER,TEST_INVALID_EMAIL,TEST_VALID_PASSWORD, TEST_VALID_EMAIL, TEST_TOO_SHORT_PASSWORD, TEST_DIFFERENT_VALID_PASSWORD} from '../../../../utils/testValues';
 import * as R  from 'ramda';
 import expectError from '../../utils/expectError';
 
@@ -39,14 +39,11 @@ describe(__filename, () => {
 
   it('should fail to log in a user when password is invalid', async () => {
     
-    const registeredUser = await service.register({
-      email: TEST_VALID_EMAIL, 
-      password: TEST_VALID_PASSWORD
-    });
+    const registeredUser = await service.register(TEST_VALID_LOGIN_USER);
     
     const response = await request.post(`${API_ROUTE_V1}/auth/login`)
                                   .send({
-                                    email: TEST_VALID_EMAIL, 
+                                    email: TEST_VALID_LOGIN_USER.email, 
                                     password: TEST_DIFFERENT_VALID_PASSWORD,
                                   });
     expectError(response);
@@ -54,14 +51,14 @@ describe(__filename, () => {
 
   it('should succesfully log in a user', async () => {
     
-    const registeredUser = await service.register(TEST_VALID_LOGIN_USER);
+    const registeredUser = await service.register(TEST_VALID_REGISTER_USER);
 
     const response = await request.post(`${API_ROUTE_V1}/auth/login`)
-                                  .send(TEST_VALID_LOGIN_USER);
+                                  .send({email: TEST_VALID_REGISTER_USER.email, password: TEST_VALID_REGISTER_USER.password});
 
     const {user, token} = response.body;
     expect(response.status).toBe(OK_200_HTTP_CODE);
-    expect(user.email).toEqual(TEST_VALID_LOGIN_USER.email);
+    expect(user.email).toEqual(TEST_VALID_REGISTER_USER.email);
   });
 
 });

@@ -3,7 +3,7 @@ import {API_ROUTE_V1, DEFAULT_USER_PERMISSIONS} from '../../../../utils/constant
 import {Response} from 'express';
 import {CREATED_201_HTTP_CODE, OK_200_HTTP_CODE, UNPROCESSABLE_ENTITY_422_HTTP_CODE, CONFLICT_409_HTTP_CODE} from '../../utils/constants';
 import config from '../../../../config';
-import {TEST_VALID_LOGIN_USER, TEST_INVALID_EMAIL,TEST_VALID_PASSWORD, TEST_VALID_EMAIL, 
+import {TEST_VALID_LOGIN_USER, TEST_INVALID_EMAIL,TEST_VALID_PASSWORD,TEST_VALID_REGISTER_USER, TEST_VALID_EMAIL, 
   TEST_TOO_SHORT_PASSWORD,TEST_NOT_MATCHING_RESET_PASSWORD_TOKEN , TEST_DIFFERENT_VALID_PASSWORD, TEST_INVALID_RESET_PASSWORD_TOKEN} from '../../../../utils/testValues';
 import * as R  from 'ramda';
 import expectError from '../../utils/expectError';
@@ -90,10 +90,7 @@ describe(__filename, () => {
 
   it('should fail to reset password when the token is expired', async () => {
     
-    const registeredUser = await service.register({
-      email: TEST_VALID_EMAIL, 
-      password: TEST_VALID_PASSWORD
-    });
+    const registeredUser = await service.register(TEST_VALID_REGISTER_USER);
     const token = generateRandomToken();
     await service.createResetPasswordToken({
       userId: registeredUser.user.id, 
@@ -112,10 +109,7 @@ describe(__filename, () => {
 
   it('should successfuly change user password, delete token, and send email', async () => {
     const mailServer = createTestMailServer();
-    const registeredUser = await service.register({
-      email: TEST_VALID_EMAIL, 
-      password: TEST_VALID_PASSWORD
-    });
+    const registeredUser = await service.register(TEST_VALID_REGISTER_USER);
 
     const token = generateRandomToken();
 

@@ -3,7 +3,7 @@ import {API_ROUTE_V1, DEFAULT_USER_PERMISSIONS} from '../../../../utils/constant
 import {Response} from 'express';
 import {CREATED_201_HTTP_CODE, OK_200_HTTP_CODE, UNPROCESSABLE_ENTITY_422_HTTP_CODE, CONFLICT_409_HTTP_CODE} from '../../utils/constants';
 import config from '../../../../config';
-import {TEST_VALID_LOGIN_USER, TEST_INVALID_EMAIL,TEST_VALID_PASSWORD, TEST_VALID_EMAIL, TEST_TOO_SHORT_PASSWORD, TEST_DIFFERENT_VALID_PASSWORD} from '../../../../utils/testValues';
+import {TEST_VALID_LOGIN_USER, TEST_INVALID_EMAIL,TEST_VALID_REGISTER_USER ,TEST_VALID_PASSWORD, TEST_VALID_EMAIL, TEST_TOO_SHORT_PASSWORD, TEST_DIFFERENT_VALID_PASSWORD} from '../../../../utils/testValues';
 import * as R  from 'ramda';
 import expectError from '../../utils/expectError';
 import * as moment from 'moment';
@@ -36,16 +36,13 @@ describe(__filename, () => {
 
   it('should succesfull create reset_password_token for user and send email', async () => {
     const mailServer = createTestMailServer();
-    const registeredUser = await service.register({
-      email: TEST_VALID_EMAIL, 
-      password: TEST_VALID_PASSWORD
-    });
+    const registeredUser = await service.register(TEST_VALID_REGISTER_USER);
     
     const response = await request.post(`${API_ROUTE_V1}/auth/forget-password`)
                                   .send({
-                                    email: TEST_VALID_EMAIL
+                                    email: TEST_VALID_REGISTER_USER.email
                                   });
-                                  
+    
     const resetPasswordTokens = await service.getUserResetPasswordTokens({
       userId: registeredUser.user.id
     });

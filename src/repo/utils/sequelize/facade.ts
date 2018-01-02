@@ -7,7 +7,7 @@ import getUserById from '../../modelRepo/users/getUserById/sequelize';
 import getUserByEmail from '../../modelRepo/users/getUserByEmail/sequelize';
 import getUserPermissions from '../../modelRepo/permissions/getUserPermissions/sequelize';
 import createUserPermissions from '../../modelRepo/permissions/createUserPermissions/sequelize';
-// import getUsers from '../../modelRepo/users/getUsers/sequelize';
+import getUsers from '../../modelRepo/users/getUsers/sequelize';
 import migrate from '../../modelRepo/commons/migrate/sequelize';
 import rollback from '../../modelRepo/commons/rollback/sequelize';
 import clearRepo from '../../modelRepo/commons/clearRepo/sequelize';
@@ -26,6 +26,7 @@ export default (config: Config): ModelRepoInterface => {
     getUserResetPasswordTokens: getUserResetPasswordTokens(config),
     createUser: createUser(config),
     getUserById: getUserById(config),
+    getUsers: getUsers(config),
     updateUser: updateUser(config),
     getUserByEmail: getUserByEmail(config),
     createRole: createRole(config),

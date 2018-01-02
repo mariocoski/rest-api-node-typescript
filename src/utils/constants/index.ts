@@ -2,25 +2,27 @@ import {RoleAttributes} from '../../models/interfaces/role';
 import {PermissionAttributes} from '../../models/interfaces/permission';
 export const API_ROUTE_V1 = '/api/v1';
 export const ONE_HOUR = 3600000;
-export const TWO_HOURS = 7200000;
-export const AUTH_HEADER_NAME = 'authorization';
-export const AUTH_BODY_FIELD_NAME = 'auth_token';
-export const AUTH_PARAM_NAME = 'auth_token';
-export const AUTH_SCHEME_NAME = 'Bearer';
-export const MAIL_RECOVERY_PASSWORD_SUBJECT = 'Reset Password Link';
-export const MAIL_PASSWORD_CHANGED_SUBJECT = 'Password Changed';
+export const TWO_HOURS: number = 7200000;
+export const AUTH_HEADER_NAME:string  = 'authorization';
+export const AUTH_BODY_FIELD_NAME:string  = 'auth_token';
+export const AUTH_PARAM_NAME:string  = 'auth_token';
+export const AUTH_SCHEME_NAME:string  = 'Bearer';
+export const MAIL_RECOVERY_PASSWORD_SUBJECT:string  = 'Reset Password Link';
+export const MAIL_PASSWORD_CHANGED_SUBJECT:string  = 'Password Changed';
 
-export const PERMISSION_GET_USER = 'user.show';
-export const PERMISSION_GET_USERS = 'user.index';
-export const PERMISSION_UPDATE_USER = 'user.update';
-export const PERMISSION_DELETE_USER = 'user.delete';
-export const PERMISSION_CREATE_USER = 'user.create';
+export const USER_MODEL_VISIBLE_PROPERTIES = ['id','firstname', 'lastname', 'bio', 'email','password','created_at', 'updated_at'];
 
-export const PERMISSION_GET_ROLE = 'role.show';
-export const PERMISSION_GET_ROLES = 'role.index';
-export const PERMISSION_UPDATE_ROLE = 'role.update';
-export const PERMISSION_DELETE_ROLE = 'role.delete';
-export const PERMISSION_CREATE_ROLE = 'role.create';
+export const PERMISSION_GET_USER: string = 'user.show';
+export const PERMISSION_GET_USERS: string = 'user.index';
+export const PERMISSION_UPDATE_USER: string = 'user.update';
+export const PERMISSION_DELETE_USER: string = 'user.delete';
+export const PERMISSION_CREATE_USER: string = 'user.create';
+
+export const PERMISSION_GET_ROLE: string = 'role.show';
+export const PERMISSION_GET_ROLES: string = 'role.index';
+export const PERMISSION_UPDATE_ROLE: string = 'role.update';
+export const PERMISSION_DELETE_ROLE: string = 'role.delete';
+export const PERMISSION_CREATE_ROLE: string = 'role.create';
 
 
 export const DEFAULT_USER_PERMISSIONS: PermissionAttributes[] = [

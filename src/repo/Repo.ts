@@ -16,7 +16,7 @@ export interface ModelRepoInterface {
     readonly getUserById: GetUserByIdSignature;
     readonly getUserByEmail: GetUserByEmailSignature;
 
-    // readonly getUsers: GetUsersSignature;
+    readonly getUsers: GetUsersSignature;
     readonly updateUser: UpdateUserSignature;
     // readonly deleteUser: DeleteUserSignature;
 

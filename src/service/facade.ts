@@ -21,7 +21,7 @@ export default (config: Config): Service => {
     createUser: createUser(config),
     getUserById: getUserById(config),
     getUserByEmail: getUserByEmail(config),
-    // getUsers: getUsers(config),
+    getUsers: getUsers(config),
     updateUser: updateUser(config),
     // deleteUser: deleteUser(config),
 

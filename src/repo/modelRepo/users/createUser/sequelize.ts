@@ -15,6 +15,7 @@ export default (config: Config) => {
         email: options.email, 
         password: await hashPassword(options.password)
       });
+      //@todo get only certain fields rather thn entire model
       return user.get({ plain: true });
     }catch(err){
       if(err instanceof UniqueConstraintError){

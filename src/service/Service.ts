@@ -20,7 +20,7 @@ export default interface Service {
   readonly createUser: createUserSignature;
   readonly getUserById: getUserByIdSignature;
   readonly getUserByEmail: getUserByEmailSignature;
-  // readonly getUsers: getUsersSignature;
+  readonly getUsers: getUsersSignature;
   readonly updateUser: updateUserSignature;
   // readonly deleteUser: deleteUserSignature;
 

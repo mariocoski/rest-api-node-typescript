@@ -3,7 +3,7 @@ import {API_ROUTE_V1, DEFAULT_USER_PERMISSIONS} from '../../../../utils/constant
 import {Response} from 'express';
 import {CREATED_201_HTTP_CODE, UNPROCESSABLE_ENTITY_422_HTTP_CODE, CONFLICT_409_HTTP_CODE} from '../../utils/constants';
 import config from '../../../../config';
-import {TEST_VALID_REGIRSTER_USER, TEST_INVALID_EMAIL,TEST_VALID_PASSWORD, TEST_VALID_EMAIL, TEST_TOO_SHORT_PASSWORD, TEST_DIFFERENT_VALID_PASSWORD} from '../../../../utils/testValues';
+import {TEST_VALID_REGISTER_USER, TEST_INVALID_EMAIL,TEST_VALID_PASSWORD, TEST_VALID_EMAIL, TEST_TOO_SHORT_PASSWORD, TEST_DIFFERENT_VALID_PASSWORD} from '../../../../utils/testValues';
 import * as R  from 'ramda';
 import expectError from '../../utils/expectError';
 
@@ -42,10 +42,10 @@ describe(__filename, () => {
   });
 
   it('should fail to register a user with the same email address', async () => {
-    const user = await service.register(TEST_VALID_REGIRSTER_USER);
+    const user = await service.register(TEST_VALID_REGISTER_USER);
   
     const response = await request.post(`${API_ROUTE_V1}/auth/register`)
-                                  .send(TEST_VALID_REGIRSTER_USER);
+                                  .send(TEST_VALID_REGISTER_USER);
     expectError(response,CONFLICT_409_HTTP_CODE);
   });
 
@@ -63,7 +63,7 @@ describe(__filename, () => {
   it('should succesfully register a user', async () => {
 
     const response = await request.post(`${API_ROUTE_V1}/auth/register`)
-                                  .send(TEST_VALID_REGIRSTER_USER);
+                                  .send(TEST_VALID_REGISTER_USER);
     const {user, token} = response.body;
     const permissions = await service.getUserPermissions({userId: user.id});
     const permissionsNames = R.pluck('name')(permissions);
@@ -72,7 +72,7 @@ describe(__filename, () => {
     expect(R.intersection(permissionsNames,defaultPermissionsNames).length)
           .toBe(DEFAULT_USER_PERMISSIONS.length);
     expect(response.status).toBe(CREATED_201_HTTP_CODE);
-    expect(user.email).toEqual(TEST_VALID_REGIRSTER_USER.email);
+    expect(user.email).toEqual(TEST_VALID_REGISTER_USER.email);
   });
 
 });
