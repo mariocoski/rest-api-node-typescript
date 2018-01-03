@@ -6,7 +6,6 @@ export interface OrderItem {
 }
 
 export interface Options { 
-  readonly page?: number;
   readonly limit?: number;
   readonly offset?: number;
   readonly order?: OrderItem[];

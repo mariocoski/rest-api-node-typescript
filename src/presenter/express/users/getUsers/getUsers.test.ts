@@ -42,6 +42,4 @@ describe(__filename, () => {
     expect(response.body.count).toBe(2);
   });
 
-
-
 });
