@@ -2,7 +2,7 @@ import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
 import {Request, Response} from 'express';
 import {OK_200_HTTP_CODE} from '../../utils/constants';
-import {minLength, maxLength, isEmail, validateMatchingPasswords} from '../../../../utils/validate';
+import { isEmail } from '../../../../utils/validate';
 import {maybe, required, restrictToSchema}from 'rulr';
 import {ModelNotFoundError} from '../../../../utils/errors';
 import {v4} from 'uuid';

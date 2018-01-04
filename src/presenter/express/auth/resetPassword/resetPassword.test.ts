@@ -1,9 +1,9 @@
 import initTests from '../../utils/initTests';
-import {API_ROUTE_V1, DEFAULT_USER_PERMISSIONS} from '../../../../utils/constants';
+import {API_ROUTE_V1} from '../../../../utils/constants';
 import {Response} from 'express';
-import {CREATED_201_HTTP_CODE, OK_200_HTTP_CODE, UNPROCESSABLE_ENTITY_422_HTTP_CODE, CONFLICT_409_HTTP_CODE} from '../../utils/constants';
+import { OK_200_HTTP_CODE} from '../../utils/constants';
 import config from '../../../../config';
-import {TEST_VALID_LOGIN_USER, TEST_INVALID_EMAIL,TEST_VALID_PASSWORD,TEST_VALID_REGISTER_USER, TEST_VALID_EMAIL, 
+import { TEST_VALID_PASSWORD,TEST_VALID_REGISTER_USER, 
   TEST_TOO_SHORT_PASSWORD,TEST_NOT_MATCHING_RESET_PASSWORD_TOKEN , TEST_DIFFERENT_VALID_PASSWORD, TEST_INVALID_RESET_PASSWORD_TOKEN} from '../../../../utils/testValues';
 import * as R  from 'ramda';
 import expectError from '../../utils/expectError';

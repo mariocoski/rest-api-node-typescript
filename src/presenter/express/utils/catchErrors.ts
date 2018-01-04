@@ -1,4 +1,4 @@
-import {RequestHandler, Request, Response} from 'express';
+import { Request, Response} from 'express';
 import Config from '../Config';
 import handleError from './handleError';
 import {v4} from 'uuid';

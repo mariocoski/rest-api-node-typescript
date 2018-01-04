@@ -2,9 +2,8 @@ import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
 import {Request, Response} from 'express';
 import {OK_200_HTTP_CODE} from '../../utils/constants';
-import {minLength, maxLength, validateMatchingPasswords} from '../../../../utils/validate';
-import {maybe, required,checkType, composeRules, first, restrictToSchema}from 'rulr';
-import {ModelNotFoundError} from '../../../../utils/errors';
+import {minLength, validateMatchingPasswords} from '../../../../utils/validate';
+import {maybe, required,checkType, composeRules, first, restrictToSchema} from 'rulr';
 import {v4} from 'uuid';
 
 const validateResetPassword = maybe(composeRules([

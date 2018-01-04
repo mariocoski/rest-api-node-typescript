@@ -2,7 +2,7 @@ import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
 import {Request, Response} from 'express';
 import {CREATED_201_HTTP_CODE} from '../../utils/constants';
-import {minLength, maxLength, isEmail, validateMatchingPasswords} from '../../../../utils/validate';
+import {minLength, isEmail, validateMatchingPasswords} from '../../../../utils/validate';
 import {maybe, required, restrictToSchema, checkType, composeRules, first}from 'rulr';
 
 const validateRegister = maybe(composeRules([

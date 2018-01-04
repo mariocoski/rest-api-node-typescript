@@ -1,9 +1,9 @@
 import initTests from '../../utils/initTests';
-import {API_ROUTE_V1,AUTH_PARAM_NAME, AUTH_BODY_FIELD_NAME, AUTH_SCHEME_NAME} from '../../../../utils/constants';
+import {API_ROUTE_V1,AUTH_PARAM_NAME} from '../../../../utils/constants';
 import {Response} from 'express';
-import {OK_200_HTTP_CODE, UNPROCESSABLE_ENTITY_422_HTTP_CODE, NOT_FOUND_404_HTTP_CODE, FORBIDDEN_403_HTTP_CODE, UNAUTHORISED_401_HTTP_CODE} from '../../utils/constants';
+import {OK_200_HTTP_CODE, NOT_FOUND_404_HTTP_CODE, FORBIDDEN_403_HTTP_CODE, UNAUTHORISED_401_HTTP_CODE} from '../../utils/constants';
 import config from '../../../../config';
-import {TEST_INVALID_JWT_TOKEN, TEST_VALID_ANOTHER_REGIRSTER_USER, TEST_VALID_REGISTER_USER,TEST_DEFAULT_ROLE_NAME } from '../../../../utils/testValues';
+import {TEST_INVALID_JWT_TOKEN, TEST_VALID_ANOTHER_REGIRSTER_USER, TEST_VALID_REGISTER_USER } from '../../../../utils/testValues';
 import expectError from '../../utils/expectError';
 import generateJwtToken from '../../../../utils/jwt/generateToken';
 import createUserWithPermission from '../../utils/createUserWithPermission';

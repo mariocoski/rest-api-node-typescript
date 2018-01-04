@@ -1,7 +1,6 @@
 import Service from '../../../service/Service';
 import {TEST_VALID_REGISTER_USER,TEST_DEFAULT_ROLE_NAME } from '../../../utils/testValues';
 
-
 export default (service: Service, permissionName: string): Promise<any> => {
   return new Promise(async(resolve,reject)=>{
     const user: any = await service.createUser(TEST_VALID_REGISTER_USER);
