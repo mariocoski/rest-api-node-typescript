@@ -35,10 +35,11 @@ describe(__filename, () => {
         self: `${baseUrl}?offset=5&limit=${limit}`,
         baseUrl
       },
+      
       currentPage: 2,
       firstPage: 1,
       lastPage: 5,
-      pages: Math.ceil(total / limit),
+      numberOfPages: Math.ceil(total / limit),
       count: paginatedData.length,
       total,
       perPage: limit,

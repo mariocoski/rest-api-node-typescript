@@ -5,28 +5,30 @@ import hashPassword from '../../../../utils/hashPassword';
 import {UserInstance} from '../../../../models/interfaces/user';
 import ModelNotFoundError from '../../../../utils/errors/ModelNotFoundError';
 import { USER_MODEL_VISIBLE_PROPERTIES } from '../../../../utils/constants';
+import paginate from '../../../../presenter/express/utils/paginate';
+import {API_ROUTE_V1} from '../../../../utils/constants';
 
 export default (config: Config) => {
   return async (options: Options) => { 
     const limit = options.limit || 10; 
-    const offest = options.offset || 0;
-
-    const users: any = await config.models.User.findAndCountAll({
+    const offset = options.offset || 0;
+    const order = options.order || [
+      ['id', 'desc']
+    ];
+    
+    const {count, rows} = await config.models.User.findAndCountAll({
       attributes: USER_MODEL_VISIBLE_PROPERTIES,
-      limit: limit,
-      offset: options.offset,
-      order: [
-        ['id', 'DESC'],
-        ['firstname', 'ASC'],
-      ],
-    })
+      limit,
+      offset,
+      order
+    });
 
-    // return paginate({ 
-
-    // });
-
-    return {'data': users.rows, 'count': users.count};
-
-
+    return paginate({ 
+      total: count,
+      paginatedData: rows,
+      baseUrl: `${API_ROUTE_V1}/users`,
+      offset,
+      limit
+    });
    }; 
 }
