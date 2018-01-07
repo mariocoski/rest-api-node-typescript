@@ -14,7 +14,7 @@ const getPages = (total:number = 0, limit:number = 1) => {
 }
 
 const getCurrentPage = (offset:number, limit:number): number => {
-  return Math.ceil((offset - 1)/ limit) + 1;
+  return Math.ceil(offset/limit) + 1;
 }
 
 export interface GetLinksOptions {
@@ -27,8 +27,8 @@ export interface GetLinksOptions {
 
 const getLinks = ({baseUrl, offset, limit, currentPage, numberOfPages}: GetLinksOptions):any => {
   const lastPageOffset = (numberOfPages - 1) * limit;
-  const nextPageOffset = (currentPage + 1) * limit;
-  const prevPageOffset = (currentPage - 1) * limit;
+  const nextPageOffset = (currentPage) * limit;
+  const prevPageOffset = (currentPage - 2) * limit;
   return {
     first: `${baseUrl}?offset=0&limit=${limit}`,
     last: numberOfPages > 1 ? `${baseUrl}?offset=${lastPageOffset}&limit=${limit}` : null,

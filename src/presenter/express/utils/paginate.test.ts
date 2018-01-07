@@ -14,8 +14,8 @@ describe(__filename, () => {
   it('should fail to get user when unauthenticated', async () => {
     const data: any[] = fakeUsers({count: 25, only: ['id']});
     const baseUrl: string = `${API_ROUTE_V1}/users`;
-    const offset: number = 5;
-    const limit: number = 5; 
+    const offset: number = 0;
+    const limit: number = 10; 
     const paginatedData: any[] = data.slice(offset, offset + limit);
     const total = data.length;
     const paginatedResults = paginate({
@@ -30,15 +30,15 @@ describe(__filename, () => {
       _links: {
         first: `${baseUrl}?offset=0&limit=${limit}`,
         last:  `${baseUrl}?offset=20&limit=${limit}`,
-        prev: `${baseUrl}?offset=0&limit=${limit}`,
+        prev: null,
         next: `${baseUrl}?offset=10&limit=${limit}`,
-        self: `${baseUrl}?offset=5&limit=${limit}`,
+        self: `${baseUrl}?offset=0&limit=${limit}`,
         baseUrl
       },
       
-      currentPage: 2,
+      currentPage: 1,
       firstPage: 1,
-      lastPage: 5,
+      lastPage: 3,
       numberOfPages: Math.ceil(total / limit),
       count: paginatedData.length,
       total,
