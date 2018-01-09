@@ -10,7 +10,6 @@ import {ModelNotFoundError} from '../../../../utils/errors';
 
 const validateGetUsers = maybe(
   restrictToSchema({
-    page: optional(checkType(Number)),
     limit: optional(checkType(Number)),
     offset: optional(checkType(Number)),
     order: optional(checkType(String))
@@ -26,7 +25,9 @@ export default (config: Config) => {
 
     validateGetUsers(req.params,['users']);
 
-    const users = await config.service.getUsers({});
+    const {limit, offset, order} = req.query;
+    
+    const users = await config.service.getUsers({limit, offset, order});
     
     res.status(OK_200_HTTP_CODE).json(users);
   });

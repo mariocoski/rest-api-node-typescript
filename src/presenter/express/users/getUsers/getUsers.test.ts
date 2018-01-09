@@ -8,6 +8,7 @@ import expectError from '../../utils/expectError';
 import generateJwtToken from '../../../../utils/jwt/generateToken';
 import createUserWithPermission from '../../utils/createUserWithPermission';
 import {PERMISSION_GET_USERS} from '../../../../utils/constants';
+import {fakeUsers} from '../../../../utils/fakesFactory';
 
 describe(__filename, () => {
 
@@ -32,14 +33,21 @@ describe(__filename, () => {
     expectError(response, FORBIDDEN_403_HTTP_CODE);
   });
 
-  it('should fail to get all users when has required permissions', async () => {
+  it('should get users when has required permissions and passed offset and limit', async () => {
     const user = await createUserWithPermission(service, PERMISSION_GET_USERS);
-    const anotherUserInTheSystem = await service.createUser(TEST_VALID_ANOTHER_REGIRSTER_USER); 
+
+    const users = fakeUsers({count: 5, only: ['id','email', 'password']}).map(async (user: any) => {
+      return service.createUser(user);
+    }); 
+    await Promise.all(users);
+
     const validToken = await generateJwtToken({data: {id: user.id}});
 
-    const response = await request.get(`${API_ROUTE_V1}/users`)
-                                  .set('Authorization' , validToken);
-    expect(response.body.count).toBe(2);
+    const response = await request.get(`${API_ROUTE_V1}/users?offset=0&limit=5`)
+                                  .set('Authorization', validToken);
+    expect(response.body.count).toBe(5);
+    expect(response.body.total).toBe(6);
+    expect(response.body.currentPage).toBe(1);
   });
 
 });

@@ -10,12 +10,12 @@ import {API_ROUTE_V1} from '../../../../utils/constants';
 
 export default (config: Config) => {
   return async (options: Options) => { 
-    const limit = options.limit || 10; 
-    const offset = options.offset || 0;
-    const order = options.order || [
+
+    const limit: number = options.limit || 10; 
+    const offset: number = options.offset || 0;
+    const order: string[][] = options.order || [
       ['id', 'desc']
     ];
-    
     const {count, rows} = await config.models.User.findAndCountAll({
       attributes: USER_MODEL_VISIBLE_PROPERTIES,
       limit,

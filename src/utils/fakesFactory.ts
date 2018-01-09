@@ -21,7 +21,7 @@ export const fakeUsers = (options: Options): any => {
   const items: any[] = [];
   for(let i = 0; i < settings.count; i++){
     const user = {
-      id: i,
+      id: i + 1,
       email: faker.internet.email(),
       password: faker.internet.password(),
       firstname: faker.name.firstName(),
