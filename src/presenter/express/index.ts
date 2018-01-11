@@ -2,7 +2,7 @@ import { Router, Request, Response} from 'express';
 import Config from './Config';
 import enhancedRouter from './enhancedRouter';
 import {register, login, forgetPassword,resetPassword} from './auth';
-import {getUserById, getUsers} from './users';
+import {getUserById, getUsers, updateUser} from './users';
 
 export default (config: Config): Router => {
   const router: Router = enhancedRouter(config);
@@ -19,6 +19,7 @@ export default (config: Config): Router => {
 
   router.get('/users/:user_id', getUserById(config));
   router.get('/users', getUsers(config));
+  router.patch('/users/:user_id', updateUser(config));
   
   return router;
 }

@@ -7,7 +7,7 @@ import {TEST_INVALID_JWT_TOKEN, TEST_VALID_ANOTHER_REGIRSTER_USER, TEST_VALID_RE
 import expectError from '../../utils/expectError';
 import generateJwtToken from '../../../../utils/jwt/generateToken';
 import createUserWithPermission from '../../utils/createUserWithPermission';
-import {PERMISSION_GET_USERS} from '../../../../utils/constants';
+import {PERMISSION_GET_USERS, DEFAULT_USERS_PAGINATION_LIMIT, DEFAULT_USERS_PAGINATION_OFFSET} from '../../../../utils/constants';
 import {fakeUsers} from '../../../../utils/fakesFactory';
 
 describe(__filename, () => {
@@ -47,6 +47,24 @@ describe(__filename, () => {
                                   .set('Authorization', validToken);
     expect(response.body.count).toBe(5);
     expect(response.body.total).toBe(6);
+    expect(response.body.currentPage).toBe(1);
+  });
+
+  it('should get users with default offset and limti when not passed', async () => {
+    const user = await createUserWithPermission(service, PERMISSION_GET_USERS);
+
+    const users = fakeUsers({count: 10, only: ['id','email', 'password']}).map(async (user: any) => {
+      return service.createUser(user);
+    }); 
+    await Promise.all(users);
+
+    const validToken = await generateJwtToken({data: {id: user.id}});
+
+    const response = await request.get(`${API_ROUTE_V1}/users`)
+                                  .set('Authorization', validToken);
+    expect(response.body.count).toBe(10);
+    expect(response.body.total).toBe(11);
+    expect(response.body.perPage).toBe(DEFAULT_USERS_PAGINATION_LIMIT);
     expect(response.body.currentPage).toBe(1);
   });
 

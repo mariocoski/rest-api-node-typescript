@@ -6,13 +6,12 @@ import {UserInstance} from '../../../../models/interfaces/user';
 import ModelNotFoundError from '../../../../utils/errors/ModelNotFoundError';
 import { USER_MODEL_VISIBLE_PROPERTIES } from '../../../../utils/constants';
 import paginate from '../../../../presenter/express/utils/paginate';
-import {API_ROUTE_V1} from '../../../../utils/constants';
+import {API_ROUTE_V1, DEFAULT_USERS_PAGINATION_LIMIT,DEFAULT_USERS_PAGINATION_OFFSET } from '../../../../utils/constants';
 
 export default (config: Config) => {
   return async (options: Options) => { 
-
-    const limit: number = options.limit || 10; 
-    const offset: number = options.offset || 0;
+    const limit: number = options.limit || DEFAULT_USERS_PAGINATION_LIMIT; 
+    const offset: number = options.offset || DEFAULT_USERS_PAGINATION_OFFSET;
     const order: string[][] = options.order || [
       ['id', 'desc']
     ];
