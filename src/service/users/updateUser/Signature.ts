@@ -1,13 +1,18 @@
 import AsyncHandler from '../../../utils/AsyncHandler';
 import {UserAttributes} from '../../../models/interfaces/user';
-interface Options {
-  readonly id: number;
+
+interface Data {
   readonly firstname?: string;
   readonly lastname?: string;
   readonly bio?: string;
   readonly email?: string; 
   readonly password?: string;
   readonly updatedAt?: string;
+}
+
+interface Options {
+  readonly id: number;
+  readonly data: Data
 }
 
 type Signature = AsyncHandler<Options, any>;

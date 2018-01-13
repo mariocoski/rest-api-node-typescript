@@ -16,6 +16,12 @@ export default (config: Config) => {
 
     hasPermission({user: authenticatedUser, permissionName: PERMISSION_UPDATE_USER});
 
+    const {user_id} = req.params;
+
+    const data = req.body;
+    
+    const fetchedUser = await config.service.updateUser({id: user_id, data});
+
     res.status(OK_200_HTTP_CODE).json({});
   });
 

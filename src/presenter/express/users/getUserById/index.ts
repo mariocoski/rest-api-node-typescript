@@ -14,7 +14,7 @@ export default (config: Config) => {
 
     const {user_id} = req.params;
 
-   const fetchedUser = await config.service.getUserById({id: user_id});
+    const fetchedUser = await config.service.getUserById({id: user_id});
     
     res.status(OK_200_HTTP_CODE).json(fetchedUser);
   });
