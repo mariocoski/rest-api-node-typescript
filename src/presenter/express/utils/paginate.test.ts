@@ -11,7 +11,7 @@ describe(__filename, () => {
 
   const { service, request } = initTests();
 
-  it('should fail to get user when unauthenticated', async () => {
+  it('should paginate when the offset and limit is provided', async () => {
     const data: any[] = fakeUsers({count: 25, only: ['id']});
     const baseUrl: string = `${API_ROUTE_V1}/users`;
     const offset: number = 0;

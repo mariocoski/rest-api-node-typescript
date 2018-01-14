@@ -1,5 +1,3 @@
-
-
 export interface Options {
   baseUrl: string;
   paginatedData: any[];
@@ -7,7 +5,6 @@ export interface Options {
   offset: number;
   limit: number;
 }
-
 
 const getPages = (total:number = 0, limit:number = 1) => {
   return total <= 1 ? 1 : Math.ceil(total/limit);
