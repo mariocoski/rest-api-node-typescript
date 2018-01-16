@@ -17,13 +17,13 @@ export const MAIL_PASSWORD_CHANGED_SUBJECT:string  = 'Password Changed';
 export const USER_MODEL_VISIBLE_PROPERTIES = ['id','firstname', 'lastname', 'bio', 'email','password','created_at', 'updated_at'];
 
 export const PERMISSION_GET_USER: string = 'user.show';
-export const PERMISSION_GET_USERS: string = 'user.index';
+export const PERMISSION_GET_USERS: string = 'users.index';
 export const PERMISSION_UPDATE_USER: string = 'user.update';
 export const PERMISSION_DELETE_USER: string = 'user.delete';
 export const PERMISSION_CREATE_USER: string = 'user.create';
 
 export const PERMISSION_GET_ROLE: string = 'role.show';
-export const PERMISSION_GET_ROLES: string = 'role.index';
+export const PERMISSION_GET_ROLES: string = 'roles.index';
 export const PERMISSION_UPDATE_ROLE: string = 'role.update';
 export const PERMISSION_DELETE_ROLE: string = 'role.delete';
 export const PERMISSION_CREATE_ROLE: string = 'role.create';
@@ -35,19 +35,19 @@ export const DEFAULT_USER_PERMISSIONS: PermissionAttributes[] = [
   //for now just allow to do it via /users/:user_id but checking 
   //if req.user.id === :user_id
   { 
-    name: 'users.index',
+    name: PERMISSION_GET_USERS,
     label: 'Allows to get all users'
   },
   { 
-    name: 'user.show',
+    name: PERMISSION_GET_USER,
     label: 'allows to get user for a given id'
   },
   { 
-    name: 'user.update',
+    name: PERMISSION_UPDATE_USER,
     label: 'allows to update user for a given id'
   },
   { 
-    name: 'user.delete',
+    name: PERMISSION_DELETE_USER,
     label: 'allows to get delete for a given id'
   },
 

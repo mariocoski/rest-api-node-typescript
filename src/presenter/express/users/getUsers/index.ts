@@ -26,8 +26,8 @@ export default (config: Config) => {
 
     validateGetUsers(req.query,['users']);
 
-    const {limit, offset} = req.query;
-    let order = [['id','asc']];
+    const {limit, offset, order} = req.query;
+    
     const users = await config.service.getUsers({limit, offset, order});
     
     res.status(OK_200_HTTP_CODE).json(users);
