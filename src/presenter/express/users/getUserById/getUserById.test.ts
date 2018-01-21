@@ -7,7 +7,7 @@ import {TEST_INVALID_JWT_TOKEN, TEST_VALID_ANOTHER_REGIRSTER_USER, TEST_VALID_RE
 import expectError from '../../utils/expectError';
 import generateJwtToken from '../../../../utils/jwt/generateToken';
 import createUserWithPermission from '../../utils/createUserWithPermission';
-import {PERMISSION_GET_USER} from '../../../../utils/constants';
+import {CAN_GET_USER} from '../../../../utils/constants';
 
 describe(__filename, () => {
 
@@ -38,7 +38,7 @@ describe(__filename, () => {
   });
 
   it('should fail get user when user does not exist', async () => {
-    const user = await createUserWithPermission(service, PERMISSION_GET_USER);
+    const user = await createUserWithPermission(service, CAN_GET_USER);
     const validToken = await generateJwtToken({data: {id: user.id}});
     const response = await request.get(`${API_ROUTE_V1}/users/999`)
                                   .set('Authorization', validToken);
@@ -47,7 +47,7 @@ describe(__filename, () => {
 
   it('should get user data when has permission to see it', async () => {
     const userToBeFetched = await service.createUser(TEST_VALID_ANOTHER_REGIRSTER_USER);
-    const user = await createUserWithPermission(service, PERMISSION_GET_USER);
+    const user = await createUserWithPermission(service, CAN_GET_USER);
     const validToken = await generateJwtToken({data: {id: user.id}});
     const response = await request.get(`${API_ROUTE_V1}/users/${userToBeFetched.id}`)
                                   .set('Authorization', validToken);

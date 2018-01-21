@@ -7,7 +7,7 @@ import {TEST_INVALID_JWT_TOKEN, TEST_VALID_ANOTHER_REGIRSTER_USER, TEST_VALID_RE
 import expectError from '../../utils/expectError';
 import generateJwtToken from '../../../../utils/jwt/generateToken';
 import createUserWithPermission from '../../utils/createUserWithPermission';
-import {PERMISSION_GET_USERS, DEFAULT_USERS_PAGINATION_LIMIT, DEFAULT_USERS_PAGINATION_OFFSET} from '../../../../utils/constants';
+import {CAN_GET_USERS, DEFAULT_USERS_PAGINATION_LIMIT, DEFAULT_USERS_PAGINATION_OFFSET} from '../../../../utils/constants';
 import {fakeUsers} from '../../../../utils/fakesFactory';
 
 describe(__filename, () => {
@@ -34,7 +34,7 @@ describe(__filename, () => {
   });
 
   it('should get users when has required permissions and passed offset and limit', async () => {
-    const user = await createUserWithPermission(service, PERMISSION_GET_USERS);
+    const user = await createUserWithPermission(service, CAN_GET_USERS);
 
     const users = fakeUsers({count: 5, only: ['id','email', 'password']}).map(async (user: any) => {
       return service.createUser(user);
@@ -51,7 +51,7 @@ describe(__filename, () => {
   });
 
   it('should get users with default offset and limti when not passed', async () => {
-    const user = await createUserWithPermission(service, PERMISSION_GET_USERS);
+    const user = await createUserWithPermission(service, CAN_GET_USERS);
 
     const users = fakeUsers({count: 10, only: ['id','email', 'password']}).map(async (user: any) => {
       return service.createUser(user);

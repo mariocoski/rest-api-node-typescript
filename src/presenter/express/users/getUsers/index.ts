@@ -4,7 +4,7 @@ import {Request, Response} from 'express';
 import {OK_200_HTTP_CODE} from '../../utils/constants';
 import requireAuth from '../../../../utils/jwt/requireAuth';
 import hasPermission from '../../../../utils/jwt/hasPermission';
-import {PERMISSION_GET_USERS} from '../../../../utils/constants';
+import {CAN_GET_USERS} from '../../../../utils/constants';
 import {maybe, optional,checkType, composeRules, first, restrictToSchema}from 'rulr';
 import {ModelNotFoundError} from '../../../../utils/errors';
 import {isValidSortObject} from '../../../../utils/validate';
@@ -22,7 +22,7 @@ export default (config: Config) => {
       
     const authenticatedUser = await requireAuth({req, service: config.service});
 
-    hasPermission({user: authenticatedUser, permissionName: PERMISSION_GET_USERS});
+    hasPermission({user: authenticatedUser, permissionName: CAN_GET_USERS});
 
     validateGetUsers(req.query,['users']);
 
