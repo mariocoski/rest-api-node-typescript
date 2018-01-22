@@ -60,10 +60,13 @@ export const maxLength = (length: number, rule?: Rule): Rule => (data, path) => 
   return data.length <= length ? (rule? rule(data,path) : []) : [createMaxLengthWarning(data, path, length)];
 }
 
+export const isSortValid = (data: string = ""):boolean => {
+  const pattern = /[a-zA-Z_]+:(asc|desc){1},*/gi ;
+  return pattern.test(data);
+}
+
 export const isValidSortObject = (rule?: Rule): Rule => (data, path) => {
-  console.log(data);
-  
-  return data ? (rule? rule(data,path) : []) : [createInvalidSortObjectWarning(data, path)];
+  return isSortValid(data) ? (rule? rule(data,path) : []) : [createInvalidSortObjectWarning(data, path)];
 }
 
 export const isEmail = checkRegex(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, createInvalidEmailWarning)
