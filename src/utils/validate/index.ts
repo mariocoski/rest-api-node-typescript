@@ -61,7 +61,7 @@ export const maxLength = (length: number, rule?: Rule): Rule => (data, path) => 
 }
 
 export const isSortValid = (data: string = ""):boolean => {
-  const pattern =  /^([a-z_]+:(?:asc|desc))(?:,([a-z_]+:(?:asc|desc)))*,?$/ig
+  const pattern =  /^([a-z_]+:(?:asc|desc))(?:,([a-z_]+:(?:asc|desc)))*$/ig
   return pattern.test(data);
 }
 
