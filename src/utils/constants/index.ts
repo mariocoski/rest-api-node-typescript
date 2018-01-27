@@ -3,7 +3,7 @@ import {PermissionAttributes} from '../../models/interfaces/permission';
 
 export const DEFAULT_USERS_PAGINATION_LIMIT = 10;
 export const DEFAULT_USERS_PAGINATION_OFFSET = 0;
-
+export const DEFAULT_USERS_ORDER = [['created_at', 'desc']];
 export const API_ROUTE_V1 = '/api/v1';
 export const ONE_HOUR = 3600000;
 export const TWO_HOURS: number = 7200000;

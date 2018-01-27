@@ -9,11 +9,12 @@ import {maybe, optional,checkType, composeRules, first, restrictToSchema}from 'r
 import {ModelNotFoundError} from '../../../../utils/errors';
 import {isValidSortObject} from '../../../../utils/validate';
 
+
 const validateGetUsers = maybe(
   restrictToSchema({
     limit: optional(checkType(String)),
     offset: optional(checkType(String)),
-    order: optional(isValidSortObject())
+    sort: optional(isValidSortObject())
   }),
 );
 
@@ -26,9 +27,9 @@ export default (config: Config) => {
 
     validateGetUsers(req.query,['users']);
 
-    const {limit, offset, order} = req.query;
-    
-    const users = await config.service.getUsers({limit, offset, order});
+    const {limit, offset, sort} = req.query;
+
+    const users = await config.service.getUsers({limit, offset, order: sort});
     
     res.status(OK_200_HTTP_CODE).json(users);
   });

@@ -48,6 +48,4 @@ describe(__filename, () => {
 
     expect(paginatedResults).toEqual(expectedPaginatedResults);
   });
-
-  
 });

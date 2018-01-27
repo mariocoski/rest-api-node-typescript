@@ -50,7 +50,7 @@ describe(__filename, () => {
     expect(response.body.currentPage).toBe(1);
   });
 
-  it('should get users with default offset and limti when not passed', async () => {
+  it('should get users with default offset and limit when not passed', async () => {
     const user = await createUserWithPermission(service, CAN_GET_USERS);
 
     const users = fakeUsers({count: 10, only: ['id','email', 'password']}).map(async (user: any) => {
@@ -62,10 +62,27 @@ describe(__filename, () => {
 
     const response = await request.get(`${API_ROUTE_V1}/users`)
                                   .set('Authorization', validToken);
+    expect(response.status).toBe(OK_200_HTTP_CODE);
     expect(response.body.count).toBe(10);
     expect(response.body.total).toBe(11);
     expect(response.body.perPage).toBe(DEFAULT_USERS_PAGINATION_LIMIT);
     expect(response.body.currentPage).toBe(1);
+  });
+
+  it('should get users sorted according to the keys provided', async () => {
+    const user = await createUserWithPermission(service, CAN_GET_USERS);
+
+    const users = fakeUsers({count: 5, only: ['id','email', 'password']}).map(async (user: any) => {
+      return service.createUser(user);
+    }); 
+    await Promise.all(users);
+
+    const validToken = await generateJwtToken({data: {id: user.id}});
+
+    const response = await request.get(`${API_ROUTE_V1}/users?sort=id:desc`)
+                                  .set('Authorization', validToken);
+    expect(response.status).toBe(OK_200_HTTP_CODE);
+    expect(response.body.data[0].id).toBe(6);
   });
 
 });
