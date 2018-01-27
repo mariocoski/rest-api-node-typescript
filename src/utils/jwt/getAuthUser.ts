@@ -16,8 +16,6 @@ interface Options {
 
 const extractTokenFromRequest = createExtractTokenFromRequest();
 
-export type RequireAuthSignature = AsyncHandler<Options,any>;
-
 export default async(options: Options): Promise<any> => {
   return new Promise(async(resolve, reject)=>{
     try {

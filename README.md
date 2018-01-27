@@ -38,3 +38,6 @@ npm run test or yarn test
 //watch mode
 npm run test:watch or yarn test:watch
 ```
+
+## Credits
+Big thanks to Ryan Smith and his introduction to 3 layer architecture [https://medium.com/@ryansmith/3la-introduction-b45219e323d8]

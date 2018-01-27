@@ -25,7 +25,7 @@
     "build": "rimraf build && tsc",
     "build:watch": "rm -rf ./build && tsc --watch",
     "start": "NODE_ENV=development && node ./build/server.js",
-    "test": "jest --runInBand",
+    "test": "jest --coverage --runInBand && codecov",
     "test:watch": "jest --runInBand --watch"
   },
   "devDependencies": {

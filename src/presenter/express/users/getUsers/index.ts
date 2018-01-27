@@ -2,13 +2,12 @@ import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
 import {Request, Response} from 'express';
 import {OK_200_HTTP_CODE} from '../../utils/constants';
-import requireAuth from '../../../../utils/jwt/requireAuth';
+import getAuthUser from '../../../../utils/jwt/getAuthUser';
 import hasPermission from '../../../../utils/jwt/hasPermission';
 import {CAN_GET_USERS} from '../../../../utils/constants';
 import {maybe, optional,checkType, composeRules, first, restrictToSchema}from 'rulr';
 import {ModelNotFoundError} from '../../../../utils/errors';
 import {isValidSortObject} from '../../../../utils/validate';
-
 
 const validateGetUsers = maybe(
   restrictToSchema({
@@ -21,9 +20,9 @@ const validateGetUsers = maybe(
 export default (config: Config) => {
   return catchErrors(config, async (req: Request, res: Response): Promise<void> => {
       
-    const authenticatedUser = await requireAuth({req, service: config.service});
+    const user = await getAuthUser({req, service: config.service});
 
-    hasPermission({user: authenticatedUser, permissionName: CAN_GET_USERS});
+    hasPermission({ user, permissionName: CAN_GET_USERS});
 
     validateGetUsers(req.query,['users']);
 
