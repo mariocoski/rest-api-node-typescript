@@ -2,6 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/mariocoski/rest-api-node-typescript.svg?style=svg)](https://circleci.com/gh/mariocoski/rest-api-node-typescript)
 [![codecov](https://codecov.io/gh/mariocoski/rest-api-node-typescript/branch/master/graph/badge.svg)](https://codecov.io/gh/mariocoski/rest-api-node-typescript)
+
 RESTful API with node, express, typescript and jest!
 
 ## API with following requirements in mind:
