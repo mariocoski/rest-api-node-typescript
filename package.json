@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/mariocoski/rest-api-node-typescript#readme",
   "engines": {
-    "node": "&gt;=4.8.2"
+    "node": "&gt;=6.9.4"
   },
   "scripts": {
     "build": "rimraf build && tsc",
