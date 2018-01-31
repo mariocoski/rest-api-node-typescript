@@ -23,7 +23,7 @@
   },
   "scripts": {
     "build": "rimraf build && tsc",
-    "build:watch": "rm -rf ./build && tsc --watch",
+    "build:watch": "rimraf build && tsc --watch",
     "start": "NODE_ENV=development && node ./build/server.js",
     "test": "jest --coverage --runInBand -u && codecov",
     "test:watch": "jest --runInBand --watch"
@@ -114,10 +114,8 @@
     "bail": true,
     "moduleFileExtensions": [
       "js",
-      "jsx",
       "json",
-      "ts",
-      "tsx"
+      "ts"
     ],
     "mapCoverage": true,
     "testMatch": [
