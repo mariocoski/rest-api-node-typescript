@@ -23,8 +23,6 @@ const presenterFacade = presenter({
   translator
 });
 
-
-
 app.use(API_ROUTE_V1, presenterFacade);
 
 /* istanbul ignore next */
