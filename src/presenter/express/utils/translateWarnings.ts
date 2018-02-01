@@ -2,7 +2,7 @@
 import { Warning, TypeWarning, RequiredWarning, RestrictedKeysWarning } from 'rulr';
 import {MinLengthWarning,MaxLengthWarning, NotMatchingPasswordWarning, InvalidEmailWarning} from '../../../utils/validate';
 import Translator from '../../../translator/Translator';
-
+ /* istanbul ignore next */
 export default (translator: Translator, warning: Warning) => {
   switch (warning.constructor) {
     case MinLengthWarning:

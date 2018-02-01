@@ -29,9 +29,9 @@ export interface Options {
   readonly res: Response;
   readonly err: any;
 }
-
+ /* istanbul ignore next */
 export default ({ config, errorId, res, err }: Options): Response => {
-   /* istanbul ignore next */
+  
   const { logger, translator } = config;
   const logError = (msg: string, meta?: any) => {
     logger.error(`${errorId}: error handled - ${msg}`, meta);
@@ -117,6 +117,7 @@ export default ({ config, errorId, res, err }: Options): Response => {
     logError(message);
     return res.status(FORBIDDEN_403_HTTP_CODE).json({message});
   }
+
   {
   const message = translator.serverError();
     logError(message);

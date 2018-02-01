@@ -10,7 +10,8 @@ export default (config: Config) => {
   return catchErrors(config, async (req: Request, res: Response): Promise<void> => {
     
     const user = await getAuthUser({req, service: config.service});
-    hasPermission({user: user, permissionName: CAN_GET_USER});
+
+    hasPermission({ user, permissionName: CAN_GET_USER});
 
     const {user_id} = req.params;
 

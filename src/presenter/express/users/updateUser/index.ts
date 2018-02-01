@@ -5,24 +5,38 @@ import {OK_200_HTTP_CODE} from '../../utils/constants';
 import getAuthUser from '../../../../utils/jwt/getAuthUser';
 import hasPermission from '../../../../utils/jwt/hasPermission';
 import {CAN_UPDATE_USER} from '../../../../utils/constants';
-import {maybe, optional,checkType,composeRules, first, restrictToSchema}from 'rulr';
-import {ModelNotFoundError} from '../../../../utils/errors';
+import {minLength, isEmail, validateMatchingPasswords} from '../../../../utils/validate';
+import {maybe, optional, checkType,composeRules, first, restrictToSchema}from 'rulr';
 
+
+const validateUpdateUser = maybe(composeRules([
+  restrictToSchema({
+    firstname: optional(checkType(String)),
+    lastname: optional(checkType(String)),
+    bio: optional(checkType(String)),
+    email: optional(isEmail),
+    password: optional(minLength(6)),
+    password_confirmation: optional(checkType(String)),
+  }),
+  first(checkType(Object), optional(validateMatchingPasswords))
+]));
 
 export default (config: Config) => {
   return catchErrors(config, async (req: Request, res: Response): Promise<void> => {
-    
+  
     const user = await getAuthUser({req, service: config.service});
 
     hasPermission({user, permissionName: CAN_UPDATE_USER});
-
+ 
+    validateUpdateUser(req.body, ['user']);
+    
     const {user_id} = req.params;
 
     const data = req.body;
     
-    const fetchedUser = await config.service.updateUser({id: user_id, data});
+    const updatedUser = await config.service.updateUser({id: user_id, data});
 
-    res.status(OK_200_HTTP_CODE).json({});
+    res.status(OK_200_HTTP_CODE).json(updatedUser);
   });
 
 };
