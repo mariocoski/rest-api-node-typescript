@@ -7,7 +7,7 @@ import hasPermission from '../../../../utils/jwt/hasPermission';
 import {CAN_UPDATE_USER} from '../../../../utils/constants';
 import {minLength, isEmail, validateMatchingPasswords} from '../../../../utils/validate';
 import {maybe, optional, checkType,composeRules, first, restrictToSchema}from 'rulr';
-
+import * as R from 'ramda';
 
 const validateUpdateUser = maybe(composeRules([
   restrictToSchema({
@@ -32,7 +32,13 @@ export default (config: Config) => {
     
     const {user_id} = req.params;
 
-    const data = req.body;
+    const fillable = [
+      'firstname', 'lastname', 'bio', 'email', 'password'
+    ];
+    
+    const data = R.pickBy((val:any, key:any)=>{
+      return R.indexOf(key, fillable) !== -1 && val;
+    }, req.body);
     
     const updatedUser = await config.service.updateUser({id: user_id, data});
 

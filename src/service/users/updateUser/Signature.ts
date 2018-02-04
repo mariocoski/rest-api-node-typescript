@@ -7,7 +7,6 @@ interface Data {
   readonly bio?: string;
   readonly email?: string; 
   readonly password?: string;
-  readonly updatedAt?: string;
 }
 
 interface Options {

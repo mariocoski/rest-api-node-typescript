@@ -20,10 +20,12 @@ export const fakeUsers = (options: Options): any => {
   };
   const items: any[] = [];
   for(let i = 0; i < settings.count; i++){
+    const password = faker.internet.password();
     const user = {
       id: i + 1,
       email: faker.internet.email(),
-      password: faker.internet.password(),
+      password,
+      password_confirmation: password,
       firstname: faker.name.firstName(),
       lastname: faker.name.lastName(),
       bio: faker.lorem.sentences(10),

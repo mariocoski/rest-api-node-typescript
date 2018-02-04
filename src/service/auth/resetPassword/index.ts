@@ -27,13 +27,10 @@ export default (config: Config): Signature =>
     if(user === null){
       throw new InvalidResetPasswordTokenError();
     }
-
-    const newPassword = await hashPassword(password);
     
     await config.repo.updateUser({
       id: user.id,
-      password: newPassword,
-      updatedAt: (new Date).toString()
+      data: { password }
     });
 
     await config.repo.deleteResetPasswordTokenById({id: resetPasswordToken.id});

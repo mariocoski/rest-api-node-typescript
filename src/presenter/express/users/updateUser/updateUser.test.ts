@@ -3,7 +3,7 @@ import {API_ROUTE_V1} from '../../../../utils/constants';
 import {Response} from 'express';
 import {OK_200_HTTP_CODE, FORBIDDEN_403_HTTP_CODE, UNAUTHORISED_401_HTTP_CODE, UNPROCESSABLE_ENTITY_422_HTTP_CODE} from '../../utils/constants';
 import config from '../../../../config';
-import {TEST_INVALID_JWT_TOKEN, TEST_INVALID_EMAIL, TEST_DIFFERENT_VALID_PASSWORD,TEST_VALID_PASSWORD, TEST_TOO_SHORT_PASSWORD,TEST_VALID_ANOTHER_REGIRSTER_USER, TEST_VALID_REGISTER_USER } from '../../../../utils/testValues';
+import {TEST_INVALID_JWT_TOKEN, TEST_INVALID_EMAIL,TEST_DIFFERENT_VALID_EMAIL, TEST_DIFFERENT_VALID_PASSWORD,TEST_VALID_PASSWORD, TEST_TOO_SHORT_PASSWORD,TEST_VALID_ANOTHER_REGIRSTER_USER, TEST_VALID_REGISTER_USER } from '../../../../utils/testValues';
 import expectError from '../../utils/expectError';
 import generateJwtToken from '../../../../utils/jwt/generateToken';
 import createUserWithPermission from '../../utils/createUserWithPermission';
@@ -102,19 +102,25 @@ describe(__filename, () => {
 
   it('should successfuly update user when password and password_confirmation match', async () => {
     const user = await createUserWithPermission(service, CAN_UPDATE_USER);
-    
+    const newUser = fakeUsers({count: 1, only: [
+      'email', 'firstname', 'password', 'lastname', 'bio', 'password_confirmation'
+    ]});
+    console.log(newUser);
     const validToken = await generateJwtToken({data: {id: user.id}});
     const response = await request.patch(`${API_ROUTE_V1}/users/${user.id}`)
                                   .set('Authorization' , validToken)
-                                  .send({
-                                    password: TEST_VALID_PASSWORD,
-                                    password_confirmation: TEST_VALID_PASSWORD
-                                  });
+                                  .send(newUser);
+
     const updatedUser: any = await service.getUserById({id: user.id});  
-    const match = await verifyPassword(TEST_VALID_PASSWORD, updatedUser.password); 
+    const match = await verifyPassword(newUser.password, updatedUser.password); 
+    console.log(response.body);
     expect(match).toBe(true);
     const now = moment(new Date());
     const correctUpdateAt = moment.duration(now.diff(response.body.updated_at)).asMilliseconds() < 10000;
+    expect(response.body.email).toEqual(newUser.email);   
+    expect(response.body.bio).toEqual(newUser.bio);   
+    expect(response.body.firstname).toEqual(newUser.firstname);   
+    expect(response.body.lastname).toEqual(newUser.lastname);         
     expect(correctUpdateAt).toBe(true);
     expect(response.status).toBe(OK_200_HTTP_CODE);
   });
