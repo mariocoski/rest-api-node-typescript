@@ -1,4 +1,4 @@
-import {CreateUserSignature, GetUserByIdSignature,GetUserByEmailSignature,  GetUsersSignature, UpdateUserSignature, DeleteUserSignature} from './modelRepo/users';
+import {CreateUserSignature, GetUserByIdSignature,GetUserByEmailSignature,  GetUsersSignature, UpdateUserSignature, DeleteUserByIdSignature} from './modelRepo/users';
 import {CreatePostSignature, GetPostSignature, GetPostsSignature, UpdatePostSignature, DeletePostSignature} from './modelRepo/posts';
 import {CreateCommentSignature, GetCommentSignature, GetCommentsSignature, UpdateCommentSignature, DeleteCommentSignature} from './modelRepo/comments';
 import {CreateRoleSignature, GetRoleSignature, GetRolesSignature, UpdateRoleSignature, DeleteRoleSignature, AssignUserRoleSignature, RemoveUserRoleSignature} from './modelRepo/roles';
@@ -18,7 +18,7 @@ export interface ModelRepoInterface {
 
     readonly getUsers: GetUsersSignature;
     readonly updateUser: UpdateUserSignature;
-    // readonly deleteUser: DeleteUserSignature;
+    readonly deleteUserById: DeleteUserByIdSignature;
 
     // readonly createPost: CreatePostSignature;
     // readonly getPost: GetPostSignature;

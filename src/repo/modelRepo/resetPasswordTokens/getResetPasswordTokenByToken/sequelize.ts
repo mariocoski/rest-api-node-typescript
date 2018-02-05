@@ -6,6 +6,6 @@ import ModelNotFoundError from '../../../../utils/errors/ModelNotFoundError';
 
 export default (config: Config) => {
   return async ({token}: Options) => {
-    return config.models.ResetPasswordToken.findOne({where: {token}});
+    return await config.models.ResetPasswordToken.findOne({where: {token}});
   }; 
 }

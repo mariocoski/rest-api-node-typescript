@@ -1,9 +1,9 @@
 import AsyncHandler from '../../../../utils/AsyncHandler';
 
-interface Options {
+export interface Options {
     readonly id: number;
 }
 
-type Signature = AsyncHandler<Options, void>;
+type Signature = AsyncHandler<Options, any>;
 
 export default Signature;

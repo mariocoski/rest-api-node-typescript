@@ -13,8 +13,8 @@ import getUsersSignature from './getUsers/Signature';
 import updateUser from './updateUser';
 import updateUserSignature from './updateUser/Signature';
 
-import deleteUser from './deleteUser';
-import deleteUserSignature from './deleteUser/Signature';
+import deleteUserById from './deleteUserById';
+import deleteUserByIdSignature from './deleteUserById/Signature';
 
 export {
   createUser,
@@ -27,7 +27,7 @@ export {
   getUsersSignature,
   updateUser,
   updateUserSignature,
-  deleteUser,
-  deleteUserSignature,
+  deleteUserById,
+  deleteUserByIdSignature,
 }
 
