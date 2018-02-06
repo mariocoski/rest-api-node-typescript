@@ -19,5 +19,4 @@ export default (config: Config) => {
 
     res.status(OK_200_HTTP_CODE).json({success: true});
   });
-
 };
