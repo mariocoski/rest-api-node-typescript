@@ -25,7 +25,7 @@ export default (config: Config): Service => {
     updateUser: updateUser(config),
     deleteUserById: deleteUserById(config),
 
-    // createPost: createPost(config),
+    createPost: createPost(config),
     // getPost: getPost(config),
     // getPosts: getPosts(config),
     // updatePost: updatePost(config),

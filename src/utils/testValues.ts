@@ -10,7 +10,8 @@ export const TEST_INVALID_RESET_PASSWORD_TOKEN: string = 'invalidtoken';
 export const TEST_NOT_MATCHING_RESET_PASSWORD_TOKEN: string = 'notmatchingtoken';
 export const TEST_INVALID_JWT_TOKEN: string = 'invalidtoken';
 export const TEST_DEFAULT_ROLE_NAME: string = 'DEFAULT_ROLE_NAME';
-
+export const TEST_VALID_TITLE: string = 'title';
+export const TEST_VALID_DESCRIPTION: string = 'description';
 
 export const TEST_VALID_REGISTER_USER: any = {
   email: TEST_VALID_EMAIL,

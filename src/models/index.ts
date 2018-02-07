@@ -17,7 +17,7 @@ export interface SequelizeModels {
   UserRole:  SequelizeStatic.Model<UserRoleInstance, UserRoleAttributes>;
   Permission: SequelizeStatic.Model<PermissionInstance, PermissionAttributes>;
   RolePermission: SequelizeStatic.Model<RolePermissionInstance, RolePermissionAttributes>;
-  Post: SequelizeStatic.Model<PostInstance, PostInstance>;
+  Post: SequelizeStatic.Model<PostInstance, PostAttributes>;
   Comment: SequelizeStatic.Model<UserInstance, CommentAttributes>;
   ResetPasswordToken: SequelizeStatic.Model<ResetPasswordTokenInstance, ResetPasswordTokenAttributes>;
 }

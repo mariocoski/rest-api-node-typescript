@@ -17,6 +17,9 @@ export const AUTH_SCHEME_NAME:string  = 'Bearer';
 export const MAIL_RECOVERY_PASSWORD_SUBJECT:string  = 'Reset Password Link';
 export const MAIL_PASSWORD_CHANGED_SUBJECT:string  = 'Password Changed';
 
+export const VARCHAR_FIELD_LENGTH: number = 255;
+export const TEXT_FIELD_LENGTH: number = 21844;
+
 export const USER_MODEL_VISIBLE_PROPERTIES = ['id','firstname', 'lastname', 'bio', 'email','password','created_at', 'updated_at'];
 
 export const CAN_GET_USER: string = 'user.show';

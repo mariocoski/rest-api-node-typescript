@@ -24,7 +24,7 @@ export default interface Service {
   readonly updateUser: updateUserSignature;
   readonly deleteUserById: deleteUserByIdSignature;
 
-  // readonly createPost: createPostSignature;
+  readonly createPost: createPostSignature;
   // readonly getPost: getPostSignature;
   // readonly getPosts: getPostsSignature;
   // readonly updatePost: updatePostSignature;

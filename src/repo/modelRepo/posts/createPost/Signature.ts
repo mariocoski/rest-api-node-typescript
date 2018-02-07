@@ -1,11 +1,9 @@
 import AsyncHandler from '../../../../utils/AsyncHandler';
 
-interface Options {
-    readonly firstname?: string;
-    readonly lastname?: string;
-    readonly bio?: string;
-    readonly email: string; 
-    readonly password: string;
+export interface Options {
+    readonly user_id: string;
+    readonly title: string;
+    readonly body: string;
 }
 
 type Signature = AsyncHandler<Options, void>;
