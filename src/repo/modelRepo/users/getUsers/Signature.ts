@@ -3,8 +3,8 @@ import {UserAttributes} from '../../../../models/interfaces/user';
 
 
 export interface Options { 
-  readonly limit?: string;
-  readonly offset?: string;
+  readonly limit?: number;
+  readonly offset?: number;
   readonly order?: string;
 }
 

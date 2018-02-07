@@ -18,6 +18,7 @@ import deleteResetPasswordTokenById from '../../modelRepo/resetPasswordTokens/de
 import createRole from '../../modelRepo/roles/createRole/sequelize';
 import createPermission from '../../modelRepo/permissions/createPermission/sequelize';
 import createPost from  '../../modelRepo/posts/createPost/sequelize';
+import getPosts from '../../modelRepo/posts/getPosts/sequelize';
 
 export default (config: Config): ModelRepoInterface => {
   return {
@@ -34,6 +35,7 @@ export default (config: Config): ModelRepoInterface => {
     getUserByEmail: getUserByEmail(config),
 
     createPost: createPost(config),
+    getPosts: getPosts(config),
 
     createRole: createRole(config),
     createPermission: createPermission(config),

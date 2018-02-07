@@ -12,8 +12,8 @@ import {API_ROUTE_V1, DEFAULT_USERS_PAGINATION_LIMIT,DEFAULT_USERS_PAGINATION_OF
 export default (config: Config) => {
   return async (options: Options) => { 
 
-    const limit: number = options.limit ? parseInt(options.limit) : DEFAULT_USERS_PAGINATION_LIMIT; 
-    const offset: number = options.offset ? parseInt(options.offset) : DEFAULT_USERS_PAGINATION_OFFSET;
+    const limit: number = options.limit ? options.limit : DEFAULT_USERS_PAGINATION_LIMIT; 
+    const offset: number = options.offset ?options.offset : DEFAULT_USERS_PAGINATION_OFFSET;
     const order: string[][] = options.order ? createOrderObject(options.order) : DEFAULT_USERS_ORDER;  
 
     const {count, rows} = await config.models.User.findAndCountAll({

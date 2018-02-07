@@ -8,7 +8,7 @@ export interface OrderItem {
 export interface Options {
   readonly limit?: number;
   readonly offset?: number;
-  readonly order?: string[][];
+  readonly order?: string;
 }
 
 type Signature = AsyncHandler<Options, any[]>;

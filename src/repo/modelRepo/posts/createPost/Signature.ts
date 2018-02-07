@@ -6,6 +6,6 @@ export interface Options {
     readonly body: string;
 }
 
-type Signature = AsyncHandler<Options, void>;
+type Signature = AsyncHandler<Options, any>;
 
 export default Signature;

@@ -27,7 +27,7 @@ export default (config: Config): Service => {
 
     createPost: createPost(config),
     // getPost: getPost(config),
-    // getPosts: getPosts(config),
+    getPosts: getPosts(config),
     // updatePost: updatePost(config),
     // deletePost: deletePost(config),
 

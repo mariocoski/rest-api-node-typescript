@@ -22,7 +22,7 @@ export interface ModelRepoInterface {
 
     readonly createPost: CreatePostSignature;
     // readonly getPost: GetPostSignature;
-    // readonly getPosts: GetPostsSignature;
+    readonly getPosts: GetPostsSignature;
     // readonly updatePost: UpdatePostSignature;
     // readonly deletePost: DeletePostSignature;
 
