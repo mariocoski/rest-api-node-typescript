@@ -17,28 +17,25 @@ interface Options {
 const extractTokenFromRequest = createExtractTokenFromRequest();
 
 export default async(options: Options): Promise<any> => {
-  return new Promise(async(resolve, reject)=>{
-    try {
-      const tokenExtractor = options.extractTokenFromRequest || extractTokenFromRequest;
-      const token: any = tokenExtractor({req: options.req});
-      const secret = options.secretOrKey || config.jwt.secret;
-      const {data}: any = jwt.verify(token, secret);
-     
-      const user: any = await options.service.getUserById({id: data.id});
-      const permissions: any = await options.service.getUserPermissions({userId: user.id});
-      user.permissions = permissions;
-      resolve(user);
-    } catch (err) {
-      if (err instanceof jwt.JsonWebTokenError) {
-        reject(new InvalidJwtTokenError());
-      } else if (err instanceof jwt.NotBeforeError) {
-        reject(new InvalidJwtTokenError());
-      } else if (err instanceof jwt.TokenExpiredError) {
-        reject(new ExpiredJwtTokenError());
-      } else {
-        reject(err);
-      }
-    }
-  });
+  try {
+    const tokenExtractor = options.extractTokenFromRequest || extractTokenFromRequest;
+    const token: any = tokenExtractor({req: options.req});
+    const secret = options.secretOrKey || config.jwt.secret;
+    const {data}: any = jwt.verify(token, secret);
+    
+    const user: any = await options.service.getUserById({id: data.id});
+    const permissions: any = await options.service.getUserPermissions({userId: user.id});
+    user.permissions = permissions;
+    return user;
+  } catch (err) {
+    if (err instanceof jwt.JsonWebTokenError) {
+      throw new InvalidJwtTokenError();
+    } else if (err instanceof jwt.NotBeforeError) {
+      new InvalidJwtTokenError();
+    } else if (err instanceof jwt.TokenExpiredError) {
+      new ExpiredJwtTokenError();
+    } 
+    throw err;
+  }
 }
 
