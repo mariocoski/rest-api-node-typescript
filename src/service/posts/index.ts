@@ -1,8 +1,8 @@
 import createPost from './createPost';
 import createPostSignature from './createPost/Signature';
 
-import getPost from './getPost';
-import getPostSignature from './getPost/Signature';
+import getPostById from './getPostById';
+import getPostByIdSignature from './getPostById/Signature';
 
 import getPosts from './getPosts';
 import getPostsSignature from './getPosts/Signature';
@@ -16,8 +16,8 @@ import deletePostSignature from './deletePost/Signature';
 export {
   createPost,
   createPostSignature,
-  getPost,
-  getPostSignature,
+  getPostById,
+  getPostByIdSignature,
   getPosts,
   getPostsSignature,
   updatePost,

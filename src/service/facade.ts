@@ -2,7 +2,7 @@ import Config from './Config';
 import Service from './Service';
 import {login, register, forgetPassword, resetPassword} from './auth';
 import {createUser, getUserById, getUserByEmail, getUsers, updateUser, deleteUserById} from './users';
-import {createPost, getPost, getPosts, updatePost, deletePost} from './posts';
+import {createPost, getPostById, getPosts, updatePost, deletePost} from './posts';
 import {createComment, getComment, getComments, updateComment, deleteComment} from './comments';
 import {createRole, getRole, getRoles, updateRole, deleteRole, assignUserRole, removeUserRole} from './roles';
 import {getUserPermissions, createUserPermissions, createPermission, getPermission, getPermissions, updatePermission, deletePermission, assignRolePermission, removeRolePermission} from './permissions';
@@ -26,7 +26,7 @@ export default (config: Config): Service => {
     deleteUserById: deleteUserById(config),
 
     createPost: createPost(config),
-    // getPost: getPost(config),
+    getPostById: getPostById(config),
     getPosts: getPosts(config),
     // updatePost: updatePost(config),
     // deletePost: deletePost(config),

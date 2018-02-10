@@ -30,12 +30,7 @@ export default (config: Config) => {
       'title', 'body', 'user_id'
     ];
 
-    const {title, body, user_id} =  req.body;
-    const data: any = R.pickBy((val:any, key:any)=>{
-      return R.indexOf(key, fillable) !== -1 && val;
-    }, req.body);
-
-    const createdUser = await config.service.createPost(data);
+    const createdUser = await config.service.createPost(req.body);
 
     res.status(CREATED_201_HTTP_CODE).json(createdUser);
   });
