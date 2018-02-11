@@ -36,7 +36,7 @@ export default (config: Config) => {
       return R.indexOf(key, fillable) !== -1 && val;
     }, req.body);
     
-    const updatePost = await config.service.updatePost({id: post_id, data: req.body});
+    const updatePost = await config.service.updatePost({id: post_id, data});
 
     res.status(OK_200_HTTP_CODE).json(updatePost);
   });
