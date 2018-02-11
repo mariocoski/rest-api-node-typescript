@@ -1,7 +1,7 @@
 
 import {loginSignature, registerSignature, forgetPasswordSignature, resetPasswordSignature} from './auth';
 import {createUserSignature, getUserByIdSignature,getUserByEmailSignature, getUsersSignature, updateUserSignature, deleteUserByIdSignature} from './users';
-import {createPostSignature, getPostByIdSignature, getPostsSignature, updatePostSignature, deletePostSignature } from './posts';
+import {createPostSignature, getPostByIdSignature, getPostsSignature, updatePostSignature, deletePostByIdSignature } from './posts';
 import {createCommentSignature, getCommentSignature, getCommentsSignature, updateCommentSignature, deleteCommentSignature } from './comments';
 import {createRoleSignature, getRoleSignature, getRolesSignature, updateRoleSignature, deleteRoleSignature, assignUserRoleSignature, removeUserRoleSignature } from './roles';
 import {getUserPermissionsSignature, createPermissionSignature, getPermissionSignature, getPermissionsSignature, updatePermissionSignature, deletePermissionSignature, assignRolePermissionSignature, removeRolePermissionSignature, CreateUserPermissionsSignature } from './permissions';
@@ -27,8 +27,8 @@ export default interface Service {
   readonly createPost: createPostSignature;
   readonly getPostById: getPostByIdSignature;
   readonly getPosts: getPostsSignature;
-  // readonly updatePost: updatePostSignature;
-  // readonly deletePost: deletePostSignature;
+  readonly updatePost: updatePostSignature;
+  readonly deletePostById: deletePostByIdSignature;
 
   // readonly createComment: createCommentSignature;
   // readonly getComment: getCommentSignature;

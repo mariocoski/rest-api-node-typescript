@@ -23,7 +23,7 @@ export const fakeUsers = (options: Options): any => {
     const password = faker.internet.password();
     const user = {
       id: i + 1,
-      email: faker.internet.email(),
+      email: faker.internet.exampleEmail(),
       password,
       password_confirmation: password,
       firstname: faker.name.firstName(),

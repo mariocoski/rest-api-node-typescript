@@ -11,7 +11,7 @@ export interface Data {
 }
 
 export interface Options {
-  readonly id: number;
+  readonly id: string;
   readonly data: Data
 }
 

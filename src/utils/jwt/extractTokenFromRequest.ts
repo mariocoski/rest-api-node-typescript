@@ -48,12 +48,13 @@ export interface AuthSchemeExtractorOptions {
 export const createFromAuthScheme =  (options: AuthSchemeExtractorOptions) => (req: Request): string | null => {
   const authScheme: string = options.authSchemeName.toLowerCase();
   const header: any = req.headers[AUTH_HEADER_NAME];
+
   if (typeof header === 'string') {
     const matches: any = header.match(/(\S+)\s+(\S+)/);
-
     if(matches && matches[1] && matches[2] && matches[1].toLowerCase() === authScheme && typeof matches[2] === 'string'){
       return matches[2];
     }
+    return header;
   }
   return null;
 }
@@ -85,7 +86,7 @@ export const createExtractTokenFromRequest = (config: Config = defaultConfig) =>
     const token = config.extractors.reduce((accumulator: any, extractor: any )=>{
       return accumulator || extractor(options.req) || null;
     }, null);
-   
+    
     if(token === null) throw new MissingJwtTokenError();
 
     return token;

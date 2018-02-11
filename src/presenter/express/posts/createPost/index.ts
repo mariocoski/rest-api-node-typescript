@@ -26,10 +26,6 @@ export default (config: Config) => {
  
     validateCreatePost(req.body, ['post']);
 
-    const fillable = [
-      'title', 'body', 'user_id'
-    ];
-
     const createdUser = await config.service.createPost(req.body);
 
     res.status(CREATED_201_HTTP_CODE).json(createdUser);

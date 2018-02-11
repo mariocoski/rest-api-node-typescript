@@ -1,18 +1,17 @@
 import AsyncHandler from '../../../../utils/AsyncHandler';
+import {PostAttributes} from '../../../../models/interfaces/post';
 
-interface Data {
-  readonly firstname?: string;
-  readonly lastname?: string;
-  readonly bio?: string;
-  readonly email?: string; 
-  readonly password?: string;
+export interface Data {
+  readonly user_id?: string;
+  readonly title?: string;
+  readonly body?: string;
 }
 
-interface Options {
-    readonly id: number;
-    readonly data: Data
+export interface Options {
+  readonly id: number;
+  readonly data: Data
 }
 
-type Signature = AsyncHandler<Options, void>;
+type Signature = AsyncHandler<Options, PostAttributes>;
 
 export default Signature;

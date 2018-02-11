@@ -2,7 +2,7 @@ import { Router, Request, Response} from 'express';
 import Config from './Config';
 import enhancedRouter from './enhancedRouter';
 import {register, login, forgetPassword,resetPassword} from './auth';
-import {getPosts, createPost, getPostById} from './posts';
+import {getPosts, createPost, getPostById, updatePost, deletePostById} from './posts';
 import {getUserById, getUsers, updateUser, createUser, deleteUserById} from './users';
 
 export default (config: Config): Router => {
@@ -27,7 +27,9 @@ export default (config: Config): Router => {
 
   router.get('/posts', getPosts(config));
   router.get('/posts/:post_id', getPostById(config));
+  router.delete('/posts/:post_id', deletePostById(config));
   router.post('/posts', createPost(config));
+  router.patch('/posts/:post_id', updatePost(config));
 
   return router;
 }

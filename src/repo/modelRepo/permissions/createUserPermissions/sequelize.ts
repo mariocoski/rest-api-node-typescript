@@ -16,15 +16,29 @@ export default (config: Config) => {
 
     if(user === null) throw new ModelNotFoundError();
 
-    const userRole: any = await config.models.Role.create(role);
+    let userRole: PermissionInstance | null = await config.models.Role.findOne({where: role});
+    if(userRole === null){
+      userRole = await config.models.Role.create(role);
+    }
     
     await user.setRoles([userRole]);
 
-    const createdPermissions: PermissionInstance[] = await Promise.all(
-      permissions.map(async (permission: PermissionAttributes) => 
-        config.models.Permission.create(permission))
+    const createdPermissions: any[] = await Promise.all(
+      permissions.map(async (permission: PermissionAttributes) => {
+        return new Promise(async(resolve, reject) => {
+          try{
+            let foundPermission: PermissionInstance | null = await config.models.Permission.findOne({where: permission});
+            if(foundPermission === null){
+              foundPermission = await config.models.Permission.create(permission);
+            }
+            resolve(foundPermission);
+          }catch(e){
+            reject(e);
+          }
+        });
+      }) 
     );
-    
+
     await userRole.setPermissions(createdPermissions);
   }; 
 }

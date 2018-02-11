@@ -20,6 +20,8 @@ import createPermission from '../../modelRepo/permissions/createPermission/seque
 import createPost from  '../../modelRepo/posts/createPost/sequelize';
 import getPostById from '../../modelRepo/posts/getPostById/sequelize';
 import getPosts from '../../modelRepo/posts/getPosts/sequelize';
+import updatePost from '../../modelRepo/posts/updatePost/sequelize';
+import deletePostById from '../../modelRepo/posts/deletePostById/sequelize';
 
 export default (config: Config): ModelRepoInterface => {
   return {
@@ -38,6 +40,8 @@ export default (config: Config): ModelRepoInterface => {
     getPostById: getPostById(config),
     createPost: createPost(config),
     getPosts: getPosts(config),
+    updatePost: updatePost(config),
+    deletePostById: deletePostById(config),
 
     createRole: createRole(config),
     createPermission: createPermission(config),

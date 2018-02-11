@@ -10,8 +10,8 @@ import getPostsSignature from './getPosts/Signature';
 import updatePost from './updatePost';
 import updatePostSignature from './updatePost/Signature';
 
-import deletePost from './deletePost';
-import deletePostSignature from './deletePost/Signature';
+import deletePostById from './deletePostById';
+import deletePostByIdSignature from './deletePostById/Signature';
 
 export {
   createPost,
@@ -22,7 +22,7 @@ export {
   getPostsSignature,
   updatePost,
   updatePostSignature,
-  deletePost,
-  deletePostSignature,
+  deletePostById,
+  deletePostByIdSignature,
 }
 
