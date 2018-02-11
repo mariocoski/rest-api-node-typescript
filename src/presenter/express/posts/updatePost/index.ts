@@ -29,7 +29,7 @@ export default (config: Config) => {
     const {post_id} = req.params;
 
     const fillable = [
-      'user_id', 'title', 'description'
+      'user_id', 'title', 'body'
     ];
     
     const data: any = R.pickBy((val:any, key:any)=>{
