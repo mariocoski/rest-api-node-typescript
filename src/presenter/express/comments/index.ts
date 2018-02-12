@@ -1,5 +1,6 @@
 import createComment from './createComment';
-
+import getCommentById from './getCommentById';
 export {
-  createComment
+  createComment,
+  getCommentById
 }

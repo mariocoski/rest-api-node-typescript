@@ -1,8 +1,8 @@
 import createComment from './createComment';
 import createCommentSignature from './createComment/Signature';
 
-import getComment from './getComment';
-import getCommentSignature from './getComment/Signature';
+import getCommentById from './getCommentById';
+import getCommentByIdSignature from './getCommentById/Signature';
 
 import getComments from './getComments';
 import getCommentsSignature from './getComments/Signature';
@@ -16,8 +16,8 @@ import deleteCommentSignature from './deleteComment/Signature';
 export {
   createComment,
   createCommentSignature,
-  getComment,
-  getCommentSignature,
+  getCommentById,
+  getCommentByIdSignature,
   getComments,
   getCommentsSignature,
   updateComment,

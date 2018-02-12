@@ -2,8 +2,8 @@ import {Instance} from "sequelize";
 
 export interface CommentAttributes {
   id?: string,
-  post_id?: number,
-  user_id?: number,
+  post_id?: string,
+  user_id?: string,
   body?: string,
   created_at?: string,
   updated_at?: string,

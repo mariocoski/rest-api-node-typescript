@@ -23,7 +23,7 @@ import getPosts from '../../modelRepo/posts/getPosts/sequelize';
 import updatePost from '../../modelRepo/posts/updatePost/sequelize';
 import deletePostById from '../../modelRepo/posts/deletePostById/sequelize';
 import createComment from '../../modelRepo/comments/createComment/sequelize';
-
+import getCommentById from '../../modelRepo/comments/getCommentById/sequelize';
 
 export default (config: Config): ModelRepoInterface => {
   return {
@@ -46,6 +46,7 @@ export default (config: Config): ModelRepoInterface => {
     deletePostById: deletePostById(config),
 
     createComment: createComment(config),
+    getCommentById: getCommentById(config),
 
     createRole: createRole(config),
     createPermission: createPermission(config),
