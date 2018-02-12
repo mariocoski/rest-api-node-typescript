@@ -31,7 +31,7 @@ export default (config: Config): Service => {
     updatePost: updatePost(config),
     deletePostById: deletePostById(config),
 
-    // createComment: createComment(config),
+    createComment: createComment(config),
     // getComment: getComment(config),
     // getComments: getComments(config),
     // updateComment: updateComment(config),

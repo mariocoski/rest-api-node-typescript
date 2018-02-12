@@ -30,7 +30,7 @@ export default interface Service {
   readonly updatePost: updatePostSignature;
   readonly deletePostById: deletePostByIdSignature;
 
-  // readonly createComment: createCommentSignature;
+  readonly createComment: createCommentSignature;
   // readonly getComment: getCommentSignature;
   // readonly getComments: getCommentsSignature;
   // readonly updateComment: updateCommentSignature;

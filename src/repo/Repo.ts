@@ -26,7 +26,7 @@ export interface ModelRepoInterface {
     readonly updatePost: UpdatePostSignature;
     readonly deletePostById: DeletePostByIdSignature;
 
-    // readonly createComment: CreateCommentSignature;
+    readonly createComment: CreateCommentSignature;
     // readonly getComment: GetCommentSignature;
     // readonly getComments: GetCommentsSignature;
     // readonly updateComment: UpdateCommentSignature;

@@ -1,13 +1,12 @@
 import AsyncHandler from '../../../utils/AsyncHandler';
+import {CommentAttributes} from '../../../models/interfaces/comment';
 
-interface Options {
-    readonly firstname?: string;
-    readonly lastname?: string;
-    readonly bio?: string;
-    readonly email: string; 
-    readonly password: string;
+export interface Options {
+    readonly user_id: number;
+    readonly post_id: number;
+    readonly body: string;
 }
 
-type Signature = AsyncHandler<Options, void>;
+type Signature = AsyncHandler<Options, CommentAttributes>;
 
-export default Signature;
+export default Signature

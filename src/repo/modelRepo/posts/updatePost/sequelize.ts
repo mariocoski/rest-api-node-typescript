@@ -32,13 +32,13 @@ export default (config: Config) => {
         if(err instanceof ForeignKeyConstraintError){
           throw new ModelNotFoundError('user');
         }
-        console.log(err.message);
-        // throw err;
       }
     
-      return await config.models.Post.findOne({
+      const post: any  = await config.models.Post.findOne({
         attributes: POST_MODEL_VISIBLE_PROPERTIES,
         where: { id }  
       });
+
+      return post.get({plain: true});
     }; 
 }

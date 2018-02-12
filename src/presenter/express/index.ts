@@ -4,6 +4,7 @@ import enhancedRouter from './enhancedRouter';
 import {register, login, forgetPassword,resetPassword} from './auth';
 import {getPosts, createPost, getPostById, updatePost, deletePostById} from './posts';
 import {getUserById, getUsers, updateUser, createUser, deleteUserById} from './users';
+import {createComment} from './comments';
 
 export default (config: Config): Router => {
   const router: Router = enhancedRouter(config);
@@ -24,12 +25,13 @@ export default (config: Config): Router => {
   router.get('/users', getUsers(config));
   router.patch('/users/:user_id', updateUser(config));
   
-
   router.get('/posts', getPosts(config));
   router.get('/posts/:post_id', getPostById(config));
   router.delete('/posts/:post_id', deletePostById(config));
   router.post('/posts', createPost(config));
   router.patch('/posts/:post_id', updatePost(config));
+
+  router.post('/comments', createComment(config));
 
   return router;
 }
