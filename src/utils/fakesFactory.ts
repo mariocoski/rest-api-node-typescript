@@ -60,3 +60,26 @@ export const fakePosts = (options: Options): any => {
   return items.length > 1 ? items : items[0];
 }
 
+export const fakeComments = (options: Options): any => {
+  const settings = {
+    count: 1,
+    only: [],
+    overrides: {},
+    ...options
+  };
+  const items: any[] = [];
+  for(let i = 0; i < settings.count; i++){
+    const post = {
+      id: i + 1,
+      user_id: 1,
+      post_id: 1,
+      body: faker.lorem.sentences(10),
+      ...settings.overrides
+    };
+    const pickable: string[] = settings.only.length ? settings.only : Object.keys(post);
+    items.push(R.pick(pickable, post));
+  }
+  return items.length > 1 ? items : items[0];
+}
+
+

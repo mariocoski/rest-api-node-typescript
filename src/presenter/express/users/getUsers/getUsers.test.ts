@@ -83,6 +83,7 @@ describe(__filename, () => {
                                   .set('Authorization', validToken);
     expect(response.status).toBe(OK_200_HTTP_CODE);
     expect(response.body.data[0].id).toBe(6);
+    expect(response.status).toBe(OK_200_HTTP_CODE);
   });
 
 });

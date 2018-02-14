@@ -79,6 +79,7 @@ describe(__filename, () => {
     expect(response.body.count).toBe(5);
     expect(response.body.total).toBe(10);
     expect(response.body.currentPage).toBe(1);
+    expect(response.status).toBe(OK_200_HTTP_CODE);
   });
 
   it('should get posts sorted according to the keys provided', async () => {

@@ -1,13 +1,15 @@
 import AsyncHandler from '../../../../utils/AsyncHandler';
 
-interface Filter {
-
+export interface OrderItem {
+  readonly [key: string] : string;  
 }
 
-interface Options {
-    filter: Filter
+export interface Options {
+  readonly limit?: number;
+  readonly offset?: number;
+  readonly order?: string;
 }
 
-type Signature = AsyncHandler<Options, UserModel[]>;
+type Signature = AsyncHandler<Options, any[]>;
 
 export default Signature;

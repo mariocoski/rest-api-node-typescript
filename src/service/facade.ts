@@ -33,7 +33,7 @@ export default (config: Config): Service => {
 
     createComment: createComment(config),
     getCommentById: getCommentById(config),
-    // getComments: getComments(config),
+    getComments: getComments(config),
     // updateComment: updateComment(config),
     // deleteComment: deleteComment(config),
 
