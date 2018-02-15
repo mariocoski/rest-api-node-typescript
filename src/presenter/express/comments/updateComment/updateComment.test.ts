@@ -3,15 +3,14 @@ import {API_ROUTE_V1} from '../../../../utils/constants';
 import {Response} from 'express';
 import {OK_200_HTTP_CODE, FORBIDDEN_403_HTTP_CODE, UNAUTHORISED_401_HTTP_CODE,NOT_FOUND_404_HTTP_CODE, UNPROCESSABLE_ENTITY_422_HTTP_CODE} from '../../utils/constants';
 import config from '../../../../config';
-import {TEST_INVALID_JWT_TOKEN, TEST_INVALID_EMAIL,TEST_DIFFERENT_VALID_EMAIL, TEST_DIFFERENT_VALID_PASSWORD,TEST_VALID_PASSWORD, TEST_TOO_SHORT_PASSWORD,TEST_VALID_ANOTHER_REGIRSTER_USER, TEST_VALID_REGISTER_USER } from '../../../../utils/testValues';
+import {TEST_INVALID_JWT_TOKEN, TEST_VALID_REGISTER_USER } from '../../../../utils/testValues';
 import expectError from '../../utils/expectError';
 import generateJwtToken from '../../../../utils/jwt/generateToken';
 import createUserWithPermission from '../../utils/createUserWithPermission';
 import {CAN_UPDATE_COMMENT} from '../../../../utils/constants';
 import {fakePosts} from '../../../../utils/fakesFactory';
-import verifyPassword from '../../../../utils/verifyPassword';
 import * as moment from 'moment';
-import { TEST_VALID_TITLE, TEST_VALID_DESCRIPTION } from '../../../../utils/testValues';
+import {  TEST_VALID_DESCRIPTION } from '../../../../utils/testValues';
 
 describe(__filename, () => {
 
@@ -124,7 +123,6 @@ describe(__filename, () => {
                                     body: TEST_VALID_DESCRIPTION,
                                   });
 
-    const updatedPost = response.body;
     const now = moment();
     const correctUpdateAt = moment.duration(now.diff(response.body.updated_at)).asMilliseconds() < 10000;
     expect(response.body.body).toEqual(TEST_VALID_DESCRIPTION); 
