@@ -11,6 +11,6 @@ export interface Options {
   readonly order?: string;
 }
 
-type Signature = AsyncHandler<Options, any[]>;
+type Signature = AsyncHandler<Options, any>;
 
 export default Signature;

@@ -10,7 +10,7 @@ interface Data {
 }
 
 interface Options {
-  readonly id: number;
+  readonly id: string;
   readonly data: Data
 }
 

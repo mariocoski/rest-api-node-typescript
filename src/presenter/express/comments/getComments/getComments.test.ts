@@ -3,7 +3,7 @@ import {API_ROUTE_V1} from '../../../../utils/constants';
 import {Response} from 'express';
 import {OK_200_HTTP_CODE, FORBIDDEN_403_HTTP_CODE, UNAUTHORISED_401_HTTP_CODE} from '../../utils/constants';
 import config from '../../../../config';
-import {TEST_INVALID_JWT_TOKEN, TEST_VALID_ANOTHER_REGIRSTER_USER, TEST_VALID_REGISTER_USER } from '../../../../utils/testValues';
+import {TEST_INVALID_JWT_TOKEN, TEST_VALID_REGISTER_USER } from '../../../../utils/testValues';
 import expectError from '../../utils/expectError';
 import generateJwtToken from '../../../../utils/jwt/generateToken';
 import createUserWithPermission from '../../utils/createUserWithPermission';
@@ -89,7 +89,7 @@ describe(__filename, () => {
     expect(response.status).toBe(OK_200_HTTP_CODE);
   });
 
-  it('should get posts sorted according to the keys provided', async () => {
+  it('should get comments sorted according to the keys provided', async () => {
     const user = await createUserWithPermission(service, CAN_GET_COMMENTS);
     const postData = fakePosts({
       count: 1,

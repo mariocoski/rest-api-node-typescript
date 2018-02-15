@@ -33,7 +33,7 @@ export default interface Service {
   readonly createComment: createCommentSignature;
   readonly getCommentById: getCommentByIdSignature;
   readonly getComments: getCommentsSignature;
-  // readonly updateComment: updateCommentSignature;
+  readonly updateComment: updateCommentSignature;
   // readonly deleteComment: deleteCommentSignature;
 
   readonly createRole: createRoleSignature;

@@ -29,7 +29,7 @@ export interface ModelRepoInterface {
     readonly createComment: CreateCommentSignature;
     readonly getCommentById: GetCommentByIdSignature;
     readonly getComments: GetCommentsSignature;
-    // readonly updateComment: UpdateCommentSignature;
+    readonly updateComment: UpdateCommentSignature;
     // readonly deleteComment: DeleteCommentSignature;
 
     readonly createRole: CreateRoleSignature;
