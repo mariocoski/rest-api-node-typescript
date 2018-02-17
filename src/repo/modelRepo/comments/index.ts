@@ -1,12 +1,11 @@
 import CreateCommentSignature from './createComment/Signature';
-import DeleteCommentSignature from './deleteComment/Signature';
 import GetCommentByIdSignature from './getCommentById/Signature';
 import GetCommentsSignature from './getComments/Signature';
 import UpdateCommentSignature from './updateComment/Signature';
-
+import DeleteCommentByIdSignature from './deleteCommentById/Signature';
 export {
   CreateCommentSignature,
-  DeleteCommentSignature,
+  DeleteCommentByIdSignature,
   GetCommentByIdSignature,
   GetCommentsSignature,
   UpdateCommentSignature
