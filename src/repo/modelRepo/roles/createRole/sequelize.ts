@@ -10,10 +10,7 @@ export default (config: Config) => {
     try{
       const role: RoleInstance = await config.models.Role.create({
         name: options.name,
-        description: options.description,
-        created_at: options.createdAt,
-        updated_at: options.updatedAt, 
-        deleted_at: options.deletedAt
+        description: options.description
       });
       return role.get({ plain: true });
     }catch(err){
