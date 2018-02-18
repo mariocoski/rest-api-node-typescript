@@ -1,8 +1,8 @@
 import createRole from './createRole';
 import createRoleSignature from './createRole/Signature';
 
-import getRole from './getRole';
-import getRoleSignature from './getRole/Signature';
+import getRoleById from './getRoleById';
+import getRoleByIdSignature from './getRoleById/Signature';
 
 import getRoles from './getRoles';
 import getRolesSignature from './getRoles/Signature';
@@ -22,8 +22,8 @@ import removeUserRoleSignature from './removeUserRole/Signature';
 export {
   createRole,
   createRoleSignature,
-  getRole,
-  getRoleSignature,
+  getRoleById,
+  getRoleByIdSignature,
   getRoles,
   getRolesSignature,
   updateRole,

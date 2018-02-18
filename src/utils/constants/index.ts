@@ -27,6 +27,7 @@ export const TEXT_FIELD_LENGTH: number = 21844;
 export const USER_MODEL_VISIBLE_PROPERTIES = ['id','firstname', 'lastname', 'bio', 'email','password','created_at', 'updated_at'];
 export const POST_MODEL_VISIBLE_PROPERTIES = ['id','title', 'body', 'user_id', 'created_at', 'updated_at'];
 export const COMMENT_MODEL_VISIBLE_PROPERTIES = ['id', 'body', 'user_id', 'post_id', 'created_at', 'updated_at'];
+export const ROLE_MODEL_VISIBLE_PROPERTIES = ['id','name', 'description','created_at', 'updated_at'];
 
 export const CAN_GET_USER: string = 'user.show';
 export const CAN_GET_USERS: string = 'users.index';

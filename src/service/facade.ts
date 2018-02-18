@@ -4,7 +4,7 @@ import {login, register, forgetPassword, resetPassword} from './auth';
 import {createUser, getUserById, getUserByEmail, getUsers, updateUser, deleteUserById} from './users';
 import {createPost, getPostById, getPosts, updatePost, deletePostById} from './posts';
 import {createComment, getCommentById, getComments, updateComment, deleteCommentById} from './comments';
-import {createRole, getRole, getRoles, updateRole, deleteRole, assignUserRole, removeUserRole} from './roles';
+import {createRole, getRoleById, getRoles, updateRole, deleteRole, assignUserRole, removeUserRole} from './roles';
 import {getUserPermissions, createUserPermissions, createPermission, getPermission, getPermissions, updatePermission, deletePermission, assignRolePermission, removeRolePermission} from './permissions';
 import {migrate, rollback, clearService} from './utils';
 import {getUserResetPasswordTokens,createResetPasswordToken, getResetPasswordTokenByToken} from './resetPasswordTokens';
@@ -38,7 +38,7 @@ export default (config: Config): Service => {
     deleteCommentById: deleteCommentById(config),
 
     createRole: createRole(config),
-    // getRole: getRole(config),
+    getRoleById: getRoleById(config),
     // getRoles: getRoles(config),
     // updateRole: updateRole(config),
     // deleteRole: deleteRole(config),

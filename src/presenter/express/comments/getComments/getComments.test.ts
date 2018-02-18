@@ -25,10 +25,10 @@ describe(__filename, () => {
     expectError(response, UNAUTHORISED_401_HTTP_CODE);
   });
 
-  it('should fail to get user when insufficent permissions', async () => {
+  it('should fail to get comments when insufficent permissions', async () => {
     const userWithoutPermissions = await service.createUser(TEST_VALID_REGISTER_USER);
     const validToken = await generateJwtToken({data: {id: userWithoutPermissions.id}});
-    const response = await request.get(`${API_ROUTE_V1}/comments/1`)
+    const response = await request.get(`${API_ROUTE_V1}/comments`)
                                   .set('Authorization' , validToken);
     expectError(response, FORBIDDEN_403_HTTP_CODE);
   });

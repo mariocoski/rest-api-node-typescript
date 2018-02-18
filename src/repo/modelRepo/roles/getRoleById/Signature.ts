@@ -1,6 +1,6 @@
 import AsyncHandler from '../../../../utils/AsyncHandler';
 
-interface Options {
+export interface Options {
     readonly id: number;
 }
 

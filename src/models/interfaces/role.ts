@@ -1,8 +1,8 @@
 import {Instance} from "sequelize";
 import {PermissionInstance} from './permission';
 export interface RoleAttributes {
-  id?: number,
-  name: string,
+  id?: string,
+  name?: string,
   description?: string,
   created_at?: string,
   updated_at?: string,
