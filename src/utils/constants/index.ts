@@ -7,8 +7,14 @@ export const DEFAULT_POSTS_PAGINATION_LIMIT = 10;
 export const DEFAULT_POSTS_PAGINATION_OFFSET = 0;
 export const DEFAULT_COMMENTS_PAGINATION_LIMIT = 10;
 export const DEFAULT_COMMENTS_PAGINATION_OFFSET = 0;
+export const DEFAULT_ROLES_PAGINATION_LIMIT = 10;
+export const DEFAULT_ROLES_PAGINATION_OFFSET = 0;
+export const DEFAULT_PERMISSIONS_PAGINATION_LIMIT = 10;
+export const DEFAULT_PERMISSIONS_PAGINATION_OFFSET = 0;
 
 export const DEFAULT_POSTS_ORDER = [['created_at', 'desc']];
+export const DEFAULT_ROLES_ORDER = [['created_at', 'desc']];
+export const DEFAULT_PERMISSIONS_ORDER = [['created_at', 'desc']];
 export const DEFAULT_USERS_ORDER = [['created_at', 'desc']];
 export const DEFAULT_COMMENTS_ORDER = [['created_at', 'desc']];
 export const API_ROUTE_V1 = '/api/v1';

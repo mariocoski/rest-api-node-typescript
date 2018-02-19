@@ -38,8 +38,8 @@ export default interface Service {
 
   readonly createRole: createRoleSignature;
   readonly getRoleById: getRoleByIdSignature;
-  // readonly getRoles: getRolesSignature;
-  // readonly updateRole: updateRoleSignature;
+  readonly getRoles: getRolesSignature;
+  readonly updateRole: updateRoleSignature;
   // readonly deleteRole: deleteRoleSignature;
   // readonly assignUserRole: assignUserRoleSignature;
   // readonly removeUserRole: removeUserRoleSignature;

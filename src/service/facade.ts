@@ -39,8 +39,8 @@ export default (config: Config): Service => {
 
     createRole: createRole(config),
     getRoleById: getRoleById(config),
-    // getRoles: getRoles(config),
-    // updateRole: updateRole(config),
+    getRoles: getRoles(config),
+    updateRole: updateRole(config),
     // deleteRole: deleteRole(config),
     // assignUserRole: assignUserRole(config),
     // removeUserRole: removeUserRole(config),

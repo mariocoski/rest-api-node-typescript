@@ -34,8 +34,8 @@ export interface ModelRepoInterface {
 
     readonly createRole: CreateRoleSignature;
     readonly getRoleById: GetRoleByIdSignature;
-    // readonly getRoles: GetRolesSignature;
-    // readonly updateRole: UpdateRoleSignature;
+    readonly getRoles: GetRolesSignature;
+    readonly updateRole: UpdateRoleSignature;
     // readonly deleteRole: DeleteRoleSignature;
     // readonly assignUserRole: AssignUserRoleSignature;
     // readonly removeUserRole: RemoveUserRoleSignature;

@@ -16,7 +16,9 @@ import getUserResetPasswordTokens from '../../modelRepo/resetPasswordTokens/getU
 import getResetPasswordTokenByToken from '../../modelRepo/resetPasswordTokens/getResetPasswordTokenByToken/sequelize';
 import deleteResetPasswordTokenById from '../../modelRepo/resetPasswordTokens/deleteResetPasswordTokenById/sequelize';
 import createRole from '../../modelRepo/roles/createRole/sequelize';
+import updateRole from '../../modelRepo/roles/updateRole/sequelize';
 import getRoleById from '../../modelRepo/roles/getRoleById/sequelize';
+import getRoles from '../../modelRepo/roles/getRoles/sequelize';
 import createPermission from '../../modelRepo/permissions/createPermission/sequelize';
 import createPost from  '../../modelRepo/posts/createPost/sequelize';
 import getPostById from '../../modelRepo/posts/getPostById/sequelize';
@@ -57,6 +59,8 @@ export default (config: Config): ModelRepoInterface => {
     deleteCommentById: deleteCommentById(config),
 
     createRole: createRole(config),
+    updateRole: updateRole(config),
+    getRoles: getRoles(config),
     getRoleById: getRoleById(config),
     createPermission: createPermission(config),
     createUserPermissions: createUserPermissions(config),
