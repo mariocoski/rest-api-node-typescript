@@ -101,10 +101,8 @@ describe(__filename, () => {
 
     const response = await request.get(`${API_ROUTE_V1}/posts?sort=id:desc`)
                                   .set('Authorization', validToken);
+                                 
     expect(response.status).toBe(OK_200_HTTP_CODE);
     expect(response.body.data[0].id).toBe(5);
   });
- 
-
-
 });

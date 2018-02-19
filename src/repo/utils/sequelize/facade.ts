@@ -18,6 +18,7 @@ import deleteResetPasswordTokenById from '../../modelRepo/resetPasswordTokens/de
 import createRole from '../../modelRepo/roles/createRole/sequelize';
 import updateRole from '../../modelRepo/roles/updateRole/sequelize';
 import getRoleById from '../../modelRepo/roles/getRoleById/sequelize';
+import deleteRoleById from '../../modelRepo/roles/deleteRoleById/sequelize';
 import getRoles from '../../modelRepo/roles/getRoles/sequelize';
 import createPermission from '../../modelRepo/permissions/createPermission/sequelize';
 import createPost from  '../../modelRepo/posts/createPost/sequelize';
@@ -61,6 +62,7 @@ export default (config: Config): ModelRepoInterface => {
     createRole: createRole(config),
     updateRole: updateRole(config),
     getRoles: getRoles(config),
+    deleteRoleById: deleteRoleById(config),
     getRoleById: getRoleById(config),
     createPermission: createPermission(config),
     createUserPermissions: createUserPermissions(config),

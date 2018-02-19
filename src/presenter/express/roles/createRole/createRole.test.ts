@@ -70,6 +70,4 @@ describe(__filename, () => {
     expect(response.status).toBe(CREATED_201_HTTP_CODE);
   });
 
-
-
 });

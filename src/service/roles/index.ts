@@ -10,8 +10,8 @@ import getRolesSignature from './getRoles/Signature';
 import updateRole from './updateRole';
 import updateRoleSignature from './updateRole/Signature';
 
-import deleteRole from './deleteRole';
-import deleteRoleSignature from './deleteRole/Signature';
+import deleteRoleById from './deleteRoleById';
+import deleteRoleByIdSignature from './deleteRoleById/Signature';
 
 import assignUserRole from './assignUserRole';
 import assignUserRoleSignature from './assignUserRole/Signature';
@@ -28,8 +28,8 @@ export {
   getRolesSignature,
   updateRole,
   updateRoleSignature,
-  deleteRole,
-  deleteRoleSignature,
+  deleteRoleById,
+  deleteRoleByIdSignature,
   assignUserRole,
   assignUserRoleSignature,
   removeUserRole,

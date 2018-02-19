@@ -121,7 +121,7 @@ export default ({ config, errorId, res, err }: Options): Response => {
   {
   const message = translator.serverError();
     logError(message);
-    console.log(err);
+    console.log('server error',err, err.message);
     return res.status(SERVER_ERROR_500_HTTP_CODE).json({message});
   }
 };
