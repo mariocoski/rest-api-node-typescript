@@ -6,14 +6,17 @@ import {SequelizeModels} from './index';
 export default (sequelize: Sequelize, dataTypes: DataTypes):
   SequelizeStatic.Model<RolePermissionInstance, RolePermissionAttributes> => {
   const RolePermission = sequelize.define<RolePermissionInstance, RolePermissionAttributes>("RolePermission", {
-    role_id: dataTypes.INTEGER,
-    permission_id: dataTypes.INTEGER,
-    deleted_at: dataTypes.DATE
+    id: {
+      type: dataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    role_id:{type: dataTypes.INTEGER, unique: false},
+    permission_id: {type: dataTypes.INTEGER, unique: false},
   }, {
     tableName: 'role_permission',
     createdAt: 'created_at',
     updatedAt: 'updated_at',
-    paranoid: true,
     underscored: true,
   });
 

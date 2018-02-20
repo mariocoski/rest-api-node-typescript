@@ -8,12 +8,10 @@ export default (sequelize: Sequelize, dataTypes: DataTypes):
   const UserRole = sequelize.define<UserRoleInstance, UserRoleAttributes>("UserRole", {
     user_id: dataTypes.INTEGER,
     role_id: dataTypes.INTEGER,
-    deleted_at: dataTypes.DATE
   }, {
     tableName: 'user_role',
     createdAt: 'created_at',
     updatedAt: 'updated_at',
-    paranoid: true,
     underscored: true
   });
 

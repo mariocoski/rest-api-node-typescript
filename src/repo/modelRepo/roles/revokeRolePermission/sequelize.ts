@@ -20,20 +20,13 @@ export default (config: Config) => {
 
     const permission: PermissionInstance | null = await config.models.Permission.findById(permission_id);
   
-    if(permission === null) throw new ModelNotFoundError('Permission');
+      if(permission === null) throw new ModelNotFoundError('Permission');
 
 
-      const remainingIds = role.permissions.map((permission: any) => permission.id)
-                                           .filter((permissionId: any) => permissionId != permission_id);
-    await config.models.RolePermission.destroy({where:{
-    role_id
-  }}); 
-
-      const data = await role.getPermissions();
-
-      console.log(data.length);
-    // await role.setPermissions([]);
+      const remainingIds = role.permissions
+                               .filter((permission: any) => permission.id != permission_id)
+                               .map((permission: any) => permission.id);
+  
       await role.setPermissions(remainingIds);
-
   }; 
 }
