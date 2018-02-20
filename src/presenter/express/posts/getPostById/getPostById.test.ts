@@ -56,5 +56,6 @@ describe(__filename, () => {
     expect(response.status).toBe(OK_200_HTTP_CODE);
     expect(response.body.title).toBe(postToBeFetched.title);
     expect(response.body.body).toBe(postToBeFetched.body);
+    expect(response.body.comments.length).toBe(0);
   });
 });

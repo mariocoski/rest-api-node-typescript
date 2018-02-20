@@ -20,6 +20,8 @@ import updateRole from '../../modelRepo/roles/updateRole/sequelize';
 import getRoleById from '../../modelRepo/roles/getRoleById/sequelize';
 import deleteRoleById from '../../modelRepo/roles/deleteRoleById/sequelize';
 import getRoles from '../../modelRepo/roles/getRoles/sequelize';
+import assignRolePermission from '../../modelRepo/roles/assignRolePermission/sequelize';
+import revokeRolePermission from '../../modelRepo/roles/revokeRolePermission/sequelize';
 import createPermission from '../../modelRepo/permissions/createPermission/sequelize';
 import createPost from  '../../modelRepo/posts/createPost/sequelize';
 import getPostById from '../../modelRepo/posts/getPostById/sequelize';
@@ -64,6 +66,9 @@ export default (config: Config): ModelRepoInterface => {
     getRoles: getRoles(config),
     deleteRoleById: deleteRoleById(config),
     getRoleById: getRoleById(config),
+    assignRolePermission: assignRolePermission(config),
+    revokeRolePermission: revokeRolePermission(config),
+
     createPermission: createPermission(config),
     createUserPermissions: createUserPermissions(config),
     getUserPermissions: getUserPermissions(config),

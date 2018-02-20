@@ -14,7 +14,7 @@ export default (sequelize: Sequelize, dataTypes: DataTypes):
     createdAt: 'created_at',
     updatedAt: 'updated_at',
     paranoid: true,
-    underscored: true
+    underscored: true,
   });
 
   return RolePermission;

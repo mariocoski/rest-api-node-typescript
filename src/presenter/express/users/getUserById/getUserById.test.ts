@@ -7,7 +7,7 @@ import {TEST_INVALID_JWT_TOKEN, TEST_VALID_ANOTHER_REGIRSTER_USER, TEST_VALID_RE
 import expectError from '../../utils/expectError';
 import generateJwtToken from '../../../../utils/jwt/generateToken';
 import createUserWithPermission from '../../utils/createUserWithPermission';
-import {CAN_GET_USER} from '../../../../utils/constants';
+import {CAN_GET_USER, DEFAULT_USER_PERMISSIONS} from '../../../../utils/constants';
 
 describe(__filename, () => {
 
@@ -52,6 +52,8 @@ describe(__filename, () => {
     const response = await request.get(`${API_ROUTE_V1}/users/${userToBeFetched.id}`)
                                   .set('Authorization', validToken);
     expect(response.status).toBe(OK_200_HTTP_CODE);
+    expect(response.body.roles.length).toBe(0);
+    expect(response.body.posts.length).toBe(0);
     expect(response.body.email).toBe(TEST_VALID_ANOTHER_REGIRSTER_USER.email);
   });
 });

@@ -3,7 +3,7 @@ import {loginSignature, registerSignature, forgetPasswordSignature, resetPasswor
 import {createUserSignature, getUserByIdSignature,getUserByEmailSignature, getUsersSignature, updateUserSignature, deleteUserByIdSignature} from './users';
 import {createPostSignature, getPostByIdSignature, getPostsSignature, updatePostSignature, deletePostByIdSignature } from './posts';
 import {createCommentSignature, getCommentByIdSignature, getCommentsSignature, updateCommentSignature, deleteCommentByIdSignature } from './comments';
-import {createRoleSignature, getRoleByIdSignature, getRolesSignature, updateRoleSignature, deleteRoleByIdSignature, assignUserRoleSignature, removeUserRoleSignature } from './roles';
+import {createRoleSignature, getRoleByIdSignature, getRolesSignature, updateRoleSignature, deleteRoleByIdSignature, revokeRolePermissionSignature } from './roles';
 import {getUserPermissionsSignature, createPermissionSignature, getPermissionSignature, getPermissionsSignature, updatePermissionSignature, deletePermissionSignature, assignRolePermissionSignature, removeRolePermissionSignature, CreateUserPermissionsSignature } from './permissions';
 import CommonServiceSignature from './utils/CommonServiceSignature';
 import {GetUserResetPasswordTokensSignature,CreateResetPasswordTokenSignature,GetResetPasswordTokenByTokenSignature} from './resetPasswordTokens';
@@ -41,6 +41,8 @@ export default interface Service {
   readonly getRoles: getRolesSignature;
   readonly updateRole: updateRoleSignature;
   readonly deleteRoleById: deleteRoleByIdSignature;
+  readonly assignRolePermission: assignRolePermissionSignature;
+  readonly revokeRolePermission: revokeRolePermissionSignature;
   // readonly assignUserRole: assignUserRoleSignature;
   // readonly removeUserRole: removeUserRoleSignature;
 
@@ -49,7 +51,7 @@ export default interface Service {
   // readonly getPermissions: getPermissionsSignature;
   // readonly updatePermission: updatePermissionSignature;
   // readonly deletePermission: deletePermissionSignature;
-  // readonly assignRolePermission: assignRolePermissionSignature;
+
   // readonly removeRolePermission: removeRolePermissionSignature;
   readonly getUserPermissions: getUserPermissionsSignature;
   readonly createUserPermissions: CreateUserPermissionsSignature;

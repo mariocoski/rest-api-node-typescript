@@ -1,5 +1,6 @@
 import {Instance} from "sequelize";
 import {RoleInstance} from './role';
+import {PostInstance} from './post';
 import {SequelizeModels} from '../index';
 
 export interface UserAttributes {
@@ -17,4 +18,5 @@ export interface UserAttributes {
 export interface UserInstance extends Instance<UserAttributes> {
   dataValues: UserAttributes;
   roles: RoleInstance[];
+  posts: PostInstance[];
 }

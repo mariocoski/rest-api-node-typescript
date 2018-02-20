@@ -1,9 +1,9 @@
 import {CreateUserSignature, GetUserByIdSignature,GetUserByEmailSignature,  GetUsersSignature, UpdateUserSignature, DeleteUserByIdSignature} from './modelRepo/users';
 import {CreatePostSignature, GetPostByIdSignature, GetPostsSignature, UpdatePostSignature, DeletePostByIdSignature} from './modelRepo/posts';
 import {CreateCommentSignature, GetCommentByIdSignature, GetCommentsSignature, UpdateCommentSignature, DeleteCommentByIdSignature} from './modelRepo/comments';
-import {CreateRoleSignature, GetRoleByIdSignature, GetRolesSignature, UpdateRoleSignature, DeleteRoleByIdSignature, AssignUserRoleSignature, RemoveUserRoleSignature} from './modelRepo/roles';
+import {CreateRoleSignature, GetRoleByIdSignature, GetRolesSignature, UpdateRoleSignature, DeleteRoleByIdSignature, AssignRolePermissionSignature, RevokeRolePermissionSignature} from './modelRepo/roles';
 import {CreateUserPermissionsSignature, GetUserPermissionsSignature, CreatePermissionSignature, GetPermissionSignature, GetPermissionsSignature,
-        UpdatePermissionSignature, DeletePermissionSignature, AssignRolePermissionSignature, RemoveRolePermissionSignature} from './modelRepo/permissions';
+        UpdatePermissionSignature, DeletePermissionSignature, RemoveRolePermissionSignature} from './modelRepo/permissions';
 import {CreateResetPasswordSignature, GetUserResetPasswordTokensSignature, GetResetPasswordTokenByTokenSignature, DeleteResetPasswordTokenByIdSignature} from './modelRepo/resetPasswordTokens';
 import SendEmailSignature from './mailRepo/sendEmail/Signature';
 
@@ -37,6 +37,8 @@ export interface ModelRepoInterface {
     readonly getRoles: GetRolesSignature;
     readonly updateRole: UpdateRoleSignature;
     readonly deleteRoleById: DeleteRoleByIdSignature;
+    readonly assignRolePermission: AssignRolePermissionSignature;
+    readonly revokeRolePermission: RevokeRolePermissionSignature;
     // readonly assignUserRole: AssignUserRoleSignature;
     // readonly removeUserRole: RemoveUserRoleSignature;
 
@@ -45,7 +47,6 @@ export interface ModelRepoInterface {
     // readonly getPermissions: GetPermissionsSignature;
     // readonly updatePermission: UpdatePermissionSignature;
     // readonly deletePermission: DeletePermissionSignature;
-    // readonly assignRolePermission: AssignRolePermissionSignature;
     // readonly removeRolePermission: RemoveRolePermissionSignature;
     readonly createUserPermissions: CreateUserPermissionsSignature;
     readonly getUserPermissions: GetUserPermissionsSignature;

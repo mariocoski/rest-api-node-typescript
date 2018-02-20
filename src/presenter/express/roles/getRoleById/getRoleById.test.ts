@@ -57,6 +57,9 @@ describe(__filename, () => {
                                   });
     expect(response.status).toBe(OK_200_HTTP_CODE);
     expect(response.body.name).toBe(TEST_VALID_TITLE);
+    expect(response.body.permissions.length).toBe(0);
     expect(response.body.description).toBe(TEST_VALID_DESCRIPTION);
   });
+
+  
 });

@@ -13,11 +13,11 @@ import updateRoleSignature from './updateRole/Signature';
 import deleteRoleById from './deleteRoleById';
 import deleteRoleByIdSignature from './deleteRoleById/Signature';
 
-import assignUserRole from './assignUserRole';
-import assignUserRoleSignature from './assignUserRole/Signature';
+import assignRolePermission from './assignRolePermission';
+import assignRolePermissionSignature from './assignRolePermission/Signature';
 
-import removeUserRole from './removeUserRole';
-import removeUserRoleSignature from './removeUserRole/Signature';
+import revokeRolePermission from './revokeRolePermission';
+import revokeRolePermissionSignature from './revokeRolePermission/Signature';
 
 export {
   createRole,
@@ -30,9 +30,9 @@ export {
   updateRoleSignature,
   deleteRoleById,
   deleteRoleByIdSignature,
-  assignUserRole,
-  assignUserRoleSignature,
-  removeUserRole,
-  removeUserRoleSignature,
+  assignRolePermission,
+  assignRolePermissionSignature,
+  revokeRolePermission,
+  revokeRolePermissionSignature,
 }
 

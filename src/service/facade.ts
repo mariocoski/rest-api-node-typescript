@@ -4,8 +4,8 @@ import {login, register, forgetPassword, resetPassword} from './auth';
 import {createUser, getUserById, getUserByEmail, getUsers, updateUser, deleteUserById} from './users';
 import {createPost, getPostById, getPosts, updatePost, deletePostById} from './posts';
 import {createComment, getCommentById, getComments, updateComment, deleteCommentById} from './comments';
-import {createRole, getRoleById, getRoles, updateRole, deleteRoleById, assignUserRole, removeUserRole} from './roles';
-import {getUserPermissions, createUserPermissions, createPermission, getPermission, getPermissions, updatePermission, deletePermission, assignRolePermission, removeRolePermission} from './permissions';
+import {createRole, getRoleById, getRoles, updateRole, deleteRoleById, revokeRolePermission, assignRolePermission} from './roles';
+import {getUserPermissions, createUserPermissions, createPermission, getPermission, getPermissions, updatePermission, deletePermission, removeRolePermission} from './permissions';
 import {migrate, rollback, clearService} from './utils';
 import {getUserResetPasswordTokens,createResetPasswordToken, getResetPasswordTokenByToken} from './resetPasswordTokens';
 
@@ -30,6 +30,8 @@ export default (config: Config): Service => {
     getPosts: getPosts(config),
     updatePost: updatePost(config),
     deletePostById: deletePostById(config),
+    assignRolePermission: assignRolePermission(config),
+    revokeRolePermission: revokeRolePermission(config),
 
     createComment: createComment(config),
     getCommentById: getCommentById(config),
@@ -50,7 +52,6 @@ export default (config: Config): Service => {
     // getPermissions: getPermissions(config),
     // updatePermission: updatePermission(config),
     // deletePermission: deletePermission(config),
-    // assignRolePermission: assignRolePermission(config),
     // removeRolePermission: removeRolePermission(config),
     getUserPermissions: getUserPermissions(config),
     createUserPermissions: createUserPermissions(config),

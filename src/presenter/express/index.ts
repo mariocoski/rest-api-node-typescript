@@ -5,7 +5,7 @@ import {register, login, forgetPassword,resetPassword} from './auth';
 import {getPosts, createPost, getPostById, updatePost, deletePostById} from './posts';
 import {getUserById, getUsers, updateUser, createUser, deleteUserById} from './users';
 import {createComment, getCommentById, getComments, updateComment, deleteCommentById} from './comments';
-import {createRole, getRoleById, getRoles, updateRole, deleteRoleById} from './roles';
+import {createRole, getRoleById, getRoles, updateRole, deleteRoleById, assignRolePermission, revokeRolePermission} from './roles';
 export default (config: Config): Router => {
   const router: Router = enhancedRouter(config);
 
@@ -42,6 +42,8 @@ export default (config: Config): Router => {
   router.get('/roles/:role_id', getRoleById(config));
   router.patch('/roles/:role_id', updateRole(config));
   router.delete('/roles/:role_id', deleteRoleById(config));
+  router.post('/roles/:role_id/permissions', assignRolePermission(config));
+  router.delete('/roles/:role_id/permissions/:permission_id', revokeRolePermission(config));
 
   return router;
 }

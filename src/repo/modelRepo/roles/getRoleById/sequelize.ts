@@ -9,6 +9,7 @@ export default (config: Config) => {
   return async ({id}: Options) => {
     const role: RoleInstance | null = await config.models.Role.findOne({
       attributes: ROLE_MODEL_VISIBLE_PROPERTIES,
+      include: [ { model: config.models.Permission, as: 'permissions' } ],
       where: { id }  
     });
   

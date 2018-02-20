@@ -16,7 +16,7 @@ export default (config: Config) => {
 
     if(user === null) throw new ModelNotFoundError();
 
-    let userRole: PermissionInstance | null = await config.models.Role.findOne({where: role});
+    let userRole: any = await config.models.Role.findOne({where: role});
     if(userRole === null){
       userRole = await config.models.Role.create(role);
     }

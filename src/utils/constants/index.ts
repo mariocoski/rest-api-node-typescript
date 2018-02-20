@@ -71,14 +71,14 @@ export const CAN_CREATE_COMMENT: string = 'comment.create';
 
 export const CAN_ADMINISTER: string = 'administer';
 
-export const DEFAULT_ADMIN_PERMISSIONS: PermissionAttributes[] = [
+export const DEFAULT_ADMIN_PERMISSIONS: any[] = [
   { 
     name: CAN_ADMINISTER,
     label: 'Allows to perform any action'
   },
 ];
 
-export const DEFAULT_USER_PERMISSIONS: PermissionAttributes[] = [
+export const DEFAULT_USER_PERMISSIONS: any[] = [
   //USERS
   //@todo mayby implements /profile to get/update/delete current user, 
   //for now just allow to do it via /users/:user_id but checking 
