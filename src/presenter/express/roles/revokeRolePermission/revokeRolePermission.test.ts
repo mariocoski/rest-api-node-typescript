@@ -101,7 +101,6 @@ describe(__filename, () => {
                                   .set('Authorization' , validToken);
     const fetchedRole: any = await service.getRoleById({id: role.id});
     
-    console.log(fetchedRole.permissions);
     expect(fetchedRole.permissions.length).toBe(3);
     expect(response.status).toBe(OK_200_HTTP_CODE);
   });

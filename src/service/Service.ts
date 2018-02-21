@@ -4,7 +4,7 @@ import {createUserSignature, getUserByIdSignature,getUserByEmailSignature, getUs
 import {createPostSignature, getPostByIdSignature, getPostsSignature, updatePostSignature, deletePostByIdSignature } from './posts';
 import {createCommentSignature, getCommentByIdSignature, getCommentsSignature, updateCommentSignature, deleteCommentByIdSignature } from './comments';
 import {createRoleSignature, getRoleByIdSignature, getRolesSignature, updateRoleSignature, deleteRoleByIdSignature, revokeRolePermissionSignature } from './roles';
-import {getUserPermissionsSignature, createPermissionSignature, getPermissionSignature, getPermissionsSignature, updatePermissionSignature, deletePermissionSignature, assignRolePermissionSignature, removeRolePermissionSignature, CreateUserPermissionsSignature } from './permissions';
+import {getUserPermissionsSignature, createPermissionSignature, getPermissionByIdSignature, getPermissionsSignature, updatePermissionSignature, deletePermissionSignature, assignRolePermissionSignature, removeRolePermissionSignature, CreateUserPermissionsSignature } from './permissions';
 import CommonServiceSignature from './utils/CommonServiceSignature';
 import {GetUserResetPasswordTokensSignature,CreateResetPasswordTokenSignature,GetResetPasswordTokenByTokenSignature} from './resetPasswordTokens';
 
@@ -47,7 +47,7 @@ export default interface Service {
   // readonly removeUserRole: removeUserRoleSignature;
 
   readonly createPermission: createPermissionSignature;
-  // readonly getPermission: getPermissionSignature;
+  readonly getPermissionById: getPermissionByIdSignature;
   // readonly getPermissions: getPermissionsSignature;
   // readonly updatePermission: updatePermissionSignature;
   // readonly deletePermission: deletePermissionSignature;

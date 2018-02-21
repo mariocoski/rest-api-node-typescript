@@ -1,8 +1,8 @@
 import {Instance} from "sequelize";
 
 export interface PermissionAttributes {
-  id: number,
-  name: string,
+  id?: number,
+  name?: string,
   label?: string,
   description?: string,
   created_at?: string,

@@ -69,8 +69,8 @@ _models.Comment.belongsTo(_models.User);
 _models.User.hasMany(_models.Comment, {as: 'comments', onDelete: 'CASCADE'});
 _models.Role.belongsToMany(_models.User, { through: _models.UserRole, as: 'users', onDelete: 'CASCADE',individualHooks: true});
 _models.User.belongsToMany(_models.Role, { through: _models.UserRole, as: 'roles', onDelete: 'CASCADE',individualHooks: true});
-_models.Role.belongsToMany(_models.Permission, { through: {model: _models.RolePermission, unique: false} , as: 'permissions'});
-_models.Permission.belongsToMany(_models.Role,  { through: {model: _models.RolePermission, unique: false}, as: 'roles'});
+_models.Role.belongsToMany(_models.Permission, { through: {model: _models.RolePermission, unique: false} ,onDelete: 'CASCADE', as: 'permissions'});
+_models.Permission.belongsToMany(_models.Role,  { through: {model: _models.RolePermission, unique: false},onDelete: 'CASCADE', as: 'roles'});
 
 export const models: SequelizeModels = _models;
 export const sequelize: Sequelize = _sequelize;

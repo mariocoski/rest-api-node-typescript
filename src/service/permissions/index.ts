@@ -1,11 +1,11 @@
 import createPermission from './createPermission';
 import createPermissionSignature from './createPermission/Signature';
 
-import getPermission from './getPermission';
-import getPermissionSignature from './getPermission/Signature';
-
 import getPermissions from './getPermissions';
 import getPermissionsSignature from './getPermissions/Signature';
+
+import getPermissionById from './getPermissionById';
+import getPermissionByIdSignature from './getPermissionById/Signature';
 
 
 import createUserPermissions from './createUserPermissions';
@@ -29,10 +29,10 @@ import removeRolePermissionSignature from './removeRolePermission/Signature';
 export {
   createPermission,
   createPermissionSignature,
-  getPermission,
-  getPermissionSignature,
   getPermissions,
   getPermissionsSignature,
+  getPermissionById,
+  getPermissionByIdSignature,
   createUserPermissions,
   CreateUserPermissionsSignature,
   getUserPermissions,

@@ -11,10 +11,7 @@ export default (config: Config) => {
       const permission: PermissionInstance = await config.models.Permission.create({
         name: options.name,
         label: options.label,
-        description: options.description,
-        created_at: options.createdAt,
-        updated_at: options.updatedAt, 
-        deleted_at: options.deletedAt
+        description: options.description
       });
       return permission.get({ plain: true });
     }catch(err){
