@@ -46,7 +46,7 @@ export interface ModelRepoInterface {
     readonly createPermission: CreatePermissionSignature;
     readonly getPermissionById: GetPermissionByIdSignature;
     readonly getPermissions: GetPermissionsSignature;
-    // readonly updatePermission: UpdatePermissionSignature;
+    readonly updatePermission: UpdatePermissionSignature;
     // readonly deletePermission: DeletePermissionSignature;
     readonly createUserPermissions: CreateUserPermissionsSignature;
     readonly getUserPermissions: GetUserPermissionsSignature;

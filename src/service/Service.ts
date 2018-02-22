@@ -49,7 +49,7 @@ export default interface Service {
   readonly createPermission: createPermissionSignature;
   readonly getPermissionById: getPermissionByIdSignature;
   readonly getPermissions: getPermissionsSignature;
-  // readonly updatePermission: updatePermissionSignature;
+  readonly updatePermission: updatePermissionSignature;
   // readonly deletePermission: deletePermissionSignature;
 
   // readonly removeRolePermission: removeRolePermissionSignature;

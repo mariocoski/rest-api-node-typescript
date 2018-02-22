@@ -50,7 +50,7 @@ export default (config: Config): Service => {
     createPermission: createPermission(config),
     getPermissionById: getPermissionById(config),
     getPermissions: getPermissions(config),
-    // updatePermission: updatePermission(config),
+    updatePermission: updatePermission(config),
     // deletePermission: deletePermission(config),
     // removeRolePermission: removeRolePermission(config),
     getUserPermissions: getUserPermissions(config),
