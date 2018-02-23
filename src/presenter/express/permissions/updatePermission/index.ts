@@ -27,7 +27,7 @@ export default (config: Config) => {
     validateUpdatePermission(req.body, ['permission']);
     
     const {permission_id} = req.params;
-
+    
     const updatedPermission = await config.service.updatePermission({id: permission_id, data: req.body});
 
     res.status(OK_200_HTTP_CODE).json(updatedPermission);

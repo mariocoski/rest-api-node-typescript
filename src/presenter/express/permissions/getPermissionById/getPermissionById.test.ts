@@ -62,5 +62,4 @@ describe(__filename, () => {
     expect(response.body.description).toBe(TEST_VALID_DESCRIPTION);
   });
 
-  
 });

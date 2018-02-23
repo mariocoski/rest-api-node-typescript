@@ -3,7 +3,7 @@ import {CreatePostSignature, GetPostByIdSignature, GetPostsSignature, UpdatePost
 import {CreateCommentSignature, GetCommentByIdSignature, GetCommentsSignature, UpdateCommentSignature, DeleteCommentByIdSignature} from './modelRepo/comments';
 import {CreateRoleSignature, GetRoleByIdSignature, GetRolesSignature, UpdateRoleSignature, DeleteRoleByIdSignature, AssignRolePermissionSignature, RevokeRolePermissionSignature} from './modelRepo/roles';
 import {CreateUserPermissionsSignature, GetUserPermissionsSignature, CreatePermissionSignature, GetPermissionByIdSignature, GetPermissionsSignature,
-        UpdatePermissionSignature, DeletePermissionSignature} from './modelRepo/permissions';
+        UpdatePermissionSignature, DeletePermissionByIdSignature} from './modelRepo/permissions';
 import {CreateResetPasswordSignature, GetUserResetPasswordTokensSignature, GetResetPasswordTokenByTokenSignature, DeleteResetPasswordTokenByIdSignature} from './modelRepo/resetPasswordTokens';
 import SendEmailSignature from './mailRepo/sendEmail/Signature';
 
@@ -47,7 +47,7 @@ export interface ModelRepoInterface {
     readonly getPermissionById: GetPermissionByIdSignature;
     readonly getPermissions: GetPermissionsSignature;
     readonly updatePermission: UpdatePermissionSignature;
-    // readonly deletePermission: DeletePermissionSignature;
+    readonly deletePermissionById: DeletePermissionByIdSignature;
     readonly createUserPermissions: CreateUserPermissionsSignature;
     readonly getUserPermissions: GetUserPermissionsSignature;
     readonly clearRepo: () => Promise<void>;

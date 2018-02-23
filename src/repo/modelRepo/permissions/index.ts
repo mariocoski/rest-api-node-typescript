@@ -1,5 +1,5 @@
 import CreatePermissionSignature from './createPermission/Signature';
-import DeletePermissionSignature from './deletePermission/Signature';
+import DeletePermissionByIdSignature from './deletePermissionById/Signature';
 import GetPermissionByIdSignature from './getPermissionById/Signature';
 import GetPermissionsSignature from './getPermissions/Signature';
 import GetUserPermissionsSignature from './getUserPermissions/Signature';
@@ -8,7 +8,7 @@ import UpdatePermissionSignature from './updatePermission/Signature';
 
 export {
   CreatePermissionSignature,
-  DeletePermissionSignature,
+  DeletePermissionByIdSignature,
   GetPermissionByIdSignature,
   GetPermissionsSignature,
   CreateUserPermissionsSignature,

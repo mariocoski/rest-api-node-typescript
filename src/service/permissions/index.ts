@@ -17,8 +17,8 @@ import getUserPermissionsSignature from './getUserPermissions/Signature';
 import updatePermission from './updatePermission';
 import updatePermissionSignature from './updatePermission/Signature';
 
-import deletePermission from './deletePermission';
-import deletePermissionSignature from './deletePermission/Signature';
+import deletePermissionById from './deletePermissionById';
+import deletePermissionByIdSignature from './deletePermissionById/Signature';
 
 import assignRolePermission from './assignRolePermission';
 import assignRolePermissionSignature from './assignRolePermission/Signature';
@@ -39,8 +39,8 @@ export {
   getUserPermissionsSignature,
   updatePermission,
   updatePermissionSignature,
-  deletePermission,
-  deletePermissionSignature,
+  deletePermissionById,
+  deletePermissionByIdSignature,
   assignRolePermission,
   assignRolePermissionSignature,
   removeRolePermission,

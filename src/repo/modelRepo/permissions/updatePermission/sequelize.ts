@@ -11,8 +11,8 @@ export default (config: Config) => {
   return async ({id, data}: Options) => {
   
       const foundPermission: PermissionInstance | null = await config.models.Permission.findById(id);
-
-      if(foundPermission === null) throw new ModelNotFoundError('Role');
+   
+      if(foundPermission === null) throw new ModelNotFoundError('Permission');
 
       await config.models.Permission.update(
         {

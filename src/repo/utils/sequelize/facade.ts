@@ -26,6 +26,7 @@ import createPermission from '../../modelRepo/permissions/createPermission/seque
 import getPermissions from '../../modelRepo/permissions/getPermissions/sequelize';
 import updatePermission from '../../modelRepo/permissions/updatePermission/sequelize';
 import getPermissionById from '../../modelRepo/permissions/getPermissionById/sequelize';
+import deletePermissionById from '../../modelRepo/permissions/deletePermissionById/sequelize';
 import createPost from  '../../modelRepo/posts/createPost/sequelize';
 import getPostById from '../../modelRepo/posts/getPostById/sequelize';
 import getPosts from '../../modelRepo/posts/getPosts/sequelize';
@@ -78,6 +79,7 @@ export default (config: Config): ModelRepoInterface => {
     createUserPermissions: createUserPermissions(config),
     getUserPermissions: getUserPermissions(config),
     updatePermission: updatePermission(config),
+    deletePermissionById: deletePermissionById(config),
 
     clearRepo: clearRepo(config),
     migrate: migrate(config),
