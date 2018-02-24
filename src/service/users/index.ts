@@ -16,6 +16,12 @@ import updateUserSignature from './updateUser/Signature';
 import deleteUserById from './deleteUserById';
 import deleteUserByIdSignature from './deleteUserById/Signature';
 
+import assignUserRole from './assignUserRole';
+import assignUserRoleSignature from './assignUserRole/Signature';
+
+import revokeUserRole from './revokeUserRole';
+import revokeUserRoleSignature from './revokeUserRole/Signature';
+
 export {
   createUser,
   createUserSignature,
@@ -29,5 +35,9 @@ export {
   updateUserSignature,
   deleteUserById,
   deleteUserByIdSignature,
+  assignUserRole,
+  assignUserRoleSignature,
+  revokeUserRole,
+  revokeUserRoleSignature
 }
 

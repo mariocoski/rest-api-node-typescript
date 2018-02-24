@@ -81,9 +81,6 @@ export const DEFAULT_ADMIN_PERMISSIONS: any[] = [
 
 export const DEFAULT_USER_PERMISSIONS: any[] = [
   //USERS
-  //@todo mayby implements /profile to get/update/delete current user, 
-  //for now just allow to do it via /users/:user_id but checking 
-  //if req.user.id === :user_id
   { 
     name: CAN_GET_USERS,
     label: 'Allows to get all users'

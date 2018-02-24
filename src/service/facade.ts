@@ -1,7 +1,7 @@
 import Config from './Config';
 import Service from './Service';
 import {login, register, forgetPassword, resetPassword} from './auth';
-import {createUser, getUserById, getUserByEmail, getUsers, updateUser, deleteUserById} from './users';
+import {createUser, getUserById, getUserByEmail, getUsers, updateUser, deleteUserById, assignUserRole, revokeUserRole} from './users';
 import {createPost, getPostById, getPosts, updatePost, deletePostById} from './posts';
 import {createComment, getCommentById, getComments, updateComment, deleteCommentById} from './comments';
 import {createRole, getRoleById, getRoles, updateRole, deleteRoleById, revokeRolePermission, assignRolePermission} from './roles';
@@ -15,15 +15,19 @@ export default (config: Config): Service => {
     register: register(config),
     forgetPassword: forgetPassword(config),
     resetPassword: resetPassword(config),
+
     getResetPasswordTokenByToken: getResetPasswordTokenByToken(config),
     createResetPasswordToken: createResetPasswordToken(config),
     getUserResetPasswordTokens: getUserResetPasswordTokens(config),
+
     createUser: createUser(config),
     getUserById: getUserById(config),
     getUserByEmail: getUserByEmail(config),
     getUsers: getUsers(config),
     updateUser: updateUser(config),
     deleteUserById: deleteUserById(config),
+    assignUserRole: assignUserRole(config),
+    revokeUserRole: revokeUserRole(config),
 
     createPost: createPost(config),
     getPostById: getPostById(config),
@@ -44,15 +48,12 @@ export default (config: Config): Service => {
     getRoles: getRoles(config),
     updateRole: updateRole(config),
     deleteRoleById: deleteRoleById(config),
-    // assignUserRole: assignUserRole(config),
-    // removeUserRole: removeUserRole(config),
 
     createPermission: createPermission(config),
     getPermissionById: getPermissionById(config),
     getPermissions: getPermissions(config),
     updatePermission: updatePermission(config),
     deletePermissionById: deletePermissionById(config),
-    // removeRolePermission: removeRolePermission(config),
     getUserPermissions: getUserPermissions(config),
     createUserPermissions: createUserPermissions(config),
   
