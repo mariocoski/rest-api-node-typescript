@@ -1,10 +1,9 @@
 import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
-import {Request, Response} from 'express';
-import {OK_200_HTTP_CODE} from '../../utils/constants';
+import { OK_200_HTTP_CODE } from '../../utils/constants';
 import { isEmail } from '../../../../utils/validate';
-import {maybe, required, restrictToSchema}from 'rulr';
-import {ModelNotFoundError} from '../../../../utils/errors';
+import { maybe, required, restrictToSchema}from 'rulr';
+import { ModelNotFoundError} from '../../../../utils/errors';
 import {v4} from 'uuid';
 
 const validateForgetPassword = maybe(
@@ -14,7 +13,7 @@ const validateForgetPassword = maybe(
 );
 
 export default (config: Config) => {
-  return catchErrors(config, async (req: Request, res: Response): Promise<void> => {
+  return catchErrors(config, async (req, res)=> {
    
     validateForgetPassword(req.body, ['user']);
    

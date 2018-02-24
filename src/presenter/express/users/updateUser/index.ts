@@ -1,12 +1,11 @@
 import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
-import {Request, Response} from 'express';
-import {OK_200_HTTP_CODE} from '../../utils/constants';
+import { OK_200_HTTP_CODE } from '../../utils/constants';
 import getAuthUser from '../../../../utils/jwt/getAuthUser';
 import hasPermission from '../../../../utils/jwt/hasPermission';
-import {CAN_UPDATE_USER} from '../../../../utils/constants';
-import {minLength, isEmail, validateMatchingPasswords} from '../../../../utils/validate';
-import {maybe, optional, checkType,composeRules, first, restrictToSchema}from 'rulr';
+import { CAN_UPDATE_USER } from '../../../../utils/constants';
+import { minLength, isEmail, validateMatchingPasswords } from '../../../../utils/validate';
+import { maybe, optional, checkType, composeRules, first, restrictToSchema }from 'rulr';
 import * as R from 'ramda';
 
 const validateUpdateUser = maybe(composeRules([
@@ -22,7 +21,7 @@ const validateUpdateUser = maybe(composeRules([
 ]));
 
 export default (config: Config) => {
-  return catchErrors(config, async (req: Request, res: Response): Promise<void> => {
+  return catchErrors(config, async (req, res) => {
   
     const user = await getAuthUser({req, service: config.service});
 
@@ -44,5 +43,4 @@ export default (config: Config) => {
 
     res.status(OK_200_HTTP_CODE).json(updatedUser);
   });
-
 };

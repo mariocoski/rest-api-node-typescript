@@ -1,10 +1,9 @@
 import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
-import {Request, Response} from 'express';
-import {OK_200_HTTP_CODE} from '../../utils/constants';
-import {minLength, validateMatchingPasswords} from '../../../../utils/validate';
-import {maybe, required,checkType, composeRules, first, restrictToSchema} from 'rulr';
-import {v4} from 'uuid';
+import { OK_200_HTTP_CODE } from '../../utils/constants';
+import { minLength, validateMatchingPasswords } from '../../../../utils/validate';
+import { maybe, required, checkType, composeRules, first, restrictToSchema } from 'rulr';
+import { v4 } from 'uuid';
 
 const validateResetPassword = maybe(composeRules([
   restrictToSchema({
@@ -16,7 +15,7 @@ const validateResetPassword = maybe(composeRules([
 ]));
 
 export default (config: Config) => {
-  return catchErrors(config, async (req: Request, res: Response): Promise<void> => {
+  return catchErrors(config, async (req, res) => {
    
     validateResetPassword(req.body, ['user']);
 
