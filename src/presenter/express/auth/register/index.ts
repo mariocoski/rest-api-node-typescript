@@ -1,6 +1,6 @@
 import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
-import { CREATED_201_HTTP_CODE } from '../../utils/constants';
+import { CREATED } from 'http-status-codes';
 import { minLength, isEmail, validateMatchingPasswords } from '../../../../utils/validate';
 import { maybe, required, restrictToSchema, checkType, composeRules, first }from 'rulr';
 
@@ -24,7 +24,7 @@ export default (config: Config) => {
       email, password, bio, firstname, lastname
     });
 
-    res.status(CREATED_201_HTTP_CODE).json({user,token});
+    res.status(CREATED).json({user,token});
   });
 }
   

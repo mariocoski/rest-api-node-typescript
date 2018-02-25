@@ -1,6 +1,6 @@
 import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
-import { CREATED_201_HTTP_CODE } from '../../utils/constants';
+import { CREATED } from 'http-status-codes';
 import getAuthUser from '../../../../utils/jwt/getAuthUser';
 import hasPermission from '../../../../utils/jwt/hasPermission';
 import { CAN_CREATE_ROLE, VARCHAR_FIELD_LENGTH, TEXT_FIELD_LENGTH } from '../../../../utils/constants';
@@ -25,6 +25,6 @@ export default (config: Config) => {
     
     const createRole = await config.service.createRole(req.body);
 
-    res.status(CREATED_201_HTTP_CODE).json(createRole);
+    res.status(CREATED).json(createRole);
   });
 };

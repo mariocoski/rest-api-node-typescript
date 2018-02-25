@@ -1,7 +1,7 @@
 import initTests from '../../utils/initTests';
 import {API_ROUTE_V1} from '../../../../utils/constants';
 import {Response} from 'express';
-import {OK_200_HTTP_CODE, FORBIDDEN_403_HTTP_CODE, UNAUTHORISED_401_HTTP_CODE,NOT_FOUND_404_HTTP_CODE, UNPROCESSABLE_ENTITY_422_HTTP_CODE} from '../../utils/constants';
+import { OK, NOT_FOUND, FORBIDDEN, UNAUTHORIZED } from 'http-status-codes'; 
 import config from '../../../../config';
 import {TEST_INVALID_JWT_TOKEN, TEST_VALID_REGISTER_USER } from '../../../../utils/testValues';
 import expectError from '../../utils/expectError';
@@ -18,13 +18,13 @@ describe(__filename, () => {
 
   it('should fail to update comment when unauthenticated', async () => {
     const response = await request.patch(`${API_ROUTE_V1}/comments/1`);
-    expectError(response, UNAUTHORISED_401_HTTP_CODE);
+    expectError(response, UNAUTHORIZED);
   });
 
   it('should fail to update comment when invalid token provided in authorization header', async () => {
     const response = await request.patch(`${API_ROUTE_V1}/comments/1`)
                                   .set('Authorization' , TEST_INVALID_JWT_TOKEN);
-    expectError(response, UNAUTHORISED_401_HTTP_CODE);
+    expectError(response, UNAUTHORIZED);
   });
 
   it('should fail to update comment when insufficent permissions', async () => {
@@ -32,7 +32,7 @@ describe(__filename, () => {
     const validToken = await generateJwtToken({data: {id: userWithoutPermissions.id}});
     const response = await request.patch(`${API_ROUTE_V1}/comments/1`)
                                   .set('Authorization' , validToken);
-    expectError(response, FORBIDDEN_403_HTTP_CODE);
+    expectError(response, FORBIDDEN);
   });
 
   it('should fail to update comment with user_id of not existing user', async () => {
@@ -55,7 +55,7 @@ describe(__filename, () => {
                                     user_id: 999
                                   });
 
-    expectError(response, NOT_FOUND_404_HTTP_CODE);
+    expectError(response, NOT_FOUND);
   });
 
   it('should fail to update post for not existing post', async () => {
@@ -68,7 +68,7 @@ describe(__filename, () => {
                                     body: TEST_VALID_DESCRIPTION
                                   });
 
-    expectError(response, NOT_FOUND_404_HTTP_CODE);
+    expectError(response, NOT_FOUND);
   });
 
   it('should fail to update comment with user_id of not existing user', async () => {
@@ -91,7 +91,7 @@ describe(__filename, () => {
                                     post_id: 999
                                   });
 
-    expectError(response, NOT_FOUND_404_HTTP_CODE);
+    expectError(response, NOT_FOUND);
   });
 
   it('should successfuly update comment with valid data', async () => {
@@ -128,7 +128,7 @@ describe(__filename, () => {
     expect(response.body.body).toEqual(TEST_VALID_DESCRIPTION); 
     expect(response.body.user_id).toEqual(otherUser.id); 
     expect(response.body.post_id).toEqual(otherPost.id); 
-    expect(response.status).toBe(OK_200_HTTP_CODE);
+    expect(response.status).toBe(OK);
   });
 
 });

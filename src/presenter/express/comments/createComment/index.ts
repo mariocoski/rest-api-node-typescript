@@ -1,11 +1,11 @@
 import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
-import { CREATED_201_HTTP_CODE } from '../../utils/constants';
+import { CREATED } from 'http-status-codes'; 
 import getAuthUser from '../../../../utils/jwt/getAuthUser';
 import hasPermission from '../../../../utils/jwt/hasPermission';
-import {CAN_CREATE_COMMENT, TEXT_FIELD_LENGTH} from '../../../../utils/constants';
+import { CAN_CREATE_COMMENT, TEXT_FIELD_LENGTH } from '../../../../utils/constants';
 import { maxLength } from '../../../../utils/validate';
-import {maybe, required, checkType, composeRules, restrictToSchema} from 'rulr';
+import { maybe, required, checkType, composeRules, restrictToSchema } from 'rulr';
 
 const validateCreateComment = maybe(composeRules([
   restrictToSchema({
@@ -26,7 +26,6 @@ export default (config: Config) => {
     
     const createdComment = await config.service.createComment(req.body);
     
-    res.status(CREATED_201_HTTP_CODE).json(createdComment);
+    res.status(CREATED).json(createdComment);
   });
-
 };

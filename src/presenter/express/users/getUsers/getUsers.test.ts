@@ -1,7 +1,7 @@
 import initTests from '../../utils/initTests';
 import {API_ROUTE_V1} from '../../../../utils/constants';
 import {Response} from 'express';
-import {OK_200_HTTP_CODE, FORBIDDEN_403_HTTP_CODE, UNAUTHORISED_401_HTTP_CODE} from '../../utils/constants';
+import { OK, CREATED, FORBIDDEN, UNAUTHORIZED, NOT_FOUND } from 'http-status-codes';
 import config from '../../../../config';
 import {TEST_INVALID_JWT_TOKEN, TEST_VALID_ANOTHER_REGIRSTER_USER, TEST_VALID_REGISTER_USER } from '../../../../utils/testValues';
 import expectError from '../../utils/expectError';
@@ -16,13 +16,13 @@ describe(__filename, () => {
 
   it('should fail to get user when unauthenticated', async () => {
     const response = await request.get(`${API_ROUTE_V1}/users`);
-    expectError(response, UNAUTHORISED_401_HTTP_CODE);
+    expectError(response, UNAUTHORIZED);
   });
 
   it('should fail to get users when invalid token provided in authorization header', async () => {
     const response = await request.get(`${API_ROUTE_V1}/users/1`)
                                   .set('Authorization' , TEST_INVALID_JWT_TOKEN);
-    expectError(response, UNAUTHORISED_401_HTTP_CODE);
+    expectError(response, UNAUTHORIZED);
   });
 
   it('should fail to get user when insufficent permissions', async () => {
@@ -30,7 +30,7 @@ describe(__filename, () => {
     const validToken = await generateJwtToken({data: {id: userWithoutPermissions.id}});
     const response = await request.get(`${API_ROUTE_V1}/users/${userWithoutPermissions.id}`)
                                   .set('Authorization' , validToken);
-    expectError(response, FORBIDDEN_403_HTTP_CODE);
+    expectError(response, FORBIDDEN);
   });
 
   it('should get users when has required permissions and passed offset and limit', async () => {
@@ -45,6 +45,7 @@ describe(__filename, () => {
 
     const response = await request.get(`${API_ROUTE_V1}/users?offset=0&limit=5`)
                                   .set('Authorization', validToken);
+    expect(response.status).toBe(OK);
     expect(response.body.count).toBe(5);
     expect(response.body.total).toBe(6);
     expect(response.body.currentPage).toBe(1);
@@ -62,7 +63,7 @@ describe(__filename, () => {
 
     const response = await request.get(`${API_ROUTE_V1}/users`)
                                   .set('Authorization', validToken);
-    expect(response.status).toBe(OK_200_HTTP_CODE);
+    expect(response.status).toBe(OK);
     expect(response.body.count).toBe(10);
     expect(response.body.total).toBe(11);
     expect(response.body.perPage).toBe(DEFAULT_USERS_PAGINATION_LIMIT);
@@ -81,9 +82,7 @@ describe(__filename, () => {
 
     const response = await request.get(`${API_ROUTE_V1}/users?sort=id:desc`)
                                   .set('Authorization', validToken);
-    expect(response.status).toBe(OK_200_HTTP_CODE);
+    expect(response.status).toBe(OK);
     expect(response.body.data[0].id).toBe(6);
-    expect(response.status).toBe(OK_200_HTTP_CODE);
   });
-
 });

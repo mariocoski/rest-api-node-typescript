@@ -1,7 +1,7 @@
 import initTests from '../../utils/initTests';
 import {API_ROUTE_V1} from '../../../../utils/constants';
 import {Response} from 'express';
-import {OK_200_HTTP_CODE, FORBIDDEN_403_HTTP_CODE, UNAUTHORISED_401_HTTP_CODE} from '../../utils/constants';
+import { OK, NOT_FOUND, FORBIDDEN, UNAUTHORIZED } from 'http-status-codes'; 
 import config from '../../../../config';
 import {TEST_INVALID_JWT_TOKEN, TEST_VALID_REGISTER_USER } from '../../../../utils/testValues';
 import expectError from '../../utils/expectError';
@@ -16,21 +16,21 @@ describe(__filename, () => {
 
   it('should fail to get comments when unauthenticated', async () => {
     const response = await request.get(`${API_ROUTE_V1}/comments`);
-    expectError(response, UNAUTHORISED_401_HTTP_CODE);
+    expectError(response, UNAUTHORIZED);
   });
 
   it('should fail to get comments when invalid token provided in authorization header', async () => {
     const response = await request.get(`${API_ROUTE_V1}/comments`)
                                   .set('Authorization' , TEST_INVALID_JWT_TOKEN);
-    expectError(response, UNAUTHORISED_401_HTTP_CODE);
+    expectError(response, UNAUTHORIZED);
   });
 
-  it('should fail to get comments when insufficent permissions', async () => {
+  it('should fail to get commentsuuw when insufficent permissions', async () => {
     const userWithoutPermissions = await service.createUser(TEST_VALID_REGISTER_USER);
     const validToken = await generateJwtToken({data: {id: userWithoutPermissions.id}});
     const response = await request.get(`${API_ROUTE_V1}/comments`)
                                   .set('Authorization' , validToken);
-    expectError(response, FORBIDDEN_403_HTTP_CODE);
+    expectError(response, FORBIDDEN);
   });
 
   it('should get comments when has required permissions and passed offset and limit', async () => {
@@ -58,7 +58,7 @@ describe(__filename, () => {
     expect(response.body.count).toBe(5);
     expect(response.body.total).toBe(6);
     expect(response.body.currentPage).toBe(1);
-    expect(response.status).toBe(OK_200_HTTP_CODE);
+    expect(response.status).toBe(OK);
   });
 
   it('should get comments when offset and limit provided', async () => {
@@ -86,7 +86,7 @@ describe(__filename, () => {
     expect(response.body.count).toBe(5);
     expect(response.body.total).toBe(10);
     expect(response.body.currentPage).toBe(1);
-    expect(response.status).toBe(OK_200_HTTP_CODE);
+    expect(response.status).toBe(OK);
   });
 
   it('should get comments sorted according to the keys provided', async () => {
@@ -111,7 +111,7 @@ describe(__filename, () => {
 
     const response = await request.get(`${API_ROUTE_V1}/comments?sort=id:desc`)
                                   .set('Authorization', validToken);
-    expect(response.status).toBe(OK_200_HTTP_CODE);
+    expect(response.status).toBe(OK);
     expect(response.body.data[0].id).toBe(5);
   });
 

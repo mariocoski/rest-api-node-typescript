@@ -1,6 +1,6 @@
 import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
-import { OK_200_HTTP_CODE } from '../../utils/constants';
+import { OK } from 'http-status-codes';
 import getAuthUser from '../../../../utils/jwt/getAuthUser';
 import hasPermission from '../../../../utils/jwt/hasPermission';
 import { CAN_GET_PERMISSIONS } from '../../../../utils/constants';
@@ -28,7 +28,7 @@ export default (config: Config) => {
 
     const permissions = await config.service.getPermissions({limit, offset, order: sort});
     
-    res.status(OK_200_HTTP_CODE).json(permissions);
+    res.status(OK).json(permissions);
   });
 }
   

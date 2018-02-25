@@ -1,10 +1,10 @@
 import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
-import { OK_200_HTTP_CODE } from '../../utils/constants';
+import { OK } from 'http-status-codes';
 import getAuthUser from '../../../../utils/jwt/getAuthUser';
 import hasPermission from '../../../../utils/jwt/hasPermission';
 import { CAN_REVOKE_ROLE, VARCHAR_FIELD_LENGTH, TEXT_FIELD_LENGTH } from '../../../../utils/constants';
-import { maybe, required, checkType, composeRules, first, restrictToSchema } from 'rulr';
+import { maybe, required, checkType, composeRules, restrictToSchema } from 'rulr';
 
 const validateRevokeRole = maybe(composeRules([
   restrictToSchema({
@@ -24,6 +24,6 @@ export default (config: Config) => {
 
     await config.service.revokeUserRole(req.params);
 
-    res.status(OK_200_HTTP_CODE).json({success: true});
+    res.status(OK).json({success: true});
   });
 };

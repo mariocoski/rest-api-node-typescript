@@ -1,7 +1,7 @@
 import initTests from '../../utils/initTests';
 import {API_ROUTE_V1} from '../../../../utils/constants';
 import {Response} from 'express';
-import {OK_200_HTTP_CODE, NOT_FOUND_404_HTTP_CODE,FORBIDDEN_403_HTTP_CODE, CONFLICT_409_HTTP_CODE, UNAUTHORISED_401_HTTP_CODE, UNPROCESSABLE_ENTITY_422_HTTP_CODE} from '../../utils/constants';
+import { OK, CREATED, FORBIDDEN, UNAUTHORIZED, NOT_FOUND, CONFLICT, UNPROCESSABLE_ENTITY } from 'http-status-codes';
 import config from '../../../../config';
 import {TEST_INVALID_JWT_TOKEN,TEST_VALID_EMAIL, TEST_INVALID_EMAIL, TEST_DIFFERENT_VALID_PASSWORD,TEST_VALID_PASSWORD,
    TEST_TOO_SHORT_PASSWORD,TEST_VALID_ANOTHER_REGIRSTER_USER, TEST_VALID_REGISTER_USER, TEST_VALID_TITLE, TEST_VALID_DESCRIPTION
@@ -20,13 +20,13 @@ describe(__filename, () => {
 
   it('should fail to assign permission to role when unauthenticated', async () => {
     const response = await request.post(`${API_ROUTE_V1}/roles/1/permissions`);
-    expectError(response, UNAUTHORISED_401_HTTP_CODE);
+    expectError(response, UNAUTHORIZED);
   });
 
   it('should fail to assign permission to role when invalid token provided in authorization header', async () => {
     const response = await request.post(`${API_ROUTE_V1}/roles/1/permissions`)
                                   .set('Authorization' , TEST_INVALID_JWT_TOKEN);
-    expectError(response, UNAUTHORISED_401_HTTP_CODE);
+    expectError(response, UNAUTHORIZED);
   });
 
   it('should fail to assign permission to role when insufficent permissions', async () => {
@@ -34,7 +34,7 @@ describe(__filename, () => {
     const validToken = await generateJwtToken({data: {id: userWithoutPermissions.id}});
     const response = await request.post(`${API_ROUTE_V1}/roles/1/permissions`)
                                   .set('Authorization' , validToken);
-    expectError(response, FORBIDDEN_403_HTTP_CODE);
+    expectError(response, FORBIDDEN);
   });
 
   it('should fail to assign permission to role when permission_id is not provided', async () => {
@@ -43,7 +43,7 @@ describe(__filename, () => {
     const validToken = await generateJwtToken({data: {id: user.id}});
     const response = await request.post(`${API_ROUTE_V1}/roles/1/permissions`)
                                   .set('Authorization' , validToken);
-    expectError(response, UNPROCESSABLE_ENTITY_422_HTTP_CODE);
+    expectError(response, UNPROCESSABLE_ENTITY);
   });
 
   it('should fail to assign permission to role when role does not exist', async () => {
@@ -55,7 +55,7 @@ describe(__filename, () => {
                                   .send({
                                     permission_id: '1',
                                   });
-    expectError(response, NOT_FOUND_404_HTTP_CODE);
+    expectError(response, NOT_FOUND);
   });
 
 
@@ -72,7 +72,7 @@ describe(__filename, () => {
                                   .send({
                                     permission_id: '999',
                                   });
-    expectError(response, NOT_FOUND_404_HTTP_CODE);
+    expectError(response, NOT_FOUND);
   });
 
   it('should successfuly assign permission to role with valid data', async () => {
@@ -96,9 +96,6 @@ describe(__filename, () => {
     const fetchedRole: any = await service.getRoleById({id: role.id});
     expect(fetchedRole.permissions.length).toBe(1);
     expect(fetchedRole.permissions[0].id).toBe(permission.id);
-    expect(response.status).toBe(OK_200_HTTP_CODE);
+    expect(response.status).toBe(OK);
   });
-
-  
-  
 });

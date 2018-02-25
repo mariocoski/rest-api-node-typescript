@@ -1,7 +1,7 @@
 import initTests from '../../utils/initTests';
 import {API_ROUTE_V1} from '../../../../utils/constants';
 import {Response} from 'express';
-import { OK_200_HTTP_CODE} from '../../utils/constants';
+import { OK } from 'http-status-codes';
 import config from '../../../../config';
 import { TEST_VALID_PASSWORD,TEST_VALID_REGISTER_USER, 
   TEST_TOO_SHORT_PASSWORD,TEST_NOT_MATCHING_RESET_PASSWORD_TOKEN , TEST_DIFFERENT_VALID_PASSWORD, TEST_INVALID_RESET_PASSWORD_TOKEN} from '../../../../utils/testValues';
@@ -135,7 +135,7 @@ describe(__filename, () => {
     expect(email.to[0].address).toBe(registeredUser.user.email);
     expect(match).toBe(true);
     expect(tokenAfterReseting).toBeNull();
-    expect(response.status).toBe(OK_200_HTTP_CODE);
+    expect(response.status).toBe(OK);
     expect(response.body).toMatchSnapshot();
   });
 });

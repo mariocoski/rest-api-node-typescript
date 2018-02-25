@@ -1,11 +1,10 @@
 import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
-import { OK_200_HTTP_CODE } from '../../utils/constants';
+import { OK } from 'http-status-codes';
 import getAuthUser from '../../../../utils/jwt/getAuthUser';
 import hasPermission from '../../../../utils/jwt/hasPermission';
 import { CAN_GET_USERS } from '../../../../utils/constants';
-import { maybe, optional, checkType, restrictToSchema }from 'rulr';
-import { ModelNotFoundError } from '../../../../utils/errors';
+import { maybe, optional, checkType, restrictToSchema } from 'rulr';
 import { isValidSortObject } from '../../../../utils/validate';
 
 const validateGetUsers = maybe(
@@ -29,7 +28,7 @@ export default (config: Config) => {
 
     const users = await config.service.getUsers({limit, offset, order: sort});
     
-    res.status(OK_200_HTTP_CODE).json(users);
+    res.status(OK).json(users);
   });
 }
   

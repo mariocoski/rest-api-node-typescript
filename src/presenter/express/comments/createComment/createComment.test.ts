@@ -1,7 +1,7 @@
 import initTests from '../../utils/initTests';
 import {API_ROUTE_V1} from '../../../../utils/constants';
 import {Response} from 'express';
-import {CREATED_201_HTTP_CODE, FORBIDDEN_403_HTTP_CODE,NOT_FOUND_404_HTTP_CODE, CONFLICT_409_HTTP_CODE, UNAUTHORISED_401_HTTP_CODE, UNPROCESSABLE_ENTITY_422_HTTP_CODE} from '../../utils/constants';
+import { CREATED, FORBIDDEN, NOT_FOUND, UNAUTHORIZED, UNPROCESSABLE_ENTITY } from 'http-status-codes'; 
 import config from '../../../../config';
 import {TEST_INVALID_JWT_TOKEN,TEST_VALID_EMAIL,TEST_VALID_DESCRIPTION, TEST_INVALID_EMAIL, TEST_DIFFERENT_VALID_PASSWORD,TEST_VALID_PASSWORD, TEST_TOO_SHORT_PASSWORD, TEST_VALID_REGISTER_USER } from '../../../../utils/testValues';
 import expectError from '../../utils/expectError';
@@ -18,13 +18,13 @@ describe(__filename, () => {
 
   it('should fail to create comment when unauthenticated', async () => {
     const response = await request.post(`${API_ROUTE_V1}/comments`);
-    expectError(response, UNAUTHORISED_401_HTTP_CODE);
+    expectError(response, UNAUTHORIZED);
   });
 
   it('should fail to create comment when invalid token provided in authorization header', async () => {
     const response = await request.post(`${API_ROUTE_V1}/comments`)
                                   .set('Authorization' , TEST_INVALID_JWT_TOKEN);
-    expectError(response, UNAUTHORISED_401_HTTP_CODE);
+    expectError(response, UNAUTHORIZED);
   });
 
   it('should fail to create comment when insufficent permissions', async () => {
@@ -32,7 +32,7 @@ describe(__filename, () => {
     const validToken = await generateJwtToken({data: {id: userWithoutPermissions.id}});
     const response = await request.post(`${API_ROUTE_V1}/comments`)
                                   .set('Authorization' , validToken);
-    expectError(response, FORBIDDEN_403_HTTP_CODE);
+    expectError(response, FORBIDDEN);
   });
 
   it('should fail to create comment for post which does not exist', async () => {
@@ -47,7 +47,7 @@ describe(__filename, () => {
                                     body: TEST_VALID_DESCRIPTION
                                   });
 
-    expectError(response, NOT_FOUND_404_HTTP_CODE);
+    expectError(response, NOT_FOUND);
   });
 
   it('should fail to create comment for post which does not exist', async () => {
@@ -68,7 +68,7 @@ describe(__filename, () => {
                                     body: TEST_VALID_DESCRIPTION
                                   });
 
-    expectError(response, NOT_FOUND_404_HTTP_CODE);
+    expectError(response, NOT_FOUND);
   });
 
   it('should successfuly create comment with valid data', async () => {
@@ -94,7 +94,7 @@ describe(__filename, () => {
     expect(createdUser.user_id).toEqual(user.id);   
     expect(createdUser.post_id).toEqual(createdPost.id);       
     expect(correctCreatedAt).toBe(true);
-    expect(response.status).toBe(CREATED_201_HTTP_CODE);
+    expect(response.status).toBe(CREATED);
   });
 
 });

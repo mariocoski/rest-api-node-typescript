@@ -87,6 +87,7 @@
     "express": "^4.16.2",
     "file-stream-rotator": "^0.2.0",
     "helmet": "^3.9.0",
+    "http-status-codes": "^1.3.0",
     "iconv-lite": "^0.4.19",
     "jsonwebtoken": "^8.1.0",
     "mailgun-js": "^0.14.0",

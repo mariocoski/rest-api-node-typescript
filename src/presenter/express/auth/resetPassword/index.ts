@@ -1,9 +1,8 @@
 import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
-import { OK_200_HTTP_CODE } from '../../utils/constants';
+import { OK } from 'http-status-codes';
 import { minLength, validateMatchingPasswords } from '../../../../utils/validate';
 import { maybe, required, checkType, composeRules, first, restrictToSchema } from 'rulr';
-import { v4 } from 'uuid';
 
 const validateResetPassword = maybe(composeRules([
   restrictToSchema({
@@ -25,7 +24,7 @@ export default (config: Config) => {
    
     const message = config.translator.passwordChangedSuccessfully();
     
-    res.status(OK_200_HTTP_CODE).json({message});
+    res.status(OK).json({message});
   });
 }
   

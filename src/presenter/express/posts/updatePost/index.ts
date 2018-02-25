@@ -1,6 +1,6 @@
 import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
-import { OK_200_HTTP_CODE } from '../../utils/constants';
+import { OK } from 'http-status-codes';
 import getAuthUser from '../../../../utils/jwt/getAuthUser';
 import hasPermission from '../../../../utils/jwt/hasPermission';
 import { CAN_UPDATE_POST, VARCHAR_FIELD_LENGTH, TEXT_FIELD_LENGTH } from '../../../../utils/constants';
@@ -28,6 +28,6 @@ export default (config: Config) => {
     
     const updatePost = await config.service.updatePost({id: post_id, data: req.body});
 
-    res.status(OK_200_HTTP_CODE).json(updatePost);
+    res.status(OK).json(updatePost);
   });
 };

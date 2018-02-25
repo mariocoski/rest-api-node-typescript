@@ -1,8 +1,8 @@
 import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
-import { OK_200_HTTP_CODE } from '../../utils/constants';
 import { isEmail } from '../../../../utils/validate';
-import { maybe, required, restrictToSchema, checkType }from 'rulr';
+import { maybe, required, restrictToSchema, checkType } from 'rulr';
+import { OK } from 'http-status-codes';
 
 const validateLogin = maybe(
   restrictToSchema({
@@ -22,7 +22,7 @@ export default (config: Config) => {
       email, password
     });
 
-    res.status(OK_200_HTTP_CODE).json({user, token});
+    res.status(OK).json({user, token});
   });
 }
   

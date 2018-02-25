@@ -1,6 +1,6 @@
 import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
-import { OK_200_HTTP_CODE} from '../../utils/constants';
+import { OK } from 'http-status-codes'; 
 import getAuthUser from '../../../../utils/jwt/getAuthUser';
 import hasPermission from '../../../../utils/jwt/hasPermission';
 import { CAN_UPDATE_COMMENT, TEXT_FIELD_LENGTH } from '../../../../utils/constants';
@@ -28,7 +28,7 @@ export default (config: Config) => {
     
     const updateComment = await config.service.updateComment({id: comment_id, data: req.body});
 
-    res.status(OK_200_HTTP_CODE).json(updateComment);
+    res.status(OK).json(updateComment);
   });
 
 };

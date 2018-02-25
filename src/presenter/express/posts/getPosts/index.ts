@@ -1,7 +1,7 @@
 import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
 import { Request, Response } from 'express';
-import { OK_200_HTTP_CODE } from '../../utils/constants';
+import { OK } from 'http-status-codes';
 import getAuthUser from '../../../../utils/jwt/getAuthUser';
 import hasPermission from '../../../../utils/jwt/hasPermission';
 import { CAN_GET_POSTS } from '../../../../utils/constants';
@@ -29,7 +29,7 @@ export default (config: Config) => {
 
     const posts = await config.service.getPosts({limit, offset, order: sort});
     
-    res.status(OK_200_HTTP_CODE).json(posts);
+    res.status(OK).json(posts);
   });
 }
   

@@ -1,7 +1,7 @@
 import initTests from '../../utils/initTests';
 import { API_ROUTE_V1 } from '../../../../utils/constants';
 import { Response } from 'express';
-import { OK_200_HTTP_CODE } from '../../utils/constants';
+import { OK } from 'http-status-codes';
 import config from '../../../../config';
 import { TEST_VALID_LOGIN_USER, TEST_VALID_REGISTER_USER,TEST_INVALID_EMAIL,TEST_VALID_PASSWORD, TEST_VALID_EMAIL, TEST_TOO_SHORT_PASSWORD, TEST_DIFFERENT_VALID_PASSWORD} from '../../../../utils/testValues';
 import * as R  from 'ramda';
@@ -57,7 +57,7 @@ describe(__filename, () => {
                                   .send({email: TEST_VALID_REGISTER_USER.email, password: TEST_VALID_REGISTER_USER.password});
 
     const {user, token} = response.body;
-    expect(response.status).toBe(OK_200_HTTP_CODE);
+    expect(response.status).toBe(OK);
     expect(user.email).toEqual(TEST_VALID_REGISTER_USER.email);
   });
 

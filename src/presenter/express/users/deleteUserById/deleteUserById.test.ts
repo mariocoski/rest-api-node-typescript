@@ -1,7 +1,7 @@
 import initTests from '../../utils/initTests';
 import {API_ROUTE_V1} from '../../../../utils/constants';
 import {Response} from 'express';
-import {OK_200_HTTP_CODE,FORBIDDEN_403_HTTP_CODE,  NOT_FOUND_404_HTTP_CODE, UNAUTHORISED_401_HTTP_CODE} from '../../utils/constants';
+import { OK, CREATED, FORBIDDEN, UNAUTHORIZED, NOT_FOUND, CONFLICT } from 'http-status-codes';
 import config from '../../../../config';
 import {TEST_INVALID_JWT_TOKEN, TEST_VALID_REGISTER_USER } from '../../../../utils/testValues';
 import expectError from '../../utils/expectError';
@@ -15,13 +15,13 @@ describe(__filename, () => {
 
   it('should fail to delete user when unauthenticated', async () => {
     const response = await request.delete(`${API_ROUTE_V1}/users/1`);
-    expectError(response, UNAUTHORISED_401_HTTP_CODE);
+    expectError(response, UNAUTHORIZED);
   });
 
   it('should fail to delete user when invalid token provided in authorization header', async () => {
     const response = await request.delete(`${API_ROUTE_V1}/users/1`)
                                   .set('Authorization' , TEST_INVALID_JWT_TOKEN);
-    expectError(response, UNAUTHORISED_401_HTTP_CODE);
+    expectError(response, UNAUTHORIZED);
   });
 
   it('should fail to delete user when insufficent permissions', async () => {
@@ -29,7 +29,7 @@ describe(__filename, () => {
     const validToken = await generateJwtToken({data: {id: userWithoutPermissions.id}});
     const response = await request.delete(`${API_ROUTE_V1}/users/1`)
                                   .set('Authorization' , validToken);
-    expectError(response, FORBIDDEN_403_HTTP_CODE);
+    expectError(response, FORBIDDEN);
   });
 
   it('should fail to delete user which does not exists', async () => {
@@ -39,7 +39,7 @@ describe(__filename, () => {
     const response = await request.delete(`${API_ROUTE_V1}/users/999`)
                                   .set('Authorization' , validToken);
 
-    expectError(response, NOT_FOUND_404_HTTP_CODE);
+    expectError(response, NOT_FOUND);
   });
 
   it('should successfuly delete user when authenticated and have permissions', async () => {
@@ -49,11 +49,11 @@ describe(__filename, () => {
     const response = await request.delete(`${API_ROUTE_V1}/users/${user.id}`)
                                   .set('Authorization' , validToken);
 
-    expect(response.status).toBe(OK_200_HTTP_CODE);
+    expect(response.status).toBe(OK);
 
     const secondResponse = await request.delete(`${API_ROUTE_V1}/users/${user.id}`)
                                         .set('Authorization' , validToken);
 
-    expect(secondResponse.status).toBe(NOT_FOUND_404_HTTP_CODE);
+    expect(secondResponse.status).toBe(NOT_FOUND);
   });
 });
