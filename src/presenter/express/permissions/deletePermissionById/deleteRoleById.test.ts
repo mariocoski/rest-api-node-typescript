@@ -48,7 +48,7 @@ describe(__filename, () => {
     const permissionData = fakePermissions({
       count: 1,
       overrides: { user_id: user.id }, 
-      only: ['id','name','label', 'description']
+      only: ['name','label', 'description']
     }); 
 
     const permissionToBeDeleted = await service.createPermission(permissionData);

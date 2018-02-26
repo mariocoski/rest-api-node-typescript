@@ -48,7 +48,7 @@ describe(__filename, () => {
     const roleData = fakeRoles({
       count: 1,
       overrides: { user_id: user.id }, 
-      only: ['id','name','description']
+      only: ['name','description']
     }); 
     const roleToBeDeleted = await service.createRole(roleData);
     const validToken = await generateJwtToken({data: {id: user.id}});

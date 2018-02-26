@@ -54,7 +54,7 @@ describe(__filename, () => {
 
     const permissionData = fakePermissions({
       count: 1,
-      only: ['id','name','label','description']
+      only: ['name','label','description']
     }); 
     const permissionToBeUpdated = await service.createPermission(permissionData);
     

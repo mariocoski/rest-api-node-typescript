@@ -36,7 +36,7 @@ describe(__filename, () => {
   it('should get users when has required permissions and passed offset and limit', async () => {
     const user = await createUserWithPermission(service, CAN_GET_USERS);
 
-    const users = fakeUsers({count: 5, only: ['id','email', 'password']}).map(async (user: any) => {
+    const users = fakeUsers({count: 5, only: ['email', 'password']}).map(async (user: any) => {
       return service.createUser(user);
     }); 
     await Promise.all(users);
@@ -54,7 +54,7 @@ describe(__filename, () => {
   it('should get users with default offset and limit when not passed', async () => {
     const user = await createUserWithPermission(service, CAN_GET_USERS);
 
-    const users = fakeUsers({count: 10, only: ['id','email', 'password']}).map(async (user: any) => {
+    const users = fakeUsers({count: 10, only: ['email', 'password']}).map(async (user: any) => {
       return service.createUser(user);
     }); 
     await Promise.all(users);
@@ -73,7 +73,7 @@ describe(__filename, () => {
   it('should get users sorted according to the keys provided', async () => {
     const user = await createUserWithPermission(service, CAN_GET_USERS);
 
-    const users = fakeUsers({count: 5, only: ['id','email', 'password']}).map(async (user: any) => {
+    const users = fakeUsers({count: 5, only: ['email', 'password']}).map(async (user: any) => {
       return service.createUser(user);
     }); 
     await Promise.all(users);

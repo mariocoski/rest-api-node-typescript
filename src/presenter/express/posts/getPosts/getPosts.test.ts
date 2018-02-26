@@ -41,7 +41,7 @@ describe(__filename, () => {
       overrides: {
         user_id: user.id
       }, 
-      only: ['id','user_id','title', 'body']
+      only: ['user_id','title', 'body']
     }).map(async (post: any) => {
       return service.createPost(post);
     }); 
@@ -66,7 +66,7 @@ describe(__filename, () => {
       overrides: {
         user_id: user.id
       }, 
-      only: ['id','user_id','title', 'body']
+      only: ['user_id','title', 'body']
     }).map(async (post: any) => {
       return service.createPost(post);
     }); 
@@ -90,7 +90,7 @@ describe(__filename, () => {
       overrides: {
         user_id: user.id
       }, 
-      only: ['id','user_id','title', 'body']
+      only: ['user_id','title', 'body']
     }).map(async (post: any) => {
       return service.createPost(post);
     }); 

@@ -38,13 +38,13 @@ describe(__filename, () => {
     const postData = fakePosts({
       count: 1,
       overrides: { user_id: user.id }, 
-      only: ['id','user_id','title', 'body']
+      only: ['user_id','title', 'body']
     }); 
     const createdPost: any = await service.createPost(postData);
 
     const comments = fakeComments({
       count: 6, 
-      only: ['id','body', 'post_id','user_id'],
+      only: ['body', 'post_id','user_id'],
       overrides: { post_id:createdPost.id, user_id: user.id },
     }).map(async (user: any) => {
       return service.createComment(user);
@@ -66,13 +66,13 @@ describe(__filename, () => {
     const postData = fakePosts({
       count: 1,
       overrides: { user_id: user.id }, 
-      only: ['id','user_id','title', 'body']
+      only: ['user_id','title', 'body']
     }); 
     const createdPost: any = await service.createPost(postData);
 
     const comments = fakeComments({
       count: 10, 
-      only: ['id','body', 'post_id','user_id'],
+      only: ['body', 'post_id','user_id'],
       overrides: { post_id:createdPost.id, user_id: user.id },
     }).map(async (user: any) => {
       return service.createComment(user);
@@ -94,13 +94,13 @@ describe(__filename, () => {
     const postData = fakePosts({
       count: 1,
       overrides: { user_id: user.id }, 
-      only: ['id','user_id','title', 'body']
+      only: ['user_id','title', 'body']
     }); 
     const createdPost: any = await service.createPost(postData);
 
     const comments = fakeComments({
       count: 5, 
-      only: ['id','body', 'post_id','user_id'],
+      only: ['body', 'post_id','user_id'],
       overrides: { post_id:createdPost.id, user_id: user.id },
     }).map(async (user: any) => {
       return service.createComment(user);

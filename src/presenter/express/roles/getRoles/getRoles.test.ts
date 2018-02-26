@@ -38,7 +38,7 @@ describe(__filename, () => {
 
     const roles = fakeRoles({
       count: 10,
-      only: ['id','name','description']
+      only: ['name','description']
     }).map(async (role: any) => {
       return service.createRole(role);
     }); 
@@ -60,7 +60,7 @@ describe(__filename, () => {
 
     const roles = fakeRoles({
       count: 10,
-      only: ['id','name','description']
+      only: ['name','description']
     }).map(async (role: any) => {
       return service.createRole(role);
     }); 
@@ -81,7 +81,7 @@ describe(__filename, () => {
     
     const roles = fakeRoles({
       count: 5,
-      only: ['id','name','description']
+      only: ['name','description']
     }).map(async (role: any) => {
       return service.createRole(role);
     }); 

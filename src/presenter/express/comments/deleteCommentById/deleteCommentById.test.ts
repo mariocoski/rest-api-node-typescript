@@ -48,7 +48,7 @@ describe(__filename, () => {
     const postData = fakePosts({
       count: 1,
       overrides: { user_id: user.id }, 
-      only: ['id','user_id','title', 'body']
+      only: ['user_id','title', 'body']
     }); 
     const createdPost: any = await service.createPost(postData);
 

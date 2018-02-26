@@ -38,7 +38,7 @@ describe(__filename, () => {
 
     const permissions = fakePermissions({
       count: 10,
-      only: ['id','name','label', 'description']
+      only: ['name','label', 'description']
     }).map(async (permission: any) => {
       return service.createPermission(permission);
     }); 
@@ -60,7 +60,7 @@ describe(__filename, () => {
 
     const permissions = fakePermissions({
       count: 10,
-      only: ['id','name', 'label', 'description']
+      only: ['name', 'label', 'description']
     }).map(async (permission: any) => {
       return service.createPermission(permission);
     }); 
@@ -81,7 +81,7 @@ describe(__filename, () => {
     
     const permissions = fakePermissions({
       count: 5,
-      only: ['id','name', 'label', 'description']
+      only: ['name', 'label', 'description']
     }).map(async (permission: any) => {
       return service.createPermission(permission);
     }); ; 

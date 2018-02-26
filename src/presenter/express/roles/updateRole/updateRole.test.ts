@@ -54,7 +54,7 @@ describe(__filename, () => {
 
     const roleData = fakeRoles({
       count: 1,
-      only: ['id','name','description']
+      only: ['name','description']
     }); 
     const roleToBeUpdated = await service.createRole(roleData);
     
