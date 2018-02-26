@@ -14,9 +14,14 @@ interface Options {
   readonly secretOrKey?: string | Buffer;
 }
 
+interface AuthData {
+  readonly user: any;
+  readonly permissions: any[];
+}
+
 const extractTokenFromRequest = createExtractTokenFromRequest();
 
-export default async(options: Options)=> {
+export default async(options: Options): Promise<AuthData>=> {
   try {
     const tokenExtractor = options.extractTokenFromRequest || extractTokenFromRequest;
     const token: any = tokenExtractor({req: options.req});
@@ -26,7 +31,7 @@ export default async(options: Options)=> {
     const user: any = await options.service.getUserById({id: data.id});
     const permissions: any[] = await options.service.getUserPermissions({userId: user.id});
 
-    return {user, permissions};
+    return Promise.resolve({user, permissions});
   } catch (err) {
     if (err instanceof jwt.JsonWebTokenError) {
       throw new InvalidJwtTokenError();
