@@ -1,7 +1,7 @@
 import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
 import { OK } from 'http-status-codes'; 
-import getAuthUser from '../../../../utils/jwt/getAuthUser';
+import getAuthUserAndPermissions from '../../../../utils/jwt/getAuthUserAndPermissions';
 import hasPermission from '../../../../utils/jwt/hasPermission';
 import { CAN_UPDATE_ROLE, VARCHAR_FIELD_LENGTH,TEXT_FIELD_LENGTH } from '../../../../utils/constants';
 import { maxLength } from '../../../../utils/validate';
@@ -17,9 +17,9 @@ const validateUpdatePost = maybe(composeRules([
 export default (config: Config) => {
   return catchErrors(config, async (req, res) => {
   
-    const user = await getAuthUser({req, service: config.service});
-
-    hasPermission({user, permissionName: CAN_UPDATE_ROLE});
+    const { permissions } = await getAuthUserAndPermissions({req, service: config.service});
+    
+    hasPermission({permissions, permissionName: CAN_UPDATE_ROLE});
  
     validateUpdatePost(req.body, ['role']);
     

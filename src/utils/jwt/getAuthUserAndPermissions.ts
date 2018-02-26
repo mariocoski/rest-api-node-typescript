@@ -8,15 +8,15 @@ import config from '../../config';
 import {ExpiredJwtTokenError, InvalidJwtTokenError, UnauthorizedError} from '../../utils/errors';
 
 interface Options {
-  req: Request;
-  extractTokenFromRequest?: ExtractTokenFromRequestSignature;
-  service: Service;
-  secretOrKey?: string | Buffer;
+  readonly req: Request;
+  readonly extractTokenFromRequest?: ExtractTokenFromRequestSignature;
+  readonly service: Service;
+  readonly secretOrKey?: string | Buffer;
 }
 
 const extractTokenFromRequest = createExtractTokenFromRequest();
 
-export default async(options: Options): Promise<any> => {
+export default async(options: Options)=> {
   try {
     const tokenExtractor = options.extractTokenFromRequest || extractTokenFromRequest;
     const token: any = tokenExtractor({req: options.req});
@@ -24,9 +24,9 @@ export default async(options: Options): Promise<any> => {
     const {data}: any = jwt.verify(token, secret);
     
     const user: any = await options.service.getUserById({id: data.id});
-    const permissions: any = await options.service.getUserPermissions({userId: user.id});
-    user.permissions = permissions;
-    return user;
+    const permissions: any[] = await options.service.getUserPermissions({userId: user.id});
+
+    return {user, permissions};
   } catch (err) {
     if (err instanceof jwt.JsonWebTokenError) {
       throw new InvalidJwtTokenError();

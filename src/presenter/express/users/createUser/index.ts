@@ -1,7 +1,7 @@
 import Config from '../../Config';
 import catchErrors from '../../utils/catchErrors';
 import { OK } from 'http-status-codes';
-import getAuthUser from '../../../../utils/jwt/getAuthUser';
+import getAuthUserAndPermissions from '../../../../utils/jwt/getAuthUserAndPermissions';
 import hasPermission from '../../../../utils/jwt/hasPermission';
 import { CAN_CREATE_USER } from '../../../../utils/constants';
 import { minLength, isEmail, validateMatchingPasswords } from '../../../../utils/validate';
@@ -23,9 +23,9 @@ const validateCreateUser = maybe(composeRules([
 export default (config: Config) => {
   return catchErrors(config, async (req, res) => {
   
-    const user = await getAuthUser({req, service: config.service});
-
-    hasPermission({user, permissionName: CAN_CREATE_USER});
+    const { permissions } = await getAuthUserAndPermissions({req, service: config.service});
+    
+    hasPermission({permissions, permissionName: CAN_CREATE_USER});
  
     validateCreateUser(req.body, ['user']);
 
